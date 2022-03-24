@@ -17,6 +17,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Set content view to game, so objects in GameScreen class can be rendered to the screen
         setContentView(new GameScreen(this));
 
         //Set window size to fullscreen (hides status bar)
