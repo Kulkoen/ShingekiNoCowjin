@@ -1,5 +1,3 @@
-
-
 *.iml
 .gradle
 /local.properties
@@ -15,3 +13,29 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# from gtobdes
+.gradle/
+build/
+
+local.properties
+
+*.log
+
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+output.json
+
+*.iml
+.idea/
+
+*.jks
+*.keystore
+
+google-services.json
+
+*.hprof
+
+*.DS_Store

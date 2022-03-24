@@ -15,3 +15,7 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 }
+
+/**
+ * Test to see if full screen is properly done on the android phone.
+ */
