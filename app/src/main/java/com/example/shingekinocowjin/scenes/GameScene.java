@@ -1,15 +1,15 @@
 package com.example.shingekinocowjin.scenes;
 
-import com.example.shingekinocowjin.GameLoop;
+import com.example.shingekinocowjin.Game;
 
 public class GameScene {
-    private GameLoop game;
+    private Game game;
 
-    public GameScene(GameLoop game){
+    public GameScene(Game game){
         this.game = game;
     }
 
-    public GameLoop getGameLoop(){
+    public Game getGameLoop(){
         return game;
     }
 }

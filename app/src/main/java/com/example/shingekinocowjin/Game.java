@@ -3,18 +3,22 @@ package com.example.shingekinocowjin;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
+import com.example.shingekinocowjin.inputs.TouchInput;
 
-public class GameLoop extends Thread {
+
+public class Game extends Thread {
+    private final SurfaceHolder surfaceHolder;
+    private GameScreen gameScreen;
+    private boolean isRunning = false;
+
     private static final double MAX_UPS = 30.0;
     private static final double UPS_PERIOD = 1E3/MAX_UPS;
-    private boolean isRunning = false;
     private double averageUPS;
     private double averageFPS;
+    private TouchInput touchInput;
 
-    private SurfaceHolder surfaceHolder;
-    private GameScreen gameScreen;
-
-    public GameLoop(GameScreen gameScreen, SurfaceHolder surfaceHolder) {
+    public Game(GameScreen gameScreen, SurfaceHolder surfaceHolder) {
+        super();
         this.gameScreen = gameScreen;
         this.surfaceHolder = surfaceHolder;
     }
@@ -25,6 +29,10 @@ public class GameLoop extends Thread {
 
     public double getAverageFPS() {
         return averageFPS;
+    }
+
+    public GameScreen getGameScreen(){
+        return gameScreen;
     }
 
     public void startLoop() {
