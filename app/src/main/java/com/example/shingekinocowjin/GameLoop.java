@@ -1,22 +1,18 @@
 package com.example.shingekinocowjin;
 
 import android.graphics.Canvas;
-import android.view.Surface;
 import android.view.SurfaceHolder;
 
-import java.util.Observer;
 
 public class GameLoop extends Thread {
     private static final double MAX_UPS = 30.0;
     private static final double UPS_PERIOD = 1E3/MAX_UPS;
-
-
-    private SurfaceHolder surfaceHolder;
-    private GameScreen gameScreen;
-
     private boolean isRunning = false;
     private double averageUPS;
     private double averageFPS;
+
+    private SurfaceHolder surfaceHolder;
+    private GameScreen gameScreen;
 
     public GameLoop(GameScreen gameScreen, SurfaceHolder surfaceHolder) {
         this.gameScreen = gameScreen;
@@ -43,16 +39,13 @@ public class GameLoop extends Thread {
         //Declare time and update cycle count variables
         int updateCount = 0;
         int frameCount = 0;
-
         long startTime;
         long elapsedTime;
         long sleepTime;
 
-
         //Game Loop
         Canvas canvas = null;
         startTime = System.currentTimeMillis();
-
         while (isRunning){
             //Try to update and render game
             try {
@@ -63,7 +56,6 @@ public class GameLoop extends Thread {
                     updateCount++;
 
                     gameScreen.draw(canvas);
-
                 }
             } catch (IllegalArgumentException e){
                 e.printStackTrace();
@@ -88,7 +80,6 @@ public class GameLoop extends Thread {
                 }
             }
             }
-
             //Skip frames to keep with target UPS
             while(sleepTime < 0 && updateCount < MAX_UPS-1){
                 gameScreen.update();
@@ -98,7 +89,6 @@ public class GameLoop extends Thread {
             }
 
             //Calculate avg UPS and FPS
-
             elapsedTime = System.currentTimeMillis() - startTime;
             if(elapsedTime >= 1000){
                 averageUPS = updateCount/(1E-3 * elapsedTime);
