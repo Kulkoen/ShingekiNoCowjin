@@ -17,23 +17,28 @@ public abstract class Cow {
         this.range = range;
     }
 
-
     abstract void attackEnemy();
+
     public int getHealth() {
         return health;
     }
+
     public int getCost() {
         return cost;
     }
+
     public int getAttackSpeed() {
         return attackSpeed;
     }
+
     public int getDamage() {
         return damage;
     }
+
     public int getLevel() {
         return level;
     }
+
     public float getRange() {
         return range;
     }

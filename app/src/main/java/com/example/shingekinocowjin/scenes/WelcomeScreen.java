@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 import com.example.shingekinocowjin.GameState;
-import com.example.shingekinocowjin.inputs.TouchInput;
 
 public class WelcomeScreen implements SceneMethods {
     private Bitmap image;
@@ -23,5 +22,3 @@ public class WelcomeScreen implements SceneMethods {
         GameState.SetGameState(GameState.CONFIG);
     }
 }
-
-

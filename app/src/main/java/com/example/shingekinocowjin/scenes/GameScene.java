@@ -5,11 +5,11 @@ import com.example.shingekinocowjin.Game;
 public class GameScene {
     private Game game;
 
-    public GameScene(Game game){
+    public GameScene(Game game) {
         this.game = game;
     }
 
-    public Game getGameLoop(){
+    public Game getGameLoop() {
         return game;
     }
 }

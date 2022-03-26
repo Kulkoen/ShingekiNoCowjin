@@ -9,7 +9,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import androidx.core.content.ContextCompat;
 
-import com.example.shingekinocowjin.inputs.TouchInput;
 import com.example.shingekinocowjin.scenes.ConfigScreen;
 import com.example.shingekinocowjin.scenes.WelcomeScreen;
 
@@ -22,42 +21,43 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     private Game game;
     private WelcomeScreen welcomeScreen;
     private ConfigScreen configScreen;
-    private TouchInput touchInput;
-
-
 
     public GameScreen(Context context) {
         super(context);
 
-        //Get surface holder and add callback
+        // Get surface holder and add callback
         SurfaceHolder surfaceHolder = getHolder();
         getHolder().addCallback(this);
 
-        //Initialize Game State
+        // Initialize Game State
         GameState.gamestate = GameState.WELCOME;
         game = new Game(this, surfaceHolder);
 
-        //Initialize player
-        player = new Player(0,0,"Bob");
-
-
+        // Initialize player
+        player = new Player(0, 0, "Bob");
 
         setFocusable(true);
     }
 
-    //Inputs from player
+    // Inputs from player
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        //Handle touch events
-        if(event.getAction() == MotionEvent.ACTION_DOWN && GameState.gamestate == GameState.WELCOME){
-            GameState.gamestate = GameState.CONFIG;
-            return true;
+        // Handle touch events
+        switch(GameState.gamestate){
+            case WELCOME:
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    GameState.SetGameState(GameState.CONFIG);
+                }
+                break;
+            case CONFIG:
+                    configScreen.touched((int)event.getX(),(int)event.getY());
+                break;
+            case PLAYING:
+                break;
+            default:
         }
         return super.onTouchEvent(event);
     }
-
-
-
 
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
@@ -77,12 +77,12 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
     }
 
-    //Rendering of things onto the screen
+    // Rendering of things onto the screen
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
         if (canvas != null) {
-            switch(GameState.gamestate){
+            switch (GameState.gamestate) {
                 case WELCOME:
                     welcomeScreen.drawWelcome(canvas);
                     break;
@@ -90,7 +90,6 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                     configScreen.drawConfig(canvas);
                     break;
                 case PLAYING:
-
                     break;
                 default:
                     break;
@@ -101,8 +100,8 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    //Updates Per Second = Object changing property and states.
-    public void drawUPS(Canvas canvas){
+    // Updates Per Second = Object changing property and states.
+    public void drawUPS(Canvas canvas) {
         String averageUPS = Double.toString(game.getAverageUPS());
         Paint paint = new Paint();
         int color = ContextCompat.getColor(getContext(), R.color.yellow);
@@ -111,8 +110,9 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         canvas.drawText("UPS " + averageUPS, 100, 100, paint);
     }
 
-    //Frames Per Second = Rendering portion of the game. Visual updates in the game that are drawn.
-    public void drawFPS(Canvas canvas){
+    // Frames Per Second = Rendering portion of the game. Visual updates in the game
+    // that are drawn.
+    public void drawFPS(Canvas canvas) {
         String averageFPS = Double.toString(game.getAverageFPS());
         Paint paint = new Paint();
         int color = ContextCompat.getColor(getContext(), R.color.yellow);
@@ -121,17 +121,16 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         canvas.drawText("FPS " + averageFPS, 100, 200, paint);
     }
 
-
-
-    public void update(){
-        //Update game state
+    public void update() {
+        // Update game state
         player.update();
     }
 
-    public WelcomeScreen getWelcomeScreen(){
+    public WelcomeScreen getWelcomeScreen() {
         return welcomeScreen;
     }
-    public ConfigScreen getConfigScreen(){
+
+    public ConfigScreen getConfigScreen() {
         return configScreen;
     }
 

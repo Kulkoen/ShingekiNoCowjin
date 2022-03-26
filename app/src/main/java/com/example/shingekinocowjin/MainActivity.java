@@ -1,6 +1,5 @@
 package com.example.shingekinocowjin;
 
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;
@@ -14,14 +13,14 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Set content view to game, so objects in GameScreen class can be rendered to the screen
+        // Set content view to game, so objects in GameScreen class can be rendered to
+        // the screen
         setContentView(new GameScreen(this));
 
-        //Set window size to fullscreen (hides status bar)
+        // Set window size to fullscreen (hides status bar)
         Window window = getWindow();
-        window.getInsetsController().hide(WindowInsets.Type.statusBars()|
+        window.getInsetsController().hide(WindowInsets.Type.statusBars() |
                 WindowInsets.Type.navigationBars());
-
 
     }
 }

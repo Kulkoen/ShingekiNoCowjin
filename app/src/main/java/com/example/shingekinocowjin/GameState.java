@@ -7,8 +7,7 @@ public enum GameState {
 
     public static GameState gamestate = WELCOME;
 
-    public static void SetGameState(GameState state){
+    public static void SetGameState(GameState state) {
         gamestate = state;
     }
 }
-

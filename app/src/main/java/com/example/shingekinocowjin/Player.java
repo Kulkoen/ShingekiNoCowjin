@@ -5,21 +5,29 @@ public class Player {
     int money;
     String name;
 
-    public Player(int monumentHealth, int money, String name){
+    public Player(int monumentHealth, int money, String name) {
         this.monumentHealth = monumentHealth;
         this.money = money;
         this.name = name;
     }
+
     public void update() {
+
     }
 
-    public int getMonumentHealth(){
+    public int getMonumentHealth() {
         return monumentHealth;
     }
-    public int getMoney(){
+
+    public int getMoney() {
         return money;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
+    }
+
+    public void setName(String newName){
+        name = newName;
     }
 }
