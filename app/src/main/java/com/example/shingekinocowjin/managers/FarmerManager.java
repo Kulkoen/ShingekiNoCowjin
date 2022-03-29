@@ -16,10 +16,10 @@ public class FarmerManager {
     public FarmerManager(PlayScene playScene){
         this.playScene = playScene;
         normalFarmer = new Farmer(75,300,0,0);
-        fasterFarmer = new Farmer(50,300,0,0);
-        fastestFarmer = new Farmer(10,300,0,0);
+        fasterFarmer = new Farmer(50,300,1,1);
+        fastestFarmer = new Farmer(10,300,2,2);
     }
-    public void drawEnemeies(Canvas canvas){
+    public void drawEnemies(Canvas canvas){
         drawFarmerType(normalFarmer,canvas);
 
         fasterFarmer.setFarmerBody(Color.BLUE);

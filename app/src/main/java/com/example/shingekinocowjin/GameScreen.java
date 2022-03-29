@@ -18,6 +18,7 @@ import com.example.shingekinocowjin.managers.FarmerManager;
 import com.example.shingekinocowjin.scenes.ConfigScene;
 import com.example.shingekinocowjin.scenes.PlayScene;
 import com.example.shingekinocowjin.scenes.WelcomeScene;
+import com.example.shingekinocowjin.ui.Shop;
 
 /*
 * Game manages all objects in the game and is responsible for updating all states and render

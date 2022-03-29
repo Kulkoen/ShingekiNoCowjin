@@ -3,7 +3,8 @@ package com.example.shingekinocowjin;
 public enum GameState {
     PLAYING,
     WELCOME,
-    CONFIG;
+    CONFIG,
+    GAMEOVER;
 
     public static GameState gamestate = WELCOME;
 

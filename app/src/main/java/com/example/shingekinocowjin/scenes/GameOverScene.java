@@ -1,4 +1,4 @@
 package com.example.shingekinocowjin.scenes;
 
-public class EditScene {
+public class GameOverScene {
 }

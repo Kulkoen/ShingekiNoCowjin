@@ -5,19 +5,28 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.view.MotionEvent;
 
+import com.example.shingekinocowjin.cows.Cow;
+import com.example.shingekinocowjin.managers.CowManager;
 import com.example.shingekinocowjin.managers.FarmerManager;
 import com.example.shingekinocowjin.ui.MyButton;
+import com.example.shingekinocowjin.ui.Shop;
 
-public class PlayScene {
+public class PlayScene implements SceneMethods{
     private MyButton startCombat;
     private Bitmap image;
     private Rect display;
     private FarmerManager farmerManager;
+    private CowManager cowManager;
+    private Shop shop;
+
 
     public PlayScene(Bitmap bmp){
         image = bmp;
         farmerManager = new FarmerManager(this);
+        cowManager = new CowManager(this);
+        shop = new Shop(this);
     }
 
 
@@ -25,7 +34,11 @@ public class PlayScene {
     public void drawPlay(Canvas canvas) {
         canvas.drawBitmap(image, null,display, null);
         drawTiles(canvas);
-        farmerManager.drawEnemeies(canvas);
+        farmerManager.drawEnemies(canvas);
+        cowManager.drawTowers(canvas);
+
+        shop.setShopDisplay(display);
+        shop.drawShop(canvas);
 
     }
     private void drawButtons(Canvas canvas) {
@@ -49,8 +62,14 @@ public class PlayScene {
         farmerManager.update();
     }
 
+    @Override
+    public void touched(int x, int y, MotionEvent event) {
+
+    }
+
     //Helper Methods
     public void setPlayingDisplay(Rect rectangle){
         display = rectangle;
     }
+
 }
