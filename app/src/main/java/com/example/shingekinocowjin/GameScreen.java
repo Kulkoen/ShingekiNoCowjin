@@ -1,16 +1,23 @@
 package com.example.shingekinocowjin;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.WindowMetrics;
+
 import androidx.core.content.ContextCompat;
 
-import com.example.shingekinocowjin.scenes.ConfigScreen;
-import com.example.shingekinocowjin.scenes.WelcomeScreen;
+import com.example.shingekinocowjin.managers.FarmerManager;
+import com.example.shingekinocowjin.scenes.ConfigScene;
+import com.example.shingekinocowjin.scenes.PlayScene;
+import com.example.shingekinocowjin.scenes.WelcomeScene;
 
 /*
 * Game manages all objects in the game and is responsible for updating all states and render
@@ -19,11 +26,17 @@ import com.example.shingekinocowjin.scenes.WelcomeScreen;
 public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     private final Player player;
     private Game game;
-    private WelcomeScreen welcomeScreen;
-    private ConfigScreen configScreen;
+    private WelcomeScene welcomeScene;
+    private ConfigScene configScene;
+    private PlayScene playScene;
+    private Rect display;
 
     public GameScreen(Context context) {
         super(context);
+
+        //Window Metrics
+        WindowMetrics windowMetrics = ((Activity)getContext()).getWindowManager().getCurrentWindowMetrics();
+        display = windowMetrics.getBounds();
 
         // Get surface holder and add callback
         SurfaceHolder surfaceHolder = getHolder();
@@ -34,7 +47,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         game = new Game(this, surfaceHolder);
 
         // Initialize player
-        player = new Player(0, 0, "Bob");
+        player = new Player(300, 300,"Bob");
 
         setFocusable(true);
     }
@@ -42,15 +55,13 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     // Inputs from player
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        // Handle touch events
+        // Handle touch events based on game state
         switch(GameState.gamestate){
             case WELCOME:
-                if (event.getAction() == MotionEvent.ACTION_DOWN){
-                    GameState.SetGameState(GameState.CONFIG);
-                }
+                    welcomeScene.touched((int)event.getX(),(int)event.getY(), event);
                 break;
             case CONFIG:
-                    configScreen.touched((int)event.getX(),(int)event.getY());
+                    configScene.touched((int)event.getX(),(int)event.getY(), event);
                 break;
             case PLAYING:
                 break;
@@ -61,10 +72,12 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
-        welcomeScreen = new WelcomeScreen(BitmapFactory.decodeResource(getResources(),
+        welcomeScene = new WelcomeScene(BitmapFactory.decodeResource(getResources(),
                 R.drawable.shingeki_no_cowjin_background));
-        configScreen = new ConfigScreen(BitmapFactory.decodeResource(getResources(),
+        configScene = new ConfigScene(BitmapFactory.decodeResource(getResources(),
                 R.drawable.config_cow));
+        playScene = new PlayScene(BitmapFactory.decodeResource(getResources(),
+                R.drawable.map));
         game.startLoop();
     }
 
@@ -84,12 +97,16 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         if (canvas != null) {
             switch (GameState.gamestate) {
                 case WELCOME:
-                    welcomeScreen.drawWelcome(canvas);
+                    welcomeScene.setWelcomeDisplay(display);
+                    welcomeScene.drawWelcome(canvas);
                     break;
                 case CONFIG:
-                    configScreen.drawConfig(canvas);
+                    configScene.setConfigDisplay(display);
+                    configScene.drawConfig(canvas);
                     break;
                 case PLAYING:
+                    playScene.setPlayingDisplay(display);
+                    playScene.drawPlay(canvas);
                     break;
                 default:
                     break;
@@ -104,7 +121,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     public void drawUPS(Canvas canvas) {
         String averageUPS = Double.toString(game.getAverageUPS());
         Paint paint = new Paint();
-        int color = ContextCompat.getColor(getContext(), R.color.yellow);
+        int color = ContextCompat.getColor(getContext(), R.color.red);
         paint.setColor(color);
         paint.setTextSize(50);
         canvas.drawText("UPS " + averageUPS, 100, 100, paint);
@@ -115,23 +132,34 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     public void drawFPS(Canvas canvas) {
         String averageFPS = Double.toString(game.getAverageFPS());
         Paint paint = new Paint();
-        int color = ContextCompat.getColor(getContext(), R.color.yellow);
+        int color = ContextCompat.getColor(getContext(), R.color.red);
         paint.setColor(color);
         paint.setTextSize(50);
         canvas.drawText("FPS " + averageFPS, 100, 200, paint);
     }
 
     public void update() {
-        // Update game state
-        player.update();
+        switch (GameState.gamestate) {
+            case WELCOME:
+                break;
+            case CONFIG:
+                break;
+            case PLAYING:
+                playScene.update();
+                break;
+            default:
+                break;
+        }
+
     }
 
-    public WelcomeScreen getWelcomeScreen() {
-        return welcomeScreen;
+    public WelcomeScene getWelcomeScreen() {
+        return welcomeScene;
     }
 
-    public ConfigScreen getConfigScreen() {
-        return configScreen;
+    public ConfigScene getConfigScreen() {
+        return configScene;
     }
+
 
 }

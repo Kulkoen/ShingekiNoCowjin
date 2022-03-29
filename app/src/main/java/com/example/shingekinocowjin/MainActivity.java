@@ -2,11 +2,12 @@ package com.example.shingekinocowjin;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.Window;
 import android.view.WindowInsets;
 
 /*
-* The entry point in our application. This will be the "welcome screen".
+* The entry point in our application.
 */
 public class MainActivity extends Activity {
     @Override

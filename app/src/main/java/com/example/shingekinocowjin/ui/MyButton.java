@@ -9,7 +9,8 @@ public class MyButton {
     private int left, top, right, bottom;
     private String text;
     private Rect bounds;
-    int bodyColor = Color.GRAY;
+    int bodyColor = Color.BLUE;
+    private boolean pressed;
 
     public MyButton(String text, int left, int top, int right, int bottom) {
         this.text = text;
@@ -26,16 +27,17 @@ public class MyButton {
 
     public void drawButton(Canvas canvas) {
         // Body
-        Paint bodyPaint = new Paint();
-        bodyPaint.setColor(bodyColor);
-        canvas.drawRect(left, top, right, bottom, bodyPaint);
+        drawBody(canvas);
+
         // Border
-        Paint borderPaint = new Paint();
-        borderPaint.setStrokeWidth(10);
-        borderPaint.setColor(Color.BLACK);
-        borderPaint.setStyle(Paint.Style.STROKE);
-        canvas.drawRect(left, top, right, bottom, borderPaint);
+        drawBorder(canvas);
+
         // Text
+        drawButtonText(canvas);
+
+    }
+
+    private void drawButtonText(Canvas canvas) {
         Paint textPaint = new Paint();
         int textColor = Color.BLACK;
         textPaint.setColor(textColor);
@@ -47,6 +49,25 @@ public class MyButton {
         canvas.drawText(text, ((right + left) - width) / 2, ((bottom + top) + height) / 2, textPaint);
     }
 
+    private void drawBorder(Canvas canvas) {
+        Paint borderPaint = new Paint();
+        borderPaint.setStrokeWidth(1);
+        borderPaint.setColor(Color.BLACK);
+        borderPaint.setStyle(Paint.Style.STROKE);
+        canvas.drawRect(left, top, right, bottom, borderPaint);
+    }
+
+    private void drawBody(Canvas canvas) {
+        Paint bodyPaint = new Paint();
+        if(pressed){
+            bodyPaint.setColor(bodyColor);
+            canvas.drawRect(left, top, right, bottom, bodyPaint);
+        } else {
+            bodyPaint.setColor(Color.GRAY);
+            canvas.drawRect(left, top, right, bottom, bodyPaint);
+        }
+    }
+
     public Rect getBounds() {
         return bounds;
     }
@@ -54,5 +75,9 @@ public class MyButton {
     public void setBodyPaint(int color) {
         bodyColor = color;
     };
+
+    public void setPressed(boolean pressed){
+        this.pressed = pressed;
+    }
 
 }
