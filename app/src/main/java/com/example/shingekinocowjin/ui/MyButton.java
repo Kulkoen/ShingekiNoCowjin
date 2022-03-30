@@ -28,10 +28,8 @@ public class MyButton {
     public void drawButton(Canvas canvas) {
         // Body
         drawBody(canvas);
-
         // Border
         drawBorder(canvas);
-
         // Text
         drawButtonText(canvas);
 
@@ -41,7 +39,7 @@ public class MyButton {
         Paint textPaint = new Paint();
         int textColor = Color.BLACK;
         textPaint.setColor(textColor);
-        textPaint.setTextSize(50);
+        textPaint.setTextSize(70);
         Rect textBounds = new Rect();
         textPaint.getTextBounds(text, 0, text.length(), textBounds);
         int height = textBounds.height();
@@ -51,7 +49,7 @@ public class MyButton {
 
     private void drawBorder(Canvas canvas) {
         Paint borderPaint = new Paint();
-        borderPaint.setStrokeWidth(1);
+        borderPaint.setStrokeWidth(10.5f);
         borderPaint.setColor(Color.BLACK);
         borderPaint.setStyle(Paint.Style.STROKE);
         canvas.drawRect(left, top, right, bottom, borderPaint);
@@ -63,7 +61,7 @@ public class MyButton {
             bodyPaint.setColor(bodyColor);
             canvas.drawRect(left, top, right, bottom, bodyPaint);
         } else {
-            bodyPaint.setColor(Color.GRAY);
+            bodyPaint.setColor(Color.parseColor("#e6e6e6"));
             canvas.drawRect(left, top, right, bottom, bodyPaint);
         }
     }
@@ -72,12 +70,14 @@ public class MyButton {
         return bounds;
     }
 
-    public void setBodyPaint(int color) {
+    public void setBodyColor(int color) {
         bodyColor = color;
     };
 
     public void setPressed(boolean pressed){
         this.pressed = pressed;
     }
+
+    public void setText(String text) { this.text = text;}
 
 }
