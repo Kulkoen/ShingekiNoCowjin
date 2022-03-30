@@ -81,7 +81,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         welcomeScene = new WelcomeScene(BitmapFactory.decodeResource(getResources(),
                 R.drawable.shingeki_no_cowjin_background));
         configScene = new ConfigScene(BitmapFactory.decodeResource(getResources(),
-                R.drawable.config_cow));
+                R.drawable.cow_background));
         playScene = new PlayScene(BitmapFactory.decodeResource(getResources(),
                 R.drawable.map));
         gameOverScene = new GameOverScene(BitmapFactory.decodeResource(getResources(),
@@ -115,22 +115,20 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                 case PLAYING:
                     playScene.setPlayingDisplay(display);
                     playScene.drawPlay(canvas);
-<<<<<<< HEAD
+
+                    drawUPS(canvas);
+                    drawFPS(canvas);
+
                     drawMonumentHealth(canvas);
                     break;
                 case GAMEOVER:
                     gameOverScene.setGameOverDisplay(display);
                     gameOverScene.drawGameOver(canvas);
-=======
 
->>>>>>> c2eeef107684df29aed28f96593c30fb806ae544
                     break;
                 default:
                     break;
             }
-
-            drawUPS(canvas);
-            drawFPS(canvas);
         }
     }
 

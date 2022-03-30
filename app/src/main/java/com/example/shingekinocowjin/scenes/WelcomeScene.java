@@ -26,7 +26,7 @@ public class WelcomeScene implements SceneMethods{
 
 
     private void initButtons() {
-        quit = new MyButton("QUIT", 200, 200, 400, 300);
+        quit = new MyButton("QUIT", 50, 50, 300, 200);
     }
     private void drawButtons(Canvas canvas) {
         quit.drawButton(canvas);
