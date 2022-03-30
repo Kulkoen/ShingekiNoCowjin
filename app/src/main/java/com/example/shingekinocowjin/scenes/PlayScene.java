@@ -15,7 +15,7 @@ import com.example.shingekinocowjin.managers.FarmerManager;
 import com.example.shingekinocowjin.ui.MyButton;
 import com.example.shingekinocowjin.ui.Shop;
 
-public class PlayScene implements SceneMethods{
+public class PlayScene implements SceneMethods {
     private MyButton startCombat;
     private Bitmap image;
     private Rect display;
@@ -24,9 +24,9 @@ public class PlayScene implements SceneMethods{
     private Shop shop;
     int xPos, yPos;
 
-private Cow selectedCow;
+    private Cow selectedCow;
 
-    public PlayScene(Bitmap bmp){
+    public PlayScene(Bitmap bmp) {
         image = bmp;
         farmerManager = new FarmerManager(this);
         cowManager = new CowManager(this);
@@ -38,9 +38,9 @@ private Cow selectedCow;
 
     }
 
-    //Draw methods
+    // Draw methods
     public void drawPlay(Canvas canvas) {
-        canvas.drawBitmap(image, null,display, null);
+        canvas.drawBitmap(image, null, display, null);
         drawTiles(canvas);
         farmerManager.drawEnemies(canvas);
 
@@ -49,34 +49,32 @@ private Cow selectedCow;
         cowManager.drawTowers(canvas);
     }
 
-
-
-    public void drawTiles(Canvas canvas){
+    public void drawTiles(Canvas canvas) {
 
         Paint gridLines = new Paint();
         gridLines.setStrokeWidth(1);
         gridLines.setColor(Color.BLACK);
         gridLines.setStyle(Paint.Style.STROKE);
 
-        for(int y = 0; y < 8; y++){
-            for(int x = 0; x < 15; x++){
-                canvas.drawRect(150*x,150*y,(150*x)+150,(150*y)+150,gridLines);
+        for (int y = 0; y < 8; y++) {
+            for (int x = 0; x < 15; x++) {
+                canvas.drawRect(150 * x, 150 * y, (150 * x) + 150, (150 * y) + 150, gridLines);
             }
         }
     }
 
-    public void update(){
+    public void update() {
         farmerManager.update();
     }
 
     @Override
     public void touched(int x, int y, MotionEvent event) {
-        if(y >= display.height()/1.1) {
+        if (y >= display.height() / 1.1) {
             shop.touched(x, y, event);
         } else {
-            if(selectedCow != null){
-                if(isTileGrass(x,y)){
-                    cowManager.addCow(selectedCow,x,y);
+            if (selectedCow != null) {
+                if (isTileGrass(x, y)) {
+                    cowManager.addCow(selectedCow, x, y);
                     selectedCow = null;
                 }
             }
@@ -87,26 +85,26 @@ private Cow selectedCow;
     }
 
     private boolean isTileGrass(int x, int y) {
-        boolean one = (((y > 275-50) && (y < 400+50)) && ((x > 0) && ( x < 315+50)));
-        boolean two = (((y > 275-50) && (y < 710+50)) && ((x > 190-50) && ( x < 315+50)));
-        boolean three = (((y > 585-50) && (y < 710+50) ) && ((x > 190-50) &&( x < 650+50)));
-        boolean four = (((y > 0) && (y < 710+50)) && ((x > 500-50) && ( x < 650+50)));
-        boolean five = (((y > 0) && (y < 170+50)) && ((x > 500-50) && ( x < 975+50)));
-        boolean six = (((y > 0) && (y < 930+50)) && ((x > 825-50) && ( x < 975+50)));
-        boolean seven = (((y > 790-50) && (y < 930+50)) && ((x > 825-50) && ( x < 1350+50)));
-        boolean eight = (((y > 375-50) && (y < 930+50)) && ((x > 1200-50) && ( x < 1350+50)));
-        boolean nine = (((y > 375-50) && (y < 485+50)) && ((x > 1200-50) && ( x < 1860+50)));
-        boolean ten = (((y > 375-50) && (y < 710+50)) && ((x > 1720-50) && ( x < 1860+50)));
-        boolean eleven = (((y > 590-50) && (y < 710+50)) && ((x > 1720-50) && ( x < 2200+50)));
+        boolean one = (((y > 275 - 50) && (y < 400 + 50)) && ((x > 0) && (x < 315 + 50)));
+        boolean two = (((y > 275 - 50) && (y < 710 + 50)) && ((x > 190 - 50) && (x < 315 + 50)));
+        boolean three = (((y > 585 - 50) && (y < 710 + 50)) && ((x > 190 - 50) && (x < 650 + 50)));
+        boolean four = (((y > 0) && (y < 710 + 50)) && ((x > 500 - 50) && (x < 650 + 50)));
+        boolean five = (((y > 0) && (y < 170 + 50)) && ((x > 500 - 50) && (x < 975 + 50)));
+        boolean six = (((y > 0) && (y < 930 + 50)) && ((x > 825 - 50) && (x < 975 + 50)));
+        boolean seven = (((y > 790 - 50) && (y < 930 + 50)) && ((x > 825 - 50) && (x < 1350 + 50)));
+        boolean eight = (((y > 375 - 50) && (y < 930 + 50)) && ((x > 1200 - 50) && (x < 1350 + 50)));
+        boolean nine = (((y > 375 - 50) && (y < 485 + 50)) && ((x > 1200 - 50) && (x < 1860 + 50)));
+        boolean ten = (((y > 375 - 50) && (y < 710 + 50)) && ((x > 1720 - 50) && (x < 1860 + 50)));
+        boolean eleven = (((y > 590 - 50) && (y < 710 + 50)) && ((x > 1720 - 50) && (x < 2200 + 50)));
 
-        if(one||two||three||four||five||six||seven||eight||nine||ten||eleven){
+        if (one || two || three || four || five || six || seven || eight || nine || ten || eleven) {
             return false;
         }
         return true;
     }
 
-    //Helper Methods
-    public void setPlayingDisplay(Rect rectangle){
+    // Helper Methods
+    public void setPlayingDisplay(Rect rectangle) {
         display = rectangle;
     }
 
