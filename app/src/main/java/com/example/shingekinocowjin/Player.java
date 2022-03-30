@@ -27,14 +27,14 @@ public class Player {
         return name;
     }
 
-    public void setName(String newName){
+    public void setName(String newName) {
         name = newName;
     }
 
     public void removeOneMonumentHealth() {
         monumentHealth--;
         if (monumentHealth <= 0) {
-            System.out.println("Game Over"); //replace this with the game over screen soon TM.
+            System.out.println("Game Over"); // replace this with the game over screen soon TM.
         }
     }
 }

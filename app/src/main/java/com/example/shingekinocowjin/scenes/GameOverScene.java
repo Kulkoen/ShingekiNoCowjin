@@ -22,30 +22,31 @@ public class GameOverScene {
 
     public void drawGameOver(Canvas canvas) {
 
-        canvas.drawBitmap(image, null,display, null);
+        canvas.drawBitmap(image, null, display, null);
         drawButtons(canvas);
     }
-
 
     private void initButtons() {
         quit = new MyButton("QUIT", 200, 200, 400, 300);
     }
+
     private void drawButtons(Canvas canvas) {
         quit.drawButton(canvas);
     }
 
-//    @Override
-//    public void touched(int x, int y, MotionEvent event) {
-//        if(quit.getBounds().contains(x,y)){
-//            System.exit(0);
-//        }
-//
-//        if (event.getAction() == MotionEvent.ACTION_DOWN && !(quit.getBounds().contains(x,y))){
-//            GameState.SetGameState(GameState.CONFIG);
-//        }
-//    }
+    // @Override
+    // public void touched(int x, int y, MotionEvent event) {
+    // if(quit.getBounds().contains(x,y)){
+    // System.exit(0);
+    // }
+    //
+    // if (event.getAction() == MotionEvent.ACTION_DOWN &&
+    // !(quit.getBounds().contains(x,y))){
+    // GameState.SetGameState(GameState.CONFIG);
+    // }
+    // }
 
-    public void setGameOverDisplay(Rect rectangle){
+    public void setGameOverDisplay(Rect rectangle) {
         display = rectangle;
     }
 }
