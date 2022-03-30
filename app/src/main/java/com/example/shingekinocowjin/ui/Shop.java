@@ -25,7 +25,6 @@ public class Shop {
         Paint barBody = new Paint();
         barBody.setColor(Color.rgb(165,42,42));
         canvas.drawRect(0,display.height()/(float)1.1,display.width(), display.height(),barBody);
-
     }
     public void setShopDisplay(Rect rectangle){
         display = rectangle;

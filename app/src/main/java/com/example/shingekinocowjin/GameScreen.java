@@ -114,11 +114,15 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                 case PLAYING:
                     playScene.setPlayingDisplay(display);
                     playScene.drawPlay(canvas);
+<<<<<<< HEAD
                     drawMonumentHealth(canvas);
                     break;
                 case GAMEOVER:
                     gameOverScene.setGameOverDisplay(display);
                     gameOverScene.drawGameOver(canvas);
+=======
+
+>>>>>>> c2eeef107684df29aed28f96593c30fb806ae544
                     break;
                 default:
                     break;
