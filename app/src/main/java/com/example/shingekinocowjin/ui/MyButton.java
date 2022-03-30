@@ -57,12 +57,18 @@ public class MyButton {
 
     private void drawBody(Canvas canvas) {
         Paint bodyPaint = new Paint();
+
         if(pressed){
             bodyPaint.setColor(bodyColor);
             canvas.drawRect(left, top, right, bottom, bodyPaint);
         } else {
-            bodyPaint.setColor(Color.parseColor("#e6e6e6"));
-            canvas.drawRect(left, top, right, bottom, bodyPaint);
+            if (text == "QUIT") {
+                bodyPaint.setColor(Color.LTGRAY);
+                canvas.drawRect(left, top, right, bottom, bodyPaint);
+            } else {
+                bodyPaint.setColor(Color.parseColor("#e87c83"));
+                canvas.drawRect(left, top, right, bottom, bodyPaint);
+            }
         }
     }
 
@@ -70,14 +76,12 @@ public class MyButton {
         return bounds;
     }
 
-    public void setBodyColor(int color) {
-        bodyColor = color;
-    };
+    public void setBodyColor(int color) { bodyColor = color; }
 
     public void setPressed(boolean pressed){
         this.pressed = pressed;
     }
 
-    public void setText(String text) { this.text = text;}
+    public void setText(String text) { this.text = text; }
 
 }

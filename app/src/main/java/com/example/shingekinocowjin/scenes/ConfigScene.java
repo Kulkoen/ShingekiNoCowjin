@@ -20,6 +20,7 @@ public class ConfigScene implements SceneMethods {
     private Rect display;
     private MyButton easy, medium, hard, start, changeName;
     private int difficulty = 0;// 1 = easy, 2 = medium, 3 = hard
+    private int price = 1; //price of towers, $1, $2, $3
     private boolean nameChosen = false;
 
     public ConfigScene(Bitmap bmp) {
@@ -56,6 +57,7 @@ public class ConfigScene implements SceneMethods {
             medium.setPressed(false);
             hard.setPressed(false);
             difficulty = 1;
+            price = 1;
         } else if (medium.getBounds().contains(x, y)) {
 
             medium.setBodyColor(Color.parseColor("#ff8b3d"));
@@ -64,6 +66,7 @@ public class ConfigScene implements SceneMethods {
             medium.setPressed(true);
             hard.setPressed(false);
             difficulty = 2;
+            price = 2;
         }else if (hard.getBounds().contains(x, y)) {
 
             hard.setBodyColor(Color.parseColor("#dc143c"));
@@ -72,6 +75,7 @@ public class ConfigScene implements SceneMethods {
             medium.setPressed(false);
             hard.setPressed(true);
             difficulty = 3;
+            price = 3;
         }
         if(start.getBounds().contains(x, y) && difficulty != 0){
             GameState.SetGameState(GameState.PLAYING);
@@ -94,6 +98,8 @@ public class ConfigScene implements SceneMethods {
     public void setConfigDisplay(Rect rectangle){
         display = rectangle;
     }
+
+    public int getPrice() { return price; }
 
 
 }
