@@ -67,6 +67,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                     configScene.touched((int)event.getX(),(int)event.getY(), event);
                 break;
             case PLAYING:
+                    playScene.touched((int)event.getX(),(int)event.getY(), event);
                 break;
             case GAMEOVER:
                 //GameOverScene.touched((int)event.getX(),(int)event.getY(), event);

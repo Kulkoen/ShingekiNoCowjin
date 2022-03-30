@@ -7,6 +7,7 @@ import android.graphics.Paint;
 public class Cow {
     private int left, top, bottom, right;
     private int cowBodyColor = Color.BLACK;
+    private int ID;
 
     public Cow(int left, int top, int bottom, int right){
         this.left = left;
@@ -32,9 +33,5 @@ public class Cow {
         cowOutline.setColor(Color.BLACK);
         cowOutline.setStyle(Paint.Style.STROKE);
         canvas.drawRect(left,top,right,bottom,cowOutline);
-    }
-
-    public void setCowBodyColor(int newColor){
-        cowBodyColor = newColor;
     }
 }

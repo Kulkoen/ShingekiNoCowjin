@@ -44,19 +44,19 @@ public class ConfigScene implements SceneMethods {
     public void touched(int x, int y, MotionEvent event) {
 
         if (easy.getBounds().contains(x, y)) {
-            easy.setBodyPaint(Color.GREEN);
+            easy.setBodyColor(Color.GREEN);
             easy.setPressed(true);
             medium.setPressed(false);
             hard.setPressed(false);
             difficulty = 1;
         } else if (medium.getBounds().contains(x, y)) {
-            medium.setBodyPaint(Color.YELLOW);
+            medium.setBodyColor(Color.YELLOW);
             easy.setPressed(false);
             medium.setPressed(true);
             hard.setPressed(false);
             difficulty = 2;
         }else if (hard.getBounds().contains(x, y)) {
-            hard.setBodyPaint(Color.RED);
+            hard.setBodyColor(Color.RED);
             easy.setPressed(false);
             medium.setPressed(false);
             hard.setPressed(true);
