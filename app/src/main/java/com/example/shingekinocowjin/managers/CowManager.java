@@ -25,7 +25,7 @@ public class CowManager implements SceneMethods {
     }
 
     public void addCow(Cow selectedCow, int x, int y) {
-        cows.add(new Cow(x, y, cowAmount++, 0));
+        cows.add(new Cow(x, y, cowAmount++, selectedCow.getTowerType()));
     }
 
     public void update() {

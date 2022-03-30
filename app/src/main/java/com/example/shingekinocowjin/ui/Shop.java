@@ -58,6 +58,7 @@ public class Shop implements SceneMethods {
 
         for (int i = 0; i < cowTower.length; i++) {
             cowTower[i] = new MyButton(buttonNames[i], left + (int)(5.5 * i * left), top, right + (int)(5.5 * i * left), bottom);
+            cowTower[i].setCowID(i);
             cowTower[i].setBodyColor(Color.parseColor("#e87c83"));
         }
 
@@ -70,11 +71,12 @@ public class Shop implements SceneMethods {
                         b.setBodyColor(Color.GREEN);
                         b.setPressed(true);
 
-                        selectedCow = new Cow(x, y, 0, 0);
+                        selectedCow = new Cow(x, y, -1, b.getCowID());
                         playScene.setSelectedTower(selectedCow);
                     } else {
                         b.setPressed(false);
                     }
         }
+        return;
     }
 }
