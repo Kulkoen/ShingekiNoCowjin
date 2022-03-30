@@ -50,7 +50,7 @@ public class ConfigScene implements SceneMethods {
     public void touched(int x, int y, MotionEvent event) {
 
         if (easy.getBounds().contains(x, y)) {
-            easy.setBodyPaint(Color.parseColor("#FFED5F"));
+            easy.setBodyColor(Color.parseColor("#FFED5F"));
 
             easy.setPressed(true);
             medium.setPressed(false);
@@ -58,7 +58,7 @@ public class ConfigScene implements SceneMethods {
             difficulty = 1;
         } else if (medium.getBounds().contains(x, y)) {
 
-            medium.setBodyPaint(Color.parseColor("#ff8b3d"));
+            medium.setBodyColor(Color.parseColor("#ff8b3d"));
 
             easy.setPressed(false);
             medium.setPressed(true);
@@ -66,7 +66,7 @@ public class ConfigScene implements SceneMethods {
             difficulty = 2;
         }else if (hard.getBounds().contains(x, y)) {
 
-            hard.setBodyPaint(Color.parseColor("#dc143c"));
+            hard.setBodyColor(Color.parseColor("#dc143c"));
 
             easy.setPressed(false);
             medium.setPressed(false);
@@ -94,5 +94,6 @@ public class ConfigScene implements SceneMethods {
     public void setConfigDisplay(Rect rectangle){
         display = rectangle;
     }
+
 
 }
