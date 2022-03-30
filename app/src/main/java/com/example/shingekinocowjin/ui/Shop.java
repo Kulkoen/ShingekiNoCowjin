@@ -35,6 +35,7 @@ public class Shop implements SceneMethods {
         for(MyButton b : cowTower){
             b.drawButton(canvas);
         }
+
     }
 
     //Helper

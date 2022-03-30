@@ -29,7 +29,6 @@ public class ConfigScene implements SceneMethods {
     }
 
     public void drawConfig(Canvas canvas) {
-
         canvas.drawBitmap(image, null,display, null);
         drawButtons(canvas);
     }
