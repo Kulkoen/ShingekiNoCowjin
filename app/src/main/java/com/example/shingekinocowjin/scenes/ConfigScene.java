@@ -6,11 +6,8 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 
-import androidx.constraintlayout.widget.ConstraintSet;
-
 import com.example.shingekinocowjin.GameState;
 import com.example.shingekinocowjin.ui.MyButton;
-import com.example.shingekinocowjin.GameScreen;
 
 public class ConfigScene implements SceneMethods {
     private Bitmap image;
@@ -32,7 +29,6 @@ public class ConfigScene implements SceneMethods {
     }
 
     public void drawConfig(Canvas canvas) {
-
         canvas.drawBitmap(image, null,display, null);
         drawButtons(canvas);
     }

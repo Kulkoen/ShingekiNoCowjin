@@ -1,12 +1,14 @@
 package com.example.shingekinocowjin.scenes;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 
+import com.example.shingekinocowjin.GameState;
 import com.example.shingekinocowjin.cows.Cow;
 import com.example.shingekinocowjin.managers.CowManager;
 import com.example.shingekinocowjin.managers.FarmerManager;
@@ -21,14 +23,17 @@ public class PlayScene implements SceneMethods{
     private CowManager cowManager;
     private Shop shop;
 
-
     public PlayScene(Bitmap bmp){
         image = bmp;
         farmerManager = new FarmerManager(this);
         cowManager = new CowManager(this);
         shop = new Shop(this);
+        initButtons();
     }
 
+    private void initButtons() {
+
+    }
 
     //Draw methods
     public void drawPlay(Canvas canvas) {
@@ -39,9 +44,6 @@ public class PlayScene implements SceneMethods{
 
         shop.setShopDisplay(display);
         shop.drawShop(canvas);
-
-    }
-    private void drawButtons(Canvas canvas) {
     }
 
     public void drawTiles(Canvas canvas){
