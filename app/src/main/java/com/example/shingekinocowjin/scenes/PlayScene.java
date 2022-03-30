@@ -47,7 +47,6 @@ private Cow selectedCow;
         shop.setShopDisplay(display);
         shop.drawShop(canvas);
         cowManager.drawTowers(canvas);
-//        drawSelectedCow(canvas,xPos,yPos);
     }
 
 
@@ -88,13 +87,19 @@ private Cow selectedCow;
     }
 
     private boolean isTileGrass(int x, int y) {
-        if((x < 240
-                || (y >= 650 && x < 575))
-                || (y <= 100 && x < 905)
-                || (y >= 860 && x < 1300)
-                || (y >= 425 && y <= 430
-                && x >= 1300 && x < 1800)
-                || (y > 650 && x>= 1800)){
+        boolean one = (((y > 275-50) && (y < 400+50)) && ((x > 0) && ( x < 315+50)));
+        boolean two = (((y > 275-50) && (y < 710+50)) && ((x > 190-50) && ( x < 315+50)));
+        boolean three = (((y > 585-50) && (y < 710+50) ) && ((x > 190-50) &&( x < 650+50)));
+        boolean four = (((y > 0) && (y < 710+50)) && ((x > 500-50) && ( x < 650+50)));
+        boolean five = (((y > 0) && (y < 170+50)) && ((x > 500-50) && ( x < 975+50)));
+        boolean six = (((y > 0) && (y < 930+50)) && ((x > 825-50) && ( x < 975+50)));
+        boolean seven = (((y > 790-50) && (y < 930+50)) && ((x > 825-50) && ( x < 1350+50)));
+        boolean eight = (((y > 375-50) && (y < 930+50)) && ((x > 1200-50) && ( x < 1350+50)));
+        boolean nine = (((y > 375-50) && (y < 485+50)) && ((x > 1200-50) && ( x < 1860+50)));
+        boolean ten = (((y > 375-50) && (y < 710+50)) && ((x > 1720-50) && ( x < 1860+50)));
+        boolean eleven = (((y > 590-50) && (y < 710+50)) && ((x > 1720-50) && ( x < 2200+50)));
+
+        if(one||two||three||four||five||six||seven||eight||nine||ten||eleven){
             return false;
         }
         return true;

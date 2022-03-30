@@ -12,6 +12,7 @@ public class MyButton {
     int bodyColor = Color.BLUE;
     int textSize = 70;
     private boolean pressed;
+    private int cowID;
 
     public MyButton(String text, int left, int top, int right, int bottom) {
         this.text = text;
@@ -19,6 +20,7 @@ public class MyButton {
         this.top = top;
         this.right = right;
         this.bottom = bottom;
+        cowID = 0;
         initBounds();
     }
 
@@ -89,5 +91,14 @@ public class MyButton {
     public void setText(String text) {
         this.text = text;
     }
+
+    public void setCowID(int cowID){
+        this.cowID = cowID;
+    }
+
+    public int getCowID() {
+        return cowID;
+    }
+
 
 }
