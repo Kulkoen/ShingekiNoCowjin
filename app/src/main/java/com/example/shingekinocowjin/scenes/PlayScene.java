@@ -20,7 +20,7 @@ public class PlayScene implements SceneMethods{
     private FarmerManager farmerManager;
     private CowManager cowManager;
     private Shop shop;
-
+private Cow selectedCow;
 
     public PlayScene(Bitmap bmp){
         image = bmp;
@@ -29,20 +29,26 @@ public class PlayScene implements SceneMethods{
         shop = new Shop(this);
     }
 
-
     //Draw methods
     public void drawPlay(Canvas canvas) {
         canvas.drawBitmap(image, null,display, null);
         drawTiles(canvas);
         farmerManager.drawEnemies(canvas);
-        cowManager.drawTowers(canvas);
 
         shop.setShopDisplay(display);
         shop.drawShop(canvas);
+        drawSelectedCow(canvas);
+    }
 
+    private void drawSelectedCow(Canvas canvas) {
+        Paint cowBody = new Paint();
+        cowBody.setColor(Color.WHITE);
+
+        if(selectedCow != null) {
+            canvas.drawRect(0, 0, 100, 100, cowBody);
+        }
     }
-    private void drawButtons(Canvas canvas) {
-    }
+
 
     public void drawTiles(Canvas canvas){
 
@@ -72,4 +78,7 @@ public class PlayScene implements SceneMethods{
         display = rectangle;
     }
 
+    public void setSelectedTower(Cow selectedCow) {
+        this.selectedCow = selectedCow;
+    }
 }

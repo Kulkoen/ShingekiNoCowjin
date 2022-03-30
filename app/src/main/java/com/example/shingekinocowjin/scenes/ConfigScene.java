@@ -6,11 +6,8 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 
-import androidx.constraintlayout.widget.ConstraintSet;
-
 import com.example.shingekinocowjin.GameState;
 import com.example.shingekinocowjin.ui.MyButton;
-import com.example.shingekinocowjin.GameScreen;
 
 public class ConfigScene implements SceneMethods {
     private Bitmap image;
@@ -48,19 +45,19 @@ public class ConfigScene implements SceneMethods {
     public void touched(int x, int y, MotionEvent event) {
 
         if (easy.getBounds().contains(x, y)) {
-            easy.setBodyPaint(Color.GREEN);
+            easy.setBodyColor(Color.GREEN);
             easy.setPressed(true);
             medium.setPressed(false);
             hard.setPressed(false);
             difficulty = 1;
         } else if (medium.getBounds().contains(x, y)) {
-            medium.setBodyPaint(Color.YELLOW);
+            medium.setBodyColor(Color.YELLOW);
             easy.setPressed(false);
             medium.setPressed(true);
             hard.setPressed(false);
             difficulty = 2;
         }else if (hard.getBounds().contains(x, y)) {
-            hard.setBodyPaint(Color.RED);
+            hard.setBodyColor(Color.RED);
             easy.setPressed(false);
             medium.setPressed(false);
             hard.setPressed(true);
