@@ -44,6 +44,12 @@ public class Farmer {
         farmerOutline.setStyle(Paint.Style.STROKE);
         canvas.drawCircle(x, y, 35,farmerOutline);
     }
+    public float getXCoordinate() {
+        return x;
+    }
+    public float getYCoordinate() {
+        return y;
+    }
 
     public void setFarmerBody(int newColor){
         farmerBodyColor = newColor;

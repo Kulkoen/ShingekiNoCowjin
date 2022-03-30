@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.shingekinocowjin.managers.FarmerManager;
 import com.example.shingekinocowjin.scenes.ConfigScene;
+import com.example.shingekinocowjin.scenes.GameOverScene;
 import com.example.shingekinocowjin.scenes.PlayScene;
 import com.example.shingekinocowjin.scenes.WelcomeScene;
 import com.example.shingekinocowjin.ui.Shop;
@@ -30,6 +31,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     private WelcomeScene welcomeScene;
     private ConfigScene configScene;
     private PlayScene playScene;
+    private GameOverScene gameOverScene;
     private Rect display;
 
     public GameScreen(Context context) {
@@ -65,7 +67,10 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                     configScene.touched((int)event.getX(),(int)event.getY(), event);
                 break;
             case PLAYING:
+                    playScene.touched((int)event.getX(),(int)event.getY(), event);
                 break;
+            case GAMEOVER:
+                //GameOverScene.touched((int)event.getX(),(int)event.getY(), event);
             default:
         }
         return super.onTouchEvent(event);
@@ -79,6 +84,8 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                 R.drawable.cow_background));
         playScene = new PlayScene(BitmapFactory.decodeResource(getResources(),
                 R.drawable.map));
+        gameOverScene = new GameOverScene(BitmapFactory.decodeResource(getResources(),
+                R.drawable.game_over));
         game.startLoop();
     }
 
@@ -108,8 +115,16 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                 case PLAYING:
                     playScene.setPlayingDisplay(display);
                     playScene.drawPlay(canvas);
+
                     drawUPS(canvas);
                     drawFPS(canvas);
+
+                    drawMonumentHealth(canvas);
+                    break;
+                case GAMEOVER:
+                    gameOverScene.setGameOverDisplay(display);
+                    gameOverScene.drawGameOver(canvas);
+
                     break;
                 default:
                     break;
@@ -136,6 +151,15 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         paint.setColor(color);
         paint.setTextSize(50);
         canvas.drawText("FPS " + averageFPS, 100, 200, paint);
+    }
+
+    public void drawMonumentHealth(Canvas canvas) {
+        String theMonumentHealth = Double.toString(game.getMonumentHealth());
+        Paint paint = new Paint();
+        int color = ContextCompat.getColor(getContext(), R.color.red);
+        paint.setColor(color);
+        paint.setTextSize(50);
+        canvas.drawText("Health " + theMonumentHealth, 1650, 100, paint);
     }
 
     public void update() {

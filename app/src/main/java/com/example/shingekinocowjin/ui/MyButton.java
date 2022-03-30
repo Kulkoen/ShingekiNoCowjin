@@ -28,10 +28,8 @@ public class MyButton {
     public void drawButton(Canvas canvas) {
         // Body
         drawBody(canvas);
-
         // Border
         drawBorder(canvas);
-
         // Text
         drawButtonText(canvas);
 
@@ -72,7 +70,7 @@ public class MyButton {
         return bounds;
     }
 
-    public void setBodyPaint(int color) {
+    public void setBodyColor(int color) {
         bodyColor = color;
     };
 

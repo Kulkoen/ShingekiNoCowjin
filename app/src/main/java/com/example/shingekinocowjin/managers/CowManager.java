@@ -1,25 +1,30 @@
 package com.example.shingekinocowjin.managers;
 
 import android.graphics.Canvas;
+import android.view.MotionEvent;
 
 import com.example.shingekinocowjin.cows.Cow;
 import com.example.shingekinocowjin.scenes.PlayScene;
+import com.example.shingekinocowjin.scenes.SceneMethods;
 
-public class CowManager {
+import java.util.ArrayList;
+
+public class CowManager implements SceneMethods {
     private PlayScene playScene;
-    private Cow basicCow;
+    private Cow cow;
+    private Boolean beingPlaced = false;
 
     public CowManager(PlayScene playScene){
         this.playScene = playScene;
-        basicCow = new Cow(1000, 600, 700, 1100);
     }
 
     public void drawTowers(Canvas canvas){
-        drawCowType(basicCow,canvas);
 
     }
 
-    public void drawCowType(Cow c,Canvas canvas){
-        c.drawCow(canvas);
+
+    @Override
+    public void touched(int x, int y, MotionEvent event) {
+
     }
 }

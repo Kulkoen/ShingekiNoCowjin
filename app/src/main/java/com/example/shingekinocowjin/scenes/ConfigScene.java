@@ -11,12 +11,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.content.Context;
 
-import androidx.constraintlayout.widget.ConstraintSet;
-
 import com.example.shingekinocowjin.GameState;
 import com.example.shingekinocowjin.MainActivity;
 import com.example.shingekinocowjin.ui.MyButton;
-import com.example.shingekinocowjin.GameScreen;
 
 public class ConfigScene implements SceneMethods {
     private Bitmap image;
@@ -38,7 +35,6 @@ public class ConfigScene implements SceneMethods {
         changeName = new MyButton("Change Name", 75, 50, 625, 200);
     }
     public void drawConfig(Canvas canvas) {
-
         canvas.drawBitmap(image, null,display, null);
         drawButtons(canvas);
     }
@@ -55,18 +51,23 @@ public class ConfigScene implements SceneMethods {
 
         if (easy.getBounds().contains(x, y)) {
             easy.setBodyPaint(Color.parseColor("#FFED5F"));
+
             easy.setPressed(true);
             medium.setPressed(false);
             hard.setPressed(false);
             difficulty = 1;
         } else if (medium.getBounds().contains(x, y)) {
+
             medium.setBodyPaint(Color.parseColor("#ff8b3d"));
+
             easy.setPressed(false);
             medium.setPressed(true);
             hard.setPressed(false);
             difficulty = 2;
         }else if (hard.getBounds().contains(x, y)) {
+
             hard.setBodyPaint(Color.parseColor("#dc143c"));
+
             easy.setPressed(false);
             medium.setPressed(false);
             hard.setPressed(true);
