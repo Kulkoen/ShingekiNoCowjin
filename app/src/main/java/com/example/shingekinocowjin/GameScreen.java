@@ -2,11 +2,14 @@ package com.example.shingekinocowjin;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -119,6 +122,8 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                     drawUPS(canvas);
                     drawFPS(canvas);
 
+                    drawBarn(canvas);
+
                     drawMonumentHealth(canvas);
                     break;
                 case GAMEOVER:
@@ -152,7 +157,6 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         paint.setTextSize(50);
         canvas.drawText("FPS " + averageFPS, 100, 200, paint);
     }
-
     public void drawMonumentHealth(Canvas canvas) {
         String theMonumentHealth = Double.toString(game.getMonumentHealth());
         Paint paint = new Paint();
@@ -161,7 +165,10 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         paint.setTextSize(50);
         canvas.drawText("Health " + theMonumentHealth, 1650, 100, paint);
     }
-
+    public void drawBarn(Canvas canvas) {
+        Bitmap b=BitmapFactory.decodeResource(getResources(), R.drawable.red_barn);
+        canvas.drawBitmap(b, 1910, 320, null);
+    }
     public void update() {
         switch (GameState.gamestate) {
             case WELCOME:
@@ -174,7 +181,6 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
             default:
                 break;
         }
-
     }
 
     public WelcomeScene getWelcomeScreen() {
