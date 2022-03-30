@@ -8,7 +8,7 @@ public class Cow {
     private int x, y, left, top, bottom, right;
     private int cowBodyColor = Color.BLACK;
     private int ID;
-    private int towerType = 0;//0 = nothing, 1 = basic, 2 = mage, 3 = cannon, 4 = CC
+    private int towerType = 0;// 0 = nothing, 1 = basic, 2 = mage, 3 = cannon, 4 = CC
 
     public Cow(int x, int y, int ID, int towerType) {
         this.ID = ID;
@@ -27,7 +27,7 @@ public class Cow {
 
     public void drawCowBody(Canvas canvas) {
         Paint cowBody = new Paint();
-        switch(towerType){
+        switch (towerType) {
             case 0:
                 cowBodyColor = Color.BLUE;
                 break;
@@ -55,7 +55,7 @@ public class Cow {
         canvas.drawRect(left, top, right, bottom, cowOutline);
     }
 
-    public int getTowerType(){
+    public int getTowerType() {
         return towerType;
     }
 

@@ -154,6 +154,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         paint.setTextSize(50);
         canvas.drawText("FPS " + averageFPS, 100, 200, paint);
     }
+
     public void drawMonumentHealth(Canvas canvas) {
         String theMonumentHealth = Double.toString(game.getMonumentHealth());
         Paint paint = new Paint();
@@ -162,10 +163,12 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         paint.setTextSize(50);
         canvas.drawText("Health " + theMonumentHealth, 1650, 100, paint);
     }
+
     public void drawBarn(Canvas canvas) {
-        Bitmap b=BitmapFactory.decodeResource(getResources(), R.drawable.red_barn);
+        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.red_barn);
         canvas.drawBitmap(b, 1910, 320, null);
     }
+
     public void update() {
         switch (GameState.gamestate) {
             case WELCOME:

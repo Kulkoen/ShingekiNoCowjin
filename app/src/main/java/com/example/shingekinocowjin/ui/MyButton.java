@@ -78,7 +78,9 @@ public class MyButton {
         return bounds;
     }
 
-    public void setBodyColor(int color) { bodyColor = color; }
+    public void setBodyColor(int color) {
+        bodyColor = color;
+    }
 
     public void setPressed(boolean pressed) {
         this.pressed = pressed;
@@ -92,13 +94,12 @@ public class MyButton {
         this.text = text;
     }
 
-    public void setCowID(int cowID){
+    public void setCowID(int cowID) {
         this.cowID = cowID;
     }
 
     public int getCowID() {
         return cowID;
     }
-
 
 }

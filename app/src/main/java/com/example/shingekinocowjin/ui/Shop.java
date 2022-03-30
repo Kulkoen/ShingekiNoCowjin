@@ -15,7 +15,7 @@ public class Shop implements SceneMethods {
     private final PlayScene playScene;
     private Rect display;
     private MyButton[] cowTower;
-    private String[] buttonNames = {"Basic Cow", "Mage Cow", "Cannon Cow", "CC Cow"};
+    private String[] buttonNames = { "Basic Cow", "Mage Cow", "Cannon Cow", "CC Cow" };
     private Cow selectedCow;
 
     public Shop(PlayScene playScene) {
@@ -30,8 +30,8 @@ public class Shop implements SceneMethods {
         borderPaint.setStrokeWidth(20.5f);
         borderPaint.setColor(Color.BLACK);
         borderPaint.setStyle(Paint.Style.STROKE);
-        canvas.drawRect(0, display.height()/(float)1.15,display.width(), display.height(),borderPaint);
-        canvas.drawRect(0,display.height()/(float)1.15,display.width(), display.height(),barBody);
+        canvas.drawRect(0, display.height() / (float) 1.15, display.width(), display.height(), borderPaint);
+        canvas.drawRect(0, display.height() / (float) 1.15, display.width(), display.height(), barBody);
         drawTowersInShop(canvas);
     }
 
@@ -57,7 +57,8 @@ public class Shop implements SceneMethods {
         int bottom = 1055;
 
         for (int i = 0; i < cowTower.length; i++) {
-            cowTower[i] = new MyButton(buttonNames[i], left + (int)(5.5 * i * left), top, right + (int)(5.5 * i * left), bottom);
+            cowTower[i] = new MyButton(buttonNames[i], left + (int) (5.5 * i * left), top,
+                    right + (int) (5.5 * i * left), bottom);
             cowTower[i].setCowID(i);
             cowTower[i].setBodyColor(Color.parseColor("#e87c83"));
         }
@@ -67,15 +68,15 @@ public class Shop implements SceneMethods {
     @Override
     public void touched(int x, int y, MotionEvent event) {
         for (MyButton b : cowTower) {
-                    if (b.getBounds().contains(x, y)) {
-                        b.setBodyColor(Color.GREEN);
-                        b.setPressed(true);
+            if (b.getBounds().contains(x, y)) {
+                b.setBodyColor(Color.GREEN);
+                b.setPressed(true);
 
-                        selectedCow = new Cow(x, y, -1, b.getCowID());
-                        playScene.setSelectedTower(selectedCow);
-                    } else {
-                        b.setPressed(false);
-                    }
+                selectedCow = new Cow(x, y, -1, b.getCowID());
+                playScene.setSelectedTower(selectedCow);
+            } else {
+                b.setPressed(false);
+            }
         }
         return;
     }
