@@ -108,6 +108,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                 case PLAYING:
                     playScene.setPlayingDisplay(display);
                     playScene.drawPlay(canvas);
+
                     break;
                 default:
                     break;
