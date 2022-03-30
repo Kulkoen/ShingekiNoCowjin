@@ -10,6 +10,7 @@ public class MyButton {
     private String text;
     private Rect bounds;
     int bodyColor = Color.BLUE;
+    int textSize = 70;
     private boolean pressed;
 
     public MyButton(String text, int left, int top, int right, int bottom) {
@@ -39,7 +40,7 @@ public class MyButton {
         Paint textPaint = new Paint();
         int textColor = Color.BLACK;
         textPaint.setColor(textColor);
-        textPaint.setTextSize(70);
+        textPaint.setTextSize(textSize);
         Rect textBounds = new Rect();
         textPaint.getTextBounds(text, 0, text.length(), textBounds);
         int height = textBounds.height();
@@ -57,8 +58,7 @@ public class MyButton {
 
     private void drawBody(Canvas canvas) {
         Paint bodyPaint = new Paint();
-
-        if(pressed){
+        if (pressed) {
             bodyPaint.setColor(bodyColor);
             canvas.drawRect(left, top, right, bottom, bodyPaint);
         } else {
@@ -78,10 +78,16 @@ public class MyButton {
 
     public void setBodyColor(int color) { bodyColor = color; }
 
-    public void setPressed(boolean pressed){
+    public void setPressed(boolean pressed) {
         this.pressed = pressed;
     }
 
-    public void setText(String text) { this.text = text; }
+    public void setTextSize(int newTextSize) {
+        textSize = newTextSize;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 
 }

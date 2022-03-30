@@ -35,10 +35,12 @@ public class ConfigScene implements SceneMethods {
         start = new MyButton("START", 1800, 800, 2000, 900);
         changeName = new MyButton("Change Name", 75, 50, 625, 200);
     }
+
     public void drawConfig(Canvas canvas) {
-        canvas.drawBitmap(image, null,display, null);
+        canvas.drawBitmap(image, null, display, null);
         drawButtons(canvas);
     }
+
     private void drawButtons(Canvas canvas) {
         easy.drawButton(canvas);
         medium.drawButton(canvas);
@@ -77,29 +79,30 @@ public class ConfigScene implements SceneMethods {
             difficulty = 3;
             price = 3;
         }
-        if(start.getBounds().contains(x, y) && difficulty != 0){
+        if (start.getBounds().contains(x, y) && difficulty != 0) {
             GameState.SetGameState(GameState.PLAYING);
         }
-        if(changeName.getBounds().contains(x,y)) {
+        if (changeName.getBounds().contains(x, y)) {
             changeName.setPressed(true);
             changeName.setText("COWMANDER");
         }
     }
 
-    //Helper Methods
-    public int getDifficulty(){
+    // Helper Methods
+    public int getDifficulty() {
         return difficulty;
     }
 
-    public boolean isNameChosen(){
+    public boolean isNameChosen() {
         return nameChosen;
     }
 
-    public void setConfigDisplay(Rect rectangle){
+    public void setConfigDisplay(Rect rectangle) {
         display = rectangle;
     }
 
     public int getPrice() { return price; }
+
 
 
 }

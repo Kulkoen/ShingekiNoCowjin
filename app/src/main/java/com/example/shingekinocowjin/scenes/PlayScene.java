@@ -22,6 +22,7 @@ public class PlayScene implements SceneMethods{
     private FarmerManager farmerManager;
     private CowManager cowManager;
     private Shop shop;
+    int xPos, yPos;
 
 private Cow selectedCow;
 
@@ -45,18 +46,10 @@ private Cow selectedCow;
 
         shop.setShopDisplay(display);
         shop.drawShop(canvas);
-        drawSelectedCow(canvas);
+        cowManager.drawTowers(canvas);
+//        drawSelectedCow(canvas,xPos,yPos);
     }
 
-    private void drawSelectedCow(Canvas canvas) {
-        Paint cowBody = new Paint();
-        cowBody.setColor(Color.WHITE);
-
-        if(selectedCow != null) {
-            canvas.drawRect(0, 0, 100, 100, cowBody);
-        }
-
-    }
 
 
     public void drawTiles(Canvas canvas){
@@ -79,7 +72,32 @@ private Cow selectedCow;
 
     @Override
     public void touched(int x, int y, MotionEvent event) {
+        if(y >= display.height()/1.1) {
+            shop.touched(x, y, event);
+        } else {
+            if(selectedCow != null){
+                if(isTileGrass(x,y)){
+                    cowManager.addCow(selectedCow,x,y);
+                    selectedCow = null;
+                }
+            }
+            xPos = x;
+            yPos = y;
 
+        }
+    }
+
+    private boolean isTileGrass(int x, int y) {
+        if((x < 240
+                || (y >= 650 && x < 575))
+                || (y <= 100 && x < 905)
+                || (y >= 860 && x < 1300)
+                || (y >= 425 && y <= 430
+                && x >= 1300 && x < 1800)
+                || (y > 650 && x>= 1800)){
+            return false;
+        }
+        return true;
     }
 
     //Helper Methods

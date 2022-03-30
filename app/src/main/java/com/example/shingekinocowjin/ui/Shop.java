@@ -18,47 +18,46 @@ public class Shop implements SceneMethods {
     private String[] buttonNames = {"Basic Cow", "Mage Cow", "Cannon Cow", "CC Cow"};
     private Cow selectedCow;
 
-
     public Shop(PlayScene playScene) {
         this.playScene = playScene;
         initButtons();
     }
 
-    public void drawShop(Canvas canvas){
+    public void drawShop(Canvas canvas) {
         Paint barBody = new Paint();
         barBody.setColor(Color.parseColor("#fae2e3"));
         Paint borderPaint = new Paint();
         borderPaint.setStrokeWidth(20.5f);
         borderPaint.setColor(Color.BLACK);
         borderPaint.setStyle(Paint.Style.STROKE);
-        canvas.drawRect(50, display.height()/(float)1.15,display.width() - 50, display.height(),borderPaint);
-        canvas.drawRect(50,display.height()/(float)1.15,display.width() - 50, display.height(),barBody);
+        canvas.drawRect(0, display.height()/(float)1.15,display.width(), display.height(),borderPaint);
+        canvas.drawRect(0,display.height()/(float)1.15,display.width(), display.height(),barBody);
         drawTowersInShop(canvas);
     }
 
-
-    public void drawTowersInShop(Canvas canvas){
-        for(MyButton b : cowTower){
-            b.drawButton(canvas);
+    public void drawTowersInShop(Canvas canvas) {
+        for (int i = 0; i < cowTower.length; i++) {
+            cowTower[i].setTextSize(50);
+            cowTower[i].drawButton(canvas);
         }
-
     }
 
-    //Helper
-    public void setShopDisplay(Rect rectangle){
+    // Helper
+    public void setShopDisplay(Rect rectangle) {
         display = rectangle;
     }
-    public void initButtons(){
+
+    public void initButtons() {
 
         cowTower = new MyButton[4];
 
-        int left = 550;
+        int left = 100;
         int top = 972;
-        int right = 75;
+        int right = 475;
         int bottom = 1055;
 
-        for(int i = 0; i < cowTower.length; i++){
-            cowTower[i] = new MyButton(buttonNames[i],left+(1*i*left),top,right+(1*i*left),bottom);
+        for (int i = 0; i < cowTower.length; i++) {
+            cowTower[i] = new MyButton(buttonNames[i], left + (int)(5.5 * i * left), top, right + (int)(5.5 * i * left), bottom);
             cowTower[i].setBodyColor(Color.parseColor("#e87c83"));
         }
 
@@ -66,17 +65,16 @@ public class Shop implements SceneMethods {
 
     @Override
     public void touched(int x, int y, MotionEvent event) {
-        for(MyButton b : cowTower){
-            if(b.getBounds().contains(x,y)){
-                b.setPressed(true);
+        for (MyButton b : cowTower) {
+                    if (b.getBounds().contains(x, y)) {
+                        b.setBodyColor(Color.GREEN);
+                        b.setPressed(true);
 
-                selectedCow = new Cow(0,0,0,0);
-                playScene.setSelectedTower(selectedCow);
-                return;
-            } else {
-                b.setPressed(true);
-            }
+                        selectedCow = new Cow(x, y, 0, 0);
+                        playScene.setSelectedTower(selectedCow);
+                    } else {
+                        b.setPressed(false);
+                    }
         }
     }
-
 }
