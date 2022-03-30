@@ -7,6 +7,7 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import com.example.shingekinocowjin.cows.Cow;
+import com.example.shingekinocowjin.scenes.ConfigScene;
 import com.example.shingekinocowjin.scenes.PlayScene;
 import com.example.shingekinocowjin.scenes.SceneMethods;
 
@@ -14,7 +15,7 @@ public class Shop implements SceneMethods {
     private final PlayScene playScene;
     private Rect display;
     private MyButton[] cowTower;
-    private String[] buttonNames = {"Basic Cow", "Mage Cow", "Cannon Cow"};
+    private String[] buttonNames = {"Basic Cow", "Mage Cow", "Cannon Cow", "CC Cow"};
     private Cow selectedCow;
 
 
@@ -25,8 +26,13 @@ public class Shop implements SceneMethods {
 
     public void drawShop(Canvas canvas){
         Paint barBody = new Paint();
-        barBody.setColor(Color.rgb(165,42,42));
-        canvas.drawRect(0,display.height()/(float)1.1,display.width(), display.height(),barBody);
+        barBody.setColor(Color.parseColor("#fae2e3"));
+        Paint borderPaint = new Paint();
+        borderPaint.setStrokeWidth(20.5f);
+        borderPaint.setColor(Color.BLACK);
+        borderPaint.setStyle(Paint.Style.STROKE);
+        canvas.drawRect(50, display.height()/(float)1.15,display.width() - 50, display.height(),borderPaint);
+        canvas.drawRect(50,display.height()/(float)1.15,display.width() - 50, display.height(),barBody);
         drawTowersInShop(canvas);
     }
 
@@ -44,15 +50,16 @@ public class Shop implements SceneMethods {
     }
     public void initButtons(){
 
-        cowTower = new MyButton[3];
+        cowTower = new MyButton[4];
 
-        int left = 100;
-        int top = 1000;
-        int right = 350;
-        int bottom = 1050;
+        int left = 550;
+        int top = 972;
+        int right = 75;
+        int bottom = 1055;
 
         for(int i = 0; i < cowTower.length; i++){
-            cowTower[i] = new MyButton(buttonNames[i],left+(3*i*left),top,right+(3*i*left),bottom);
+            cowTower[i] = new MyButton(buttonNames[i],left+(1*i*left),top,right+(1*i*left),bottom);
+            cowTower[i].setBodyColor(Color.parseColor("#e87c83"));
         }
 
     }
