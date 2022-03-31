@@ -1,7 +1,7 @@
 package com.example.shingekinocowjin;
 
 import org.junit.Test;
-int difficulty1 = 1;
+
 import static org.junit.Assert.*;
 
 import android.graphics.Bitmap;
