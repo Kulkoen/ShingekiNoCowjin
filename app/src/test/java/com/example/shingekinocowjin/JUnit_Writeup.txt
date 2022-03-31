@@ -40,3 +40,50 @@ reroll()
     - The JTest checks to see if new cows are displayed in the shop screen. In addition, this should
     also take away money from the player. This is important as it is a vital game mechanic in this game.
     Furthermore, it can effect the player's economy since re-rolling the shop cost money.
+
+checkGameOverHealth()
+	- Checks that the GAMESTATE is equal to GAMEOVER when the monument health is <= 0. When this occurs and GAMESTATE is
+	  equal to 0, the GAMEOVER scene should appear and prompt the user with an option to go back to the menu. This implementation
+	  is a part of M4.
+
+checkEasyDifficulty()
+	- Checks that the difficulty variable is set to 1 when the the Easy button is pressed. When this occurs the monument health is
+	  set to 100, gold given is set to 3, and difficulty is set to 1. This is an important JUnit test to make 
+	  sure that the variables we set when we press the easy button is correct.
+
+checkMediumDifficulty()
+	- Checks that the difficulty variable is set to 2 when the the Medium button is pressed. When this occurs the monument health is
+	  set to 75, gold given is set to 6, and difficulty is set to 2. This is an important JUnit test to make 
+	  sure that the variables we set when we press the Medium button is correct.
+
+checkHardDifficulty()
+	- Checks that the difficulty variable is set to 3 when the the Hard button is pressed. When this occurs the monument health is
+	  set to 50, gold given is set to 9, and difficulty is set to 3. This is an important JUnit test to make 
+	  sure that the variables we set when we press the Hard button is correct.
+
+EasyCowPrice()
+	- This JUNIT checks the cost of the price of a cow when difficulty is equal to Easy(1). When difficulty is set to Easy,
+	  cow price is equal to 3. This is an important test because we need to ensure that the price of the cow is determined
+	  by the difficulty variable.
+
+MediumCowPrice()
+	- This JUNIT checks the cost of the price of a cow when difficulty is equal to Medium(3). When difficulty is set to Medium,
+	  cow price is equal to 6. This is an important test because we need to ensure that the price of the cow is determined
+	  by the difficulty variable.
+
+HardCowPrice()
+	- This JUNIT checks the cost of the price of a cow when difficulty is equal to Hard(5). When difficulty is set to Hard,
+	  cow price is equal to 9. This is an important test because we need to ensure that the price of the cow is determined
+	  by the difficulty variable.
+
+checkEasyMoney()
+	- checkEasyMoney() tests that the amount of money given to the player when the difficulty is equal to EASY is equivalent to
+	  3. This is essential in setting the correct of amount of money based on the difficulty.
+
+checkMediumMoney()
+	- checkMediumMoney() tests that the amount of money given to the player when the difficulty is equal to Medium is equivalent to
+	  6. This is essential in setting the correct of amount of money based on the difficulty.
+
+checkHardMoney()
+	- checkHardMoney() tests that the amount of money given to the player when the difficulty is equal to Hard is equivalent to
+	  9. This is essential in setting the correct of amount of money based on the difficulty.
