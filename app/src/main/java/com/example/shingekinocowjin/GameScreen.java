@@ -70,8 +70,10 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                     playScene.touched((int)event.getX(),(int)event.getY(), event);
                 break;
             case GAMEOVER:
-                //GameOverScene.touched((int)event.getX(),(int)event.getY(), event);
+                gameOverScene.touched((int)event.getX(),(int)event.getY(), event);
+                break;
             default:
+                break;
         }
         return super.onTouchEvent(event);
     }
@@ -115,22 +117,14 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                 case PLAYING:
                     playScene.setPlayingDisplay(display);
                     playScene.drawPlay(canvas);
-<<<<<<< HEAD
-=======
 
                     drawUPS(canvas);
                     drawFPS(canvas);
-
->>>>>>> c8b8e375029afce4ad0354e17474855a1aec4c36
                     drawMonumentHealth(canvas);
                     break;
                 case GAMEOVER:
                     gameOverScene.setGameOverDisplay(display);
                     gameOverScene.drawGameOver(canvas);
-<<<<<<< HEAD
-=======
-
->>>>>>> c8b8e375029afce4ad0354e17474855a1aec4c36
                     break;
                 default:
                     break;

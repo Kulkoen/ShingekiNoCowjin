@@ -1,5 +1,5 @@
 package com.example.shingekinocowjin.scenes;
-
+import static com.example.shingekinocowjin.GameState.*;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -10,9 +10,9 @@ import com.example.shingekinocowjin.Game;
 import com.example.shingekinocowjin.GameState;
 import com.example.shingekinocowjin.ui.MyButton;
 
-public class GameOverScene {
+public class GameOverScene implements SceneMethods {
     private Bitmap image;
-    private MyButton quit;
+    private MyButton menu, gameOver;
     private Rect display;
 
     public GameOverScene(Bitmap bmp) {
@@ -22,30 +22,34 @@ public class GameOverScene {
 
     public void drawGameOver(Canvas canvas) {
 
-        canvas.drawBitmap(image, null,display, null);
+        canvas.drawBitmap(image, null, display, null);
         drawButtons(canvas);
     }
 
 
     private void initButtons() {
-        quit = new MyButton("QUIT", 200, 200, 400, 300);
+
+        menu = new MyButton("MENU", 900, 750, 1300, 1000);
+        gameOver = new MyButton("GAME OVER: ", 900, 150, 1300, 400);
     }
+
     private void drawButtons(Canvas canvas) {
-        quit.drawButton(canvas);
+        menu.drawButton(canvas);
+        gameOver.drawButton(canvas);
     }
 
-//    @Override
-//    public void touched(int x, int y, MotionEvent event) {
-//        if(quit.getBounds().contains(x,y)){
-//            System.exit(0);
-//        }
-//
-//        if (event.getAction() == MotionEvent.ACTION_DOWN && !(quit.getBounds().contains(x,y))){
-//            GameState.SetGameState(GameState.CONFIG);
-//        }
-//    }
 
-    public void setGameOverDisplay(Rect rectangle){
+    @Override
+    public void touched(int x, int y, MotionEvent event) {
+        if (menu.getBounds().contains(x, y)) {
+            menu.setPressed(true);
+            GameState.SetGameState(GameState.WELCOME);
+        }
+
+
+    }
+
+    public void setGameOverDisplay(Rect rectangle) {
         display = rectangle;
     }
 }

@@ -4,6 +4,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import android.graphics.Bitmap;
+
+import com.example.shingekinocowjin.scenes.ConfigScene;
+import com.example.shingekinocowjin.ui.MyButton;
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -14,6 +19,19 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
+    ConfigScene configScene = new ConfigScene();
+    @Test
+    public void easyButtonDifficulty() {
+
+        ConfigScene.getDifficulty;
+        assertEquals(1, 1);
+    }
+
+//    @Test
+//    public void testScreenShape() {
+//        assertEquals(rectangle);
+//    }
 }
 
 /**
