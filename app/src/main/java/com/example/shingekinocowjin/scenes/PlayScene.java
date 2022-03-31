@@ -84,7 +84,7 @@ public class PlayScene implements SceneMethods {
         if (farmerManager.getNormalFarmer().getXCoordinate() == 2001
             || (farmerManager.getFasterFarmer().getXCoordinate() == 2000)
             || (farmerManager.getFastestFarmer().getXCoordinate() == 2000)) {
-            player.setMonumentHealth(player.getMonumentHealth() - 10);
+            player.setMonumentHealth(player.getMonumentHealth() - 40);
             if (player.getMonumentHealth() <= 0) {
                 GameState.SetGameState(GameState.GAMEOVER);
             }
