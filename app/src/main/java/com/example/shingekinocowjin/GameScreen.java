@@ -7,23 +7,22 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.WindowMetrics;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
-import com.example.shingekinocowjin.managers.FarmerManager;
 import com.example.shingekinocowjin.scenes.ConfigScene;
 import com.example.shingekinocowjin.scenes.GameOverScene;
 import com.example.shingekinocowjin.scenes.PlayScene;
 import com.example.shingekinocowjin.scenes.WelcomeScene;
-import com.example.shingekinocowjin.ui.Shop;
 
 /*
 * Game manages all objects in the game and is responsible for updating all states and render
@@ -37,9 +36,11 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     private PlayScene playScene;
     private GameOverScene gameOverScene;
     private Rect display;
+    private Context contextm;
 
     public GameScreen(Context context) {
         super(context);
+        contextm = context;
 
         // Window Metrics
         WindowMetrics windowMetrics = ((Activity) getContext()).getWindowManager().getCurrentWindowMetrics();
@@ -85,7 +86,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         welcomeScene = new WelcomeScene(BitmapFactory.decodeResource(getResources(),
-                R.drawable.shingeki_no_cowjin_background));
+                R.drawable.welcome_screen));
         configScene = new ConfigScene(BitmapFactory.decodeResource(getResources(),
                 R.drawable.cow_background));
         playScene = new PlayScene(BitmapFactory.decodeResource(getResources(),
@@ -188,7 +189,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
 
     public void drawBarn(Canvas canvas) {
         Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.red_barn);
-        canvas.drawBitmap(b, 1910, 320, null);
+        canvas.drawBitmap(b, 1910, 335, null);
     }
 
     public void update() {
