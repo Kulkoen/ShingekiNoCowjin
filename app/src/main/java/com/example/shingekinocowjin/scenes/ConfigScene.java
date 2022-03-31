@@ -68,6 +68,7 @@ public class ConfigScene implements SceneMethods {
             player.setMoney(3);
             cowPrice = 1;
             difficulty = 1;
+
         } else if (medium.getBounds().contains(x, y)) {
 
             medium.setBodyColor(Color.parseColor("#ff8b3d"));

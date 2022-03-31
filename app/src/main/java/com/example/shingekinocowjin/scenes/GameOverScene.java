@@ -37,6 +37,7 @@ public class GameOverScene implements SceneMethods {
         gameOver.drawButton(canvas);
     }
 
+//<<<<<<< HEAD
 
     @Override
     public void touched(int x, int y, MotionEvent event) {
@@ -48,6 +49,20 @@ public class GameOverScene implements SceneMethods {
 
     }
 
+//=======
+//     @Override
+//     public void touched(int x, int y, MotionEvent event) {
+//     if(menu.getBounds().contains(x,y)){
+//     System.exit(0);
+//     }
+//
+//     if (event.getAction() == MotionEvent.ACTION_DOWN &&
+//     !(menu.getBounds().contains(x,y))){
+//     GameState.SetGameState(GameState.CONFIG);
+//     }
+//     }
+
+//>>>>>>> be8bf2b38d3fca46dd205d193f60f639463b3dc6
     public void setGameOverDisplay(Rect rectangle) {
         display = rectangle;
     }

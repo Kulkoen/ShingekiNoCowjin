@@ -76,7 +76,6 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
             case GAMEOVER:
                 gameOverScene.touched((int)event.getX(),(int)event.getY(), event);
                 break;
-
             default:
                 break;
         }

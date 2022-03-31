@@ -2,6 +2,7 @@ package com.example.shingekinocowjin;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
+import static com.example.shingekinocowjin.GameState.*;
 
 public class Game extends Thread {
     private final SurfaceHolder surfaceHolder;
@@ -38,6 +39,10 @@ public class Game extends Thread {
     public GameScreen getGameScreen() {
         return gameScreen;
     }
+
+//    public GameState getGameState() {return gamestate;}
+
+    //public GameState getGameState() {return GameState.PLAYING;}
 
     public void startLoop() {
         isRunning = true;
@@ -109,8 +114,12 @@ public class Game extends Thread {
                 startTime = System.currentTimeMillis();
             }
 
+            // Game over section when monumentHealth <= 0;
+
+
         }
 
-        // Game over section when monumentHealth <= 0;
+
+
     }
 }

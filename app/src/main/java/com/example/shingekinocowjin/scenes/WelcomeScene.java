@@ -13,6 +13,7 @@ public class WelcomeScene implements SceneMethods {
     private MyButton quit;
     private Rect display;
 
+
     public WelcomeScene(Bitmap bmp) {
         image = bmp;
         initButtons();

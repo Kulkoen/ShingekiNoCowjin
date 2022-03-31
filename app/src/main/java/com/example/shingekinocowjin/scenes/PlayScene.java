@@ -1,5 +1,7 @@
 package com.example.shingekinocowjin.scenes;
 
+import static com.example.shingekinocowjin.GameState.PLAYING;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -82,6 +84,9 @@ public class PlayScene implements SceneMethods {
             || (farmerManager.getFasterFarmer().getXCoordinate() == 2000)
             || (farmerManager.getFastestFarmer().getXCoordinate() == 2000)) {
             player.setMonumentHealth(player.getMonumentHealth() - 10);
+            if (player.getMonumentHealth() <= 0) {
+                GameState.SetGameState(GameState.GAMEOVER);
+            }
         } else if (farmerManager.getNormalFarmer().getXCoordinate() == 2001
                 && (farmerManager.getFasterFarmer().getXCoordinate() == 2000)
                 && (farmerManager.getFastestFarmer().getXCoordinate() == 2000)) {
