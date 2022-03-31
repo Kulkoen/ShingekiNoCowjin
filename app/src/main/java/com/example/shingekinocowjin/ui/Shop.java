@@ -50,14 +50,13 @@ public class Shop implements SceneMethods {
     public void initButtons() {
 
         cowTower = new MyButton[4];
-
         int left = 100;
         int top = 972;
         int right = 475;
         int bottom = 1055;
 
         for (int i = 0; i < cowTower.length; i++) {
-            cowTower[i] = new MyButton(buttonNames[i], left + (int) (5.5 * i * left), top,
+            cowTower[i] = new MyButton((buttonNames[i]), left + (int) (5.5 * i * left), top,
                     right + (int) (5.5 * i * left), bottom);
             cowTower[i].setCowID(i);
             cowTower[i].setBodyColor(Color.parseColor("#e87c83"));

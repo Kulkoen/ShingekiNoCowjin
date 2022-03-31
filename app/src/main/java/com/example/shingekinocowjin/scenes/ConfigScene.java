@@ -11,20 +11,26 @@ import android.view.View;
 import android.widget.EditText;
 import android.content.Context;
 
+import com.example.shingekinocowjin.Game;
+import com.example.shingekinocowjin.GameScreen;
 import com.example.shingekinocowjin.GameState;
 import com.example.shingekinocowjin.MainActivity;
+import com.example.shingekinocowjin.Player;
 import com.example.shingekinocowjin.ui.MyButton;
+import com.example.shingekinocowjin.ui.Shop;
 
 public class ConfigScene implements SceneMethods {
     private Bitmap image;
     private Rect display;
+    private Player player;
     private MyButton easy, medium, hard, start, changeName;
     private int difficulty = 0;// 1 = easy, 2 = medium, 3 = hard
-    private int price = 1; // price of towers, $1, $2, $3
+    private static int cowPrice = 0;
     private boolean nameChosen = false;
 
     public ConfigScene(Bitmap bmp) {
         image = bmp;
+        player = new Player(0, 0, "");
         initButtons();
     }
 
@@ -58,17 +64,20 @@ public class ConfigScene implements SceneMethods {
             easy.setPressed(true);
             medium.setPressed(false);
             hard.setPressed(false);
+            player.setMonumentHealth(100);
+            player.setMoney(3);
+            cowPrice = 1;
             difficulty = 1;
-            price = 1;
         } else if (medium.getBounds().contains(x, y)) {
 
             medium.setBodyColor(Color.parseColor("#ff8b3d"));
-
             easy.setPressed(false);
             medium.setPressed(true);
             hard.setPressed(false);
+            player.setMonumentHealth(75);
+            player.setMoney(6);
+            cowPrice = 3;
             difficulty = 2;
-            price = 2;
         } else if (hard.getBounds().contains(x, y)) {
 
             hard.setBodyColor(Color.parseColor("#dc143c"));
@@ -76,8 +85,10 @@ public class ConfigScene implements SceneMethods {
             easy.setPressed(false);
             medium.setPressed(false);
             hard.setPressed(true);
+            player.setMonumentHealth(50);
+            player.setMoney(9);
+            cowPrice = 5;
             difficulty = 3;
-            price = 3;
         }
         if (start.getBounds().contains(x, y) && difficulty != 0) {
             GameState.SetGameState(GameState.PLAYING);
@@ -97,12 +108,12 @@ public class ConfigScene implements SceneMethods {
         return nameChosen;
     }
 
-    public void setConfigDisplay(Rect rectangle) {
-        display = rectangle;
+    public int getCowPrice() {
+        return cowPrice;
     }
 
-    public int getPrice() {
-        return price;
+    public void setConfigDisplay(Rect rectangle) {
+        display = rectangle;
     }
 
 }
