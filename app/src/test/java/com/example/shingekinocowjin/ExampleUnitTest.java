@@ -20,19 +20,7 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
-    ConfigScene configScene = new ConfigScene();
-    @Test
-    public void easyButtonDifficulty() {
 
-        ConfigScene.getDifficulty;
-        assertEquals(1, 1);
-    }
-
-//    @Test
-//    public void testScreenShape() {
-//        assertEquals(rectangle);
-//    }
-}
 
 /**
  * Test to see if full screen is properly done on the android phone.

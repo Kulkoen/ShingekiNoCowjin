@@ -26,7 +26,6 @@ public class GameOverScene implements SceneMethods {
         drawButtons(canvas);
     }
 
-
     private void initButtons() {
 
         menu = new MyButton("MENU", 900, 750, 1300, 1000);

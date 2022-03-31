@@ -2,11 +2,15 @@ package com.example.shingekinocowjin;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -37,8 +41,8 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     public GameScreen(Context context) {
         super(context);
 
-        //Window Metrics
-        WindowMetrics windowMetrics = ((Activity)getContext()).getWindowManager().getCurrentWindowMetrics();
+        // Window Metrics
+        WindowMetrics windowMetrics = ((Activity) getContext()).getWindowManager().getCurrentWindowMetrics();
         display = windowMetrics.getBounds();
 
         // Get surface holder and add callback
@@ -50,7 +54,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         game = new Game(this, surfaceHolder);
 
         // Initialize player
-        player = new Player(300, 300,"Bob");
+        player = new Player(100, 5, "");
 
         setFocusable(true);
     }
@@ -59,19 +63,20 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         // Handle touch events based on game state
-        switch(GameState.gamestate){
+        switch (GameState.gamestate) {
             case WELCOME:
-                    welcomeScene.touched((int)event.getX(),(int)event.getY(), event);
+                welcomeScene.touched((int) event.getX(), (int) event.getY(), event);
                 break;
             case CONFIG:
-                    configScene.touched((int)event.getX(),(int)event.getY(), event);
+                configScene.touched((int) event.getX(), (int) event.getY(), event);
                 break;
             case PLAYING:
-                    playScene.touched((int)event.getX(),(int)event.getY(), event);
+                playScene.touched((int) event.getX(), (int) event.getY(), event);
                 break;
             case GAMEOVER:
                 gameOverScene.touched((int)event.getX(),(int)event.getY(), event);
                 break;
+
             default:
                 break;
         }
@@ -117,10 +122,12 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                 case PLAYING:
                     playScene.setPlayingDisplay(display);
                     playScene.drawPlay(canvas);
-
                     drawUPS(canvas);
                     drawFPS(canvas);
+                    drawBarn(canvas);
                     drawMonumentHealth(canvas);
+                    drawMoney(canvas);
+                    drawCowPrice(canvas);
                     break;
                 case GAMEOVER:
                     gameOverScene.setGameOverDisplay(display);
@@ -154,12 +161,35 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void drawMonumentHealth(Canvas canvas) {
-        String theMonumentHealth = Double.toString(game.getMonumentHealth());
+        String theMonumentHealth = Double.toString(player.getMonumentHealth());
         Paint paint = new Paint();
         int color = ContextCompat.getColor(getContext(), R.color.red);
         paint.setColor(color);
         paint.setTextSize(50);
-        canvas.drawText("Health " + theMonumentHealth, 1650, 100, paint);
+        canvas.drawText("Health: " + theMonumentHealth, 1650, 100, paint);
+    }
+
+    public void drawMoney(Canvas canvas) {
+        String theMoney = Double.toString(player.getMoney());
+        Paint paint = new Paint();
+        int color = ContextCompat.getColor(getContext(), R.color.green);
+        paint.setColor(color);
+        paint.setTextSize(50);
+        canvas.drawText("Money: " + theMoney, 1350, 100, paint);
+    }
+
+    public void drawCowPrice(Canvas canvas) {
+        String theCowPrice = Double.toString(configScene.getCowPrice());
+        Paint paint = new Paint();
+        int color = ContextCompat.getColor(getContext(), R.color.green);
+        paint.setColor(color);
+        paint.setTextSize(50);
+        canvas.drawText("Cow Price: " + theCowPrice, 1650, 900, paint);
+    }
+
+    public void drawBarn(Canvas canvas) {
+        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.red_barn);
+        canvas.drawBitmap(b, 1910, 320, null);
     }
 
     public void update() {
@@ -174,7 +204,6 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
             default:
                 break;
         }
-
     }
 
     public WelcomeScene getWelcomeScreen() {
@@ -184,6 +213,5 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     public ConfigScene getConfigScreen() {
         return configScene;
     }
-
 
 }

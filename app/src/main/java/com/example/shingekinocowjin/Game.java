@@ -13,8 +13,9 @@ public class Game extends Thread {
     private double averageUPS;
     private double averageFPS;
 
-    //***Figure out how to connect monumentHealth to the monument health in player!!.
-    private int monumentHealth = 25;
+    // ***Figure out how to connect monumentHealth to the monument health in
+    // player!!.
+    private static int monumentHealth;
 
     public Game(GameScreen gameScreen, SurfaceHolder surfaceHolder) {
         super();
@@ -30,7 +31,9 @@ public class Game extends Thread {
         return averageFPS;
     }
 
-    public int getMonumentHealth() {return monumentHealth;}
+    public int getMonumentHealth() {
+        return monumentHealth;
+    }
 
     public GameScreen getGameScreen() {
         return gameScreen;
@@ -108,6 +111,6 @@ public class Game extends Thread {
 
         }
 
-        //Game over section when monumentHealth <= 0;
+        // Game over section when monumentHealth <= 0;
     }
 }

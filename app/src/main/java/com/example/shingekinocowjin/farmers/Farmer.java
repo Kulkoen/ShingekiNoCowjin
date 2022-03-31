@@ -13,45 +13,48 @@ public class Farmer {
     private Rect bounds; // for hitbox
     int farmerBodyColor = Color.RED;
 
-    public Farmer(float x, float y, int ID, int enemyType){
+    public Farmer(float x, float y, int ID, int enemyType) {
         this.x = x;
         this.y = y;
         this.ID = ID;
-        this .enemyType = enemyType;
+        this.enemyType = enemyType;
     }
 
-    public void drawFarmer(Canvas canvas){
+    public void drawFarmer(Canvas canvas) {
 
-    drawFarmerBody(canvas);
-    drawFarmerOutline(canvas);
+        drawFarmerBody(canvas);
+        drawFarmerOutline(canvas);
 
     }
 
-    public void move(float x, float y){
-        this.x+=x;
-        this.y+=y;
+    public void move(float x, float y) {
+        this.x += x;
+        this.y += y;
     }
 
-    public void drawFarmerBody(Canvas canvas){
+    public void drawFarmerBody(Canvas canvas) {
         Paint farmerBody = new Paint();
         farmerBody.setColor(farmerBodyColor);
-        canvas.drawCircle(x, y, 35,farmerBody);
+        canvas.drawCircle(x, y, 35, farmerBody);
     }
-    public void drawFarmerOutline(Canvas canvas){
+
+    public void drawFarmerOutline(Canvas canvas) {
         Paint farmerOutline = new Paint();
         farmerOutline.setStrokeWidth(1);
         farmerOutline.setColor(Color.BLACK);
         farmerOutline.setStyle(Paint.Style.STROKE);
-        canvas.drawCircle(x, y, 35,farmerOutline);
+        canvas.drawCircle(x, y, 35, farmerOutline);
     }
+
     public float getXCoordinate() {
         return x;
     }
+
     public float getYCoordinate() {
         return y;
     }
 
-    public void setFarmerBody(int newColor){
+    public void setFarmerBody(int newColor) {
         farmerBodyColor = newColor;
     }
 }
