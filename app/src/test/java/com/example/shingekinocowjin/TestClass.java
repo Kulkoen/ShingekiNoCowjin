@@ -123,4 +123,32 @@ public class TestClass {
     int gameOverMoney = 0;
     int gameOverCowCost = 0;
 
+    boolean nameChosen = false;
+
+    public boolean isNameChosen() {
+        return nameChosen;
+    }
+
+    public int getNumberOfFarmers() {
+        return numberOfFarmers;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    int numberOfFarmers = 3;
+    String name = "COWMANDER";
+
+    public void setNameChosen(boolean nameChosen) {
+        this.nameChosen = nameChosen;
+    }
+
+    public void setNumberOfFarmers(int numberOfFarmers) {
+        this.numberOfFarmers = numberOfFarmers;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
