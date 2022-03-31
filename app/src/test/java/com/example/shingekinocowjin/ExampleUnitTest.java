@@ -144,7 +144,10 @@ public class ExampleUnitTest {
         assertEquals(0, testClass.getGameOverDifficulty());
     }
 
+
     //@Test
+
+
 }
 /**
  * Test to see if full screen is properly done on the android phone.
