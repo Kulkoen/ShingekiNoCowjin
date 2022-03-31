@@ -54,7 +54,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         game = new Game(this, surfaceHolder);
 
         // Initialize player
-        player = new Player(300, 300, "Bob");
+        player = new Player(100, 5, "");
 
         setFocusable(true);
     }
@@ -123,6 +123,8 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                     drawFPS(canvas);
                     drawBarn(canvas);
                     drawMonumentHealth(canvas);
+                    drawMoney(canvas);
+                    drawCowPrice(canvas);
                     break;
                 case GAMEOVER:
                     gameOverScene.setGameOverDisplay(display);
@@ -156,12 +158,30 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void drawMonumentHealth(Canvas canvas) {
-        String theMonumentHealth = Double.toString(game.getMonumentHealth());
+        String theMonumentHealth = Double.toString(player.getMonumentHealth());
         Paint paint = new Paint();
         int color = ContextCompat.getColor(getContext(), R.color.red);
         paint.setColor(color);
         paint.setTextSize(50);
-        canvas.drawText("Health " + theMonumentHealth, 1650, 100, paint);
+        canvas.drawText("Health: " + theMonumentHealth, 1650, 100, paint);
+    }
+
+    public void drawMoney(Canvas canvas) {
+        String theMoney = Double.toString(player.getMoney());
+        Paint paint = new Paint();
+        int color = ContextCompat.getColor(getContext(), R.color.green);
+        paint.setColor(color);
+        paint.setTextSize(50);
+        canvas.drawText("Money: " + theMoney, 1350, 100, paint);
+    }
+
+    public void drawCowPrice(Canvas canvas) {
+        String theCowPrice = Double.toString(configScene.getCowPrice());
+        Paint paint = new Paint();
+        int color = ContextCompat.getColor(getContext(), R.color.green);
+        paint.setColor(color);
+        paint.setTextSize(50);
+        canvas.drawText("Cow Price: " + theCowPrice, 1650, 900, paint);
     }
 
     public void drawBarn(Canvas canvas) {

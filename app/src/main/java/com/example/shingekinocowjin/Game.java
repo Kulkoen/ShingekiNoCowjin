@@ -15,7 +15,7 @@ public class Game extends Thread {
 
     // ***Figure out how to connect monumentHealth to the monument health in
     // player!!.
-    private int monumentHealth = 25;
+    private static int monumentHealth;
 
     public Game(GameScreen gameScreen, SurfaceHolder surfaceHolder) {
         super();

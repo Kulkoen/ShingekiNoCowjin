@@ -1,12 +1,12 @@
 package com.example.shingekinocowjin;
 
 public class Player {
-    int monumentHealth = 25;
-    int money;
+    private static int monumentHealth = 0;
+    private static int money;
     String name;
 
-    public Player(int monumentHealth, int money, String name) {
-        this.monumentHealth = monumentHealth;
+    public Player(int health, int money, String name) {
+        monumentHealth = health;
         this.money = money;
         this.name = name;
     }
@@ -21,6 +21,14 @@ public class Player {
 
     public int getMoney() {
         return money;
+    }
+
+    public void setMonumentHealth(int health) {
+        monumentHealth = health;
+    }
+
+    public void setMoney(int newMoney) {
+        money = newMoney;
     }
 
     public String getName() {

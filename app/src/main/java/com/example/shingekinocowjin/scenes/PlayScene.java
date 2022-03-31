@@ -9,6 +9,7 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import com.example.shingekinocowjin.GameState;
+import com.example.shingekinocowjin.Player;
 import com.example.shingekinocowjin.cows.Cow;
 import com.example.shingekinocowjin.managers.CowManager;
 import com.example.shingekinocowjin.managers.FarmerManager;
@@ -19,15 +20,20 @@ public class PlayScene implements SceneMethods {
     private MyButton startCombat;
     private Bitmap image;
     private Rect display;
+    private ConfigScene configScene;
+    private Player player;
     private FarmerManager farmerManager;
     private CowManager cowManager;
     private Shop shop;
+    private boolean start = false;
     int xPos, yPos;
 
     private Cow selectedCow;
 
     public PlayScene(Bitmap bmp) {
         image = bmp;
+        configScene = new ConfigScene(bmp);
+        player = new Player(100, 5, "");
         farmerManager = new FarmerManager(this);
         cowManager = new CowManager(this);
         shop = new Shop(this);
@@ -35,17 +41,25 @@ public class PlayScene implements SceneMethods {
     }
 
     private void initButtons() {
+        startCombat = new MyButton("START", 50, 800, 300, 900);
+    }
 
+    private void drawButtons(Canvas canvas) {
+        startCombat.drawButton(canvas);
     }
 
     // Draw methods
     public void drawPlay(Canvas canvas) {
         canvas.drawBitmap(image, null, display, null);
         drawTiles(canvas);
-        farmerManager.drawEnemies(canvas);
 
         shop.setShopDisplay(display);
         shop.drawShop(canvas);
+        drawButtons(canvas);
+        if (start) {
+            farmerManager.drawEnemies(canvas);
+            farmerManager.update();
+        }
         cowManager.drawTowers(canvas);
     }
 
@@ -64,17 +78,32 @@ public class PlayScene implements SceneMethods {
     }
 
     public void update() {
-        farmerManager.update();
+        if (farmerManager.getNormalFarmer().getXCoordinate() == 2001
+            || (farmerManager.getFasterFarmer().getXCoordinate() == 2000)
+            || (farmerManager.getFastestFarmer().getXCoordinate() == 2000)) {
+            player.setMonumentHealth(player.getMonumentHealth() - 10);
+        } else if (farmerManager.getNormalFarmer().getXCoordinate() == 2001
+                && (farmerManager.getFasterFarmer().getXCoordinate() == 2000)
+                && (farmerManager.getFastestFarmer().getXCoordinate() == 2000)) {
+            startCombat.setPressed(false);
+            farmerManager.resetFarmers();
+            start = false;
+        }
     }
 
     @Override
     public void touched(int x, int y, MotionEvent event) {
         if (y >= display.height() / 1.1) {
             shop.touched(x, y, event);
+        } else if (startCombat.getBounds().contains(x, y)) {
+            startCombat.setBodyColor(Color.parseColor("#66FF00"));
+            startCombat.setPressed(true);
+            start = true;
         } else {
             if (selectedCow != null) {
-                if (isTileGrass(x, y)) {
+                if (isTileGrass(x, y) && (player.getMoney() >= configScene.getCowPrice())) {
                     cowManager.addCow(selectedCow, x, y);
+                    player.setMoney(player.getMoney() - configScene.getCowPrice());
                     selectedCow = null;
                 }
             }

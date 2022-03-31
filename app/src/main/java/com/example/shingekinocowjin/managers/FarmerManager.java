@@ -15,12 +15,13 @@ public class FarmerManager {
 
     public FarmerManager(PlayScene playScene) {
         this.playScene = playScene;
-        normalFarmer = new Farmer(10, 310, 0, 0);
-        fasterFarmer = new Farmer(10, 310, 1, 1);
-        fastestFarmer = new Farmer(10, 310, 2, 2);
+        normalFarmer = new Farmer(0, 310, 0, 0);
+        fasterFarmer = new Farmer(0, 310, 1, 1);
+        fastestFarmer = new Farmer(0, 310, 2, 2);
     }
 
     public void drawEnemies(Canvas canvas) {
+
         drawFarmerType(normalFarmer, canvas);
 
         fasterFarmer.setFarmerBody(Color.BLUE);
@@ -53,10 +54,24 @@ public class FarmerManager {
             farmer.move(0, -speed);
         }
     }
+    public void resetFarmers() {
+        normalFarmer = new Farmer(0, 310, 0, 0);
+        fasterFarmer = new Farmer(0, 310, 1, 1);
+        fastestFarmer = new Farmer(0, 310, 2, 2);
+    }
 
     public void update() {
         moveFarmer(normalFarmer, (float) 3);
         moveFarmer(fasterFarmer, (float) 4);
         moveFarmer(fastestFarmer, (float) 5);
+    }
+    public Farmer getNormalFarmer() {
+        return normalFarmer;
+    }
+    public Farmer getFasterFarmer() {
+        return fasterFarmer;
+    }
+    public Farmer getFastestFarmer() {
+        return fastestFarmer;
     }
 }
