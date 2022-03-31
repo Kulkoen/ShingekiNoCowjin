@@ -145,7 +145,24 @@ public class ExampleUnitTest {
     }
 
 
-    //@Test
+    @Test
+    public void checkNumberofFarmers() {
+        testClass = new TestClass();
+
+        assertEquals(3, testClass.getNumberOfFarmers());
+    }
+    @Test
+    public void checkisNameChosen() {
+        testClass = new TestClass();
+
+        assertEquals(false, testClass.isNameChosen());
+    }
+    @Test
+    public void checkNameChosen() {
+        testClass = new TestClass();
+
+        assertEquals("COWMANDER", testClass.getName());
+    }
 
 
 }
