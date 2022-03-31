@@ -1,0 +1,42 @@
+
+towerCostChanges()
+    - This JTest checks to make sure that the cost of our towers (cows) change based on the difficulty the player has chosen. This
+     is a specific requirement in the implementation section for M3.
+
+insufficientFunds()
+    - This JTest checks to make sure that a player cannot buy a tower if they do not have enough funds. Aa text notification
+    should show up briefly telling the player they do not have enough money. This is a specific requirement in the
+    implementation section for M3.
+
+buyTower()
+    - This JTest should check if a player is able to properly buy a tower from the shop. The cost of the tower
+    should subtract from the player's total money pool. The shop should have an empty slot. This JTest is important as it
+    ensures all vital systems work after buying a tower.
+
+placeTower()
+    - The JTest checks to see if the player is able to properly place a tower on the map on the game screen. Text
+    should popup telling the player that they cannot place a tower on the path. When a tower is correctly, placed
+    the bench should have an empty slot. This is important as the implementation want the towers to be correctly
+    placed.
+
+bench()
+    - When a cow is bought, a cow should be on the bench. When a cow is placed, the bench should have
+    an empty slot on the bench. This is essential in the placing towers and buying towers pipeline,
+    which is required in this implementation.
+
+shopItemExists()
+    - When the shop is pulled up, cows should be displayed on the shop pop-up screen. When a cow is bought,
+    it should disappear. This is essential in the placing towers and buying towers pipeline,
+    which is required in this implementation.
+
+startResources()
+    - Checks to see if the name and difficulty set in the configuration screen. The player
+    should have the name set in the configuration screen. In addition, the difficulty should
+    change how money the player starts off with as well as how much health their monument
+    has. This is an important JTest as the stats set from the difficulty screen change how other
+    interactions, especially with buying towers, works.
+
+reroll()
+    - The JTest checks to see if new cows are displayed in the shop screen. In addition, this should
+    also take away money from the player. This is important as it is a vital game mechanic in this game.
+    Furthermore, it can effect the player's economy since re-rolling the shop cost money.
