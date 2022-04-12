@@ -5,6 +5,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MyButton {
     private int left, top, right, bottom;
     private String text;
@@ -13,6 +16,7 @@ public class MyButton {
     int textSize = 70;
     private boolean pressed;
     private int cowID;
+    private String[] keys = new String[26];
 
     public MyButton(String text, int left, int top, int right, int bottom) {
         this.text = text;
@@ -59,6 +63,11 @@ public class MyButton {
     }
 
     private void drawBody(Canvas canvas) {
+        /*char letter = 'A';
+        for (int i = 0; i < 26; i++) {
+           keys[i] =  letter++ + "";
+        }
+        List list = Arrays.asList(keys);*/
         Paint bodyPaint = new Paint();
         if (pressed) {
             bodyPaint.setColor(bodyColor);
@@ -68,7 +77,7 @@ public class MyButton {
                 bodyPaint.setColor(Color.LTGRAY);
                 canvas.drawRect(left, top, right, bottom, bodyPaint);
             } else {
-                bodyPaint.setColor(Color.parseColor("#e87c83"));
+                bodyPaint.setColor(Color.parseColor("#FDA4BA"));
                 canvas.drawRect(left, top, right, bottom, bodyPaint);
             }
         }
