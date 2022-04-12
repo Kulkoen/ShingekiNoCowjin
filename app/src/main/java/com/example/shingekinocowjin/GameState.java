@@ -4,6 +4,7 @@ public enum GameState {
     PLAYING,
     WELCOME,
     CONFIG,
+    KEYBOARD,
     GAMEOVER;
 
     public static GameState gamestate = WELCOME;

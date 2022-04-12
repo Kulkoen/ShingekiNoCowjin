@@ -70,7 +70,6 @@ public class Shop implements SceneMethods {
             if (b.getBounds().contains(x, y)) {
                 b.setBodyColor(Color.GREEN);
                 b.setPressed(true);
-
                 selectedCow = new Cow(x, y, -1, b.getCowID());
                 playScene.setSelectedTower(selectedCow);
             } else {

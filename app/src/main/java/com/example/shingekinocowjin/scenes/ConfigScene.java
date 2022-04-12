@@ -3,6 +3,7 @@ package com.example.shingekinocowjin.scenes;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -18,6 +19,7 @@ import com.example.shingekinocowjin.GameScreen;
 import com.example.shingekinocowjin.GameState;
 import com.example.shingekinocowjin.MainActivity;
 import com.example.shingekinocowjin.Player;
+import com.example.shingekinocowjin.R;
 import com.example.shingekinocowjin.ui.MyButton;
 import com.example.shingekinocowjin.ui.Shop;
 
@@ -99,6 +101,7 @@ public class ConfigScene implements SceneMethods {
         if (changeName.getBounds().contains(x, y)) {
             changeName.setPressed(true);
             changeName.setText("COWMANDER");
+            GameState.SetGameState(GameState.KEYBOARD);
         }
     }
 
