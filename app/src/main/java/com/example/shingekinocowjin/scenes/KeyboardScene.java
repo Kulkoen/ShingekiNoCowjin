@@ -5,18 +5,23 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
+import android.widget.TextView;
 
 import com.example.shingekinocowjin.GameState;
 import com.example.shingekinocowjin.ui.MyButton;
+
+import org.w3c.dom.Text;
 
 public class KeyboardScene implements SceneMethods {
     private MyButton[] buttons = new MyButton[26];
     private MyButton space;
     private MyButton done;
     private MyButton back;
+    private String userInput;
 
     public KeyboardScene() {
         initButtons();
+        setUserInputText("Change name here");
     }
 
     private void initButtons() {
@@ -36,6 +41,7 @@ public class KeyboardScene implements SceneMethods {
         back.drawButton(canvas);
         done.drawButton(canvas);
         drawKeyboardButtons(canvas);
+        drawText(canvas);
     }
 
     private void createKeyboardButtons(){
@@ -55,6 +61,7 @@ public class KeyboardScene implements SceneMethods {
             }
         }
     }
+    
     private void drawKeyboardButtons(Canvas canvas) {
         for (int i = 0; i < buttons.length; i++) {
             buttons[i].drawButton(canvas);
@@ -71,6 +78,14 @@ public class KeyboardScene implements SceneMethods {
         canvas.drawRect(r, paint);
     }
 
+    private void drawText(Canvas canvas) {
+        Paint p = new Paint();
+        p.setColor(Color.BLACK);
+        p.setTextSize(100);
+        canvas.drawText(getUserInputText(), 160, 200, p);
+
+    }
+
     private void drawKeyboard(Canvas canvas) {
         Rect r = new Rect();
         r.set(0,0, 3000,1400);
@@ -78,14 +93,30 @@ public class KeyboardScene implements SceneMethods {
         paint.setColor(Color.parseColor("#FCF2F3"));
         canvas.drawRect(r, paint);
     }
+
     @Override
     public void touched(int x, int y, MotionEvent event) {
         if (done.getBounds().contains(x, y)) {
             GameState.gamestate = GameState.CONFIG;
         }
+        if (back.getBounds().contains(x, y) && !userInput.equals("")) {
+            setUserInputText(getUserInputText().substring(0, getUserInputText().length() - 1));
+        }
+        for (int i = 0; i < buttons.length; i++) {
+            if (buttons[i].getBounds().contains(x, y)) {
+                setUserInputText(getUserInputText() + buttons[i].getText());
+            }
+        }
+        if (space.getBounds().contains(x, y)) {
+            setUserInputText(getUserInputText() + " ");
+        }
     }
+
     private String toString(char c) {
         String str = c + "";
         return str;
     }
+
+    public String getUserInputText() { return userInput; }
+    public void setUserInputText(String userInput) { this.userInput = userInput; }
 }

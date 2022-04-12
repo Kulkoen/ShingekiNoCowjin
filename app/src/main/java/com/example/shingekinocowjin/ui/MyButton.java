@@ -111,4 +111,6 @@ public class MyButton {
         return cowID;
     }
 
+    public String getText() { return text; }
+
 }

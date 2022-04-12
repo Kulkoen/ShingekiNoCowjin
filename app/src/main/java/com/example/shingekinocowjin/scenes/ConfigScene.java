@@ -64,7 +64,6 @@ public class ConfigScene implements SceneMethods {
 
         if (easy.getBounds().contains(x, y)) {
             easy.setBodyColor(Color.parseColor("#FFED5F"));
-
             easy.setPressed(true);
             medium.setPressed(false);
             hard.setPressed(false);
@@ -74,7 +73,6 @@ public class ConfigScene implements SceneMethods {
             difficulty = 1;
 
         } else if (medium.getBounds().contains(x, y)) {
-
             medium.setBodyColor(Color.parseColor("#ff8b3d"));
             easy.setPressed(false);
             medium.setPressed(true);
@@ -86,7 +84,6 @@ public class ConfigScene implements SceneMethods {
         } else if (hard.getBounds().contains(x, y)) {
 
             hard.setBodyColor(Color.parseColor("#dc143c"));
-
             easy.setPressed(false);
             medium.setPressed(false);
             hard.setPressed(true);
