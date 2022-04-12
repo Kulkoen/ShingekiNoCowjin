@@ -3,6 +3,7 @@ import static com.example.shingekinocowjin.GameState.*;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 
@@ -23,13 +24,17 @@ public class GameOverScene implements SceneMethods {
     public void drawGameOver(Canvas canvas) {
 
         canvas.drawBitmap(image, null, display, null);
+        Paint p = new Paint();
+        p.setColor(Color.BLACK);
+        p.setTextSize(200);
+        canvas.drawText("GAME OVER", 900, 150, p);
         drawButtons(canvas);
     }
 
     private void initButtons() {
 
         menu = new MyButton("MENU", 900, 750, 1300, 1000);
-        gameOver = new MyButton("GAME OVER: ", 900, 150, 1300, 400);
+        //gameOver = new MyButton("GAME OVER: ", 900, 150, 1300, 400);
     }
 
     private void drawButtons(Canvas canvas) {
