@@ -21,9 +21,12 @@ import androidx.core.content.ContextCompat;
 
 import com.example.shingekinocowjin.scenes.ConfigScene;
 import com.example.shingekinocowjin.scenes.GameOverScene;
+import com.example.shingekinocowjin.scenes.KeyboardScene;
 import com.example.shingekinocowjin.scenes.PlayScene;
 import com.example.shingekinocowjin.scenes.WelcomeScene;
 import com.example.shingekinocowjin.ui.MyButton;
+
+import java.security.Key;
 
 /*
 * Game manages all objects in the game and is responsible for updating all states and render
@@ -34,14 +37,11 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     private Game game;
     private WelcomeScene welcomeScene;
     private ConfigScene configScene;
+    private KeyboardScene keyboardScene;
     private PlayScene playScene;
     private GameOverScene gameOverScene;
     private Rect display;
     private Context contextm;
-    private MyButton[] buttons = new MyButton[26];
-    private MyButton space = new MyButton("SPACE", 650, 800, 1150, 950);
-    private MyButton done = new MyButton("DONE", 1580, 500, 1850, 770);
-    private MyButton back = new MyButton("Back", 1580, 100, 1850, 250);
     public GameScreen(Context context) {
         super(context);
         contextm = context;
@@ -75,6 +75,9 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
             case CONFIG:
                 configScene.touched((int) event.getX(), (int) event.getY(), event);
                 break;
+            case KEYBOARD:
+                keyboardScene.touched((int) event.getX(), (int) event.getY(), event);
+                break;
             case PLAYING:
                 playScene.touched((int) event.getX(), (int) event.getY(), event);
                 break;
@@ -93,6 +96,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                 R.drawable.welcome_screen));
         configScene = new ConfigScene(BitmapFactory.decodeResource(getResources(),
                 R.drawable.cow_background));
+        keyboardScene = new KeyboardScene();
         playScene = new PlayScene(BitmapFactory.decodeResource(getResources(),
                 R.drawable.map));
         gameOverScene = new GameOverScene(BitmapFactory.decodeResource(getResources(),
@@ -124,9 +128,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                     configScene.drawConfig(canvas);
                     break;
                 case KEYBOARD:
-                    drawKeyboard(canvas);
-                    createKeyboardButtons();
-                    drawKeyboardButtons(canvas);
+                    keyboardScene.drawConfig(canvas);
                     break;
                 case PLAYING:
                     playScene.setPlayingDisplay(display);
@@ -169,47 +171,6 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         canvas.drawText("FPS " + averageFPS, 100, 200, paint);
     }
 
-    public void createKeyboardButtons(){
-        char letter = 'A';
-        int top = 500, left = 150, right = 230, bottom = 620;
-        for(int i = 0; i < 26; i++) {
-            buttons[i] = new MyButton(toString((char)(letter++)), left, top, right, bottom);
-
-            if (i == 12) {
-                top += 150;
-                bottom += 150;
-                left = 150;
-                right = 230;
-            } else {
-                left += 110;
-                right += 110;
-            }
-        }
-    }
-    public void drawKeyboardButtons(Canvas canvas) {
-        for (int i = 0; i < buttons.length; i++) {
-            buttons[i].drawButton(canvas);
-        }
-        space.drawButton(canvas);
-        done.drawButton(canvas);
-        back.drawButton(canvas);
-        Rect r = new Rect();
-        Paint paint = new Paint();
-        paint.setColor(Color.WHITE);
-        Paint paint1 = new Paint();
-        paint1.setStrokeWidth(10.0f);
-        paint1.setStyle(Paint.Style.STROKE);
-        paint1.setColor(Color.BLACK);
-        canvas.drawRect(150, 100, 1550, 250, paint1);
-        r.set(150, 100, 1550, 250);
-        canvas.drawRect(r, paint);
-    }
-
-    private String toString(char c) {
-        String str = c + "";
-        return str;
-    }
-
     public void drawMonumentHealth(Canvas canvas) {
         String theMonumentHealth = Double.toString(player.getMonumentHealth());
         Paint paint = new Paint();
@@ -218,13 +179,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         paint.setTextSize(50);
         canvas.drawText("Health: " + theMonumentHealth, 1650, 100, paint);
     }
-    public void drawKeyboard(Canvas canvas) {
-        Rect r = new Rect();
-        r.set(0,0, 3000,1400);
-        Paint paint = new Paint();
-        paint.setColor(Color.parseColor("#FCF2F3"));
-        canvas.drawRect(r, paint);
-    }
+
     public void drawMoney(Canvas canvas) {
         String theMoney = Double.toString(player.getMoney());
         Paint paint = new Paint();
