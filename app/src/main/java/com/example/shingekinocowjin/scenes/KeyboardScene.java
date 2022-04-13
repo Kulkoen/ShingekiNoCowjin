@@ -17,11 +17,10 @@ public class KeyboardScene implements SceneMethods {
     private MyButton space;
     private MyButton done;
     private MyButton back;
-    private String userInput;
+    protected String userInput = "Change Name";
 
     public KeyboardScene() {
         initButtons();
-        setUserInputText("Change name here");
     }
 
     private void initButtons() {

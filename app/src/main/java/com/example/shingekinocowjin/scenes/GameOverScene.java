@@ -27,7 +27,7 @@ public class GameOverScene implements SceneMethods {
         Paint p = new Paint();
         p.setColor(Color.BLACK);
         p.setTextSize(200);
-        canvas.drawText("GAME OVER", 900, 150, p);
+        canvas.drawText("GAME OVER", 500, 450, p);
         drawButtons(canvas);
     }
 
@@ -39,7 +39,7 @@ public class GameOverScene implements SceneMethods {
 
     private void drawButtons(Canvas canvas) {
         menu.drawButton(canvas);
-        gameOver.drawButton(canvas);
+        //gameOver.drawButton(canvas);
     }
 
 //<<<<<<< HEAD
