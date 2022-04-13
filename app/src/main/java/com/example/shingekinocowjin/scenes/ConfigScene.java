@@ -95,7 +95,7 @@ public class ConfigScene implements SceneMethods {
             difficulty = 3;
         }
         if (start.getBounds().contains(x, y) && difficulty != 0) {
-            if (!userInput.isEmpty() && !userInput.trim().isEmpty()) {
+            if (!userInput.isEmpty() && !userInput.trim().isEmpty() && userInput != "Change Name") {
                 GameState.SetGameState(GameState.PLAYING);
             }
         }
