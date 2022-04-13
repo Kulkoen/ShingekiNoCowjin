@@ -77,6 +77,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                 break;
             case KEYBOARD:
                 keyboardScene.touched((int) event.getX(), (int) event.getY(), event);
+                configScene.setUserInput(keyboardScene.getUserInputText());
                 break;
             case PLAYING:
                 playScene.touched((int) event.getX(), (int) event.getY(), event);
@@ -124,11 +125,14 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                     welcomeScene.drawWelcome(canvas);
                     break;
                 case CONFIG:
+                    configScene.setUserInput(keyboardScene.getUserInputText());
+                    configScene.setChangeName(keyboardScene.getUserInputText());
                     configScene.setConfigDisplay(display);
                     configScene.drawConfig(canvas);
                     break;
                 case KEYBOARD:
                     keyboardScene.drawConfig(canvas);
+                    configScene.setUserInput(keyboardScene.getUserInputText());
                     break;
                 case PLAYING:
                     playScene.setPlayingDisplay(display);

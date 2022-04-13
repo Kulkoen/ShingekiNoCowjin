@@ -12,7 +12,7 @@ public class MyButton {
     private int left, top, right, bottom;
     private String text;
     private Rect bounds;
-    int bodyColor = Color.BLUE;
+    int bodyColor = Color.parseColor("#FDA4BA");
     int textSize = 70;
     private boolean pressed;
     private int cowID;

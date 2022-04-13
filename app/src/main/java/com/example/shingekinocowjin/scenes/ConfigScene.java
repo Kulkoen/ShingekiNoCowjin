@@ -22,6 +22,7 @@ import com.example.shingekinocowjin.Player;
 import com.example.shingekinocowjin.R;
 import com.example.shingekinocowjin.ui.MyButton;
 import com.example.shingekinocowjin.ui.Shop;
+import com.example.shingekinocowjin.scenes.KeyboardScene;
 
 public class ConfigScene implements SceneMethods {
     private Bitmap image;
@@ -31,6 +32,7 @@ public class ConfigScene implements SceneMethods {
     private int difficulty = 0;// 1 = easy, 2 = medium, 3 = hard
     private static int cowPrice = 0;
     private boolean nameChosen = false;
+    private String userInput = "";
 
     public ConfigScene(Bitmap bmp) {
         image = bmp;
@@ -93,11 +95,12 @@ public class ConfigScene implements SceneMethods {
             difficulty = 3;
         }
         if (start.getBounds().contains(x, y) && difficulty != 0) {
-            GameState.SetGameState(GameState.PLAYING);
+            if (!userInput.isEmpty() && !userInput.trim().isEmpty()) {
+                GameState.SetGameState(GameState.PLAYING);
+            }
         }
         if (changeName.getBounds().contains(x, y)) {
             changeName.setPressed(true);
-            changeName.setText("COWMANDER");
             GameState.SetGameState(GameState.KEYBOARD);
         }
     }
@@ -118,5 +121,10 @@ public class ConfigScene implements SceneMethods {
     public void setConfigDisplay(Rect rectangle) {
         display = rectangle;
     }
+
+    public void setUserInput(String userInput) { this.userInput = userInput;}
+
+    public void setChangeName(String userInput) { changeName.setText(userInput); }
+
 
 }
