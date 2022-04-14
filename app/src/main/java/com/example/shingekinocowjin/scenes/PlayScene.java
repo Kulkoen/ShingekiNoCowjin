@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import com.example.shingekinocowjin.GameState;
 import com.example.shingekinocowjin.Player;
 import com.example.shingekinocowjin.cows.Cow;
+import com.example.shingekinocowjin.farmers.Farmer;
 import com.example.shingekinocowjin.managers.CowManager;
 import com.example.shingekinocowjin.managers.FarmerManager;
 import com.example.shingekinocowjin.ui.MyButton;
@@ -30,7 +31,6 @@ public class PlayScene implements SceneMethods {
     private CowManager cowManager;
     private Shop shop;
     private boolean start = false;
-    int xPos, yPos;
 
     private Cow selectedCow;
 
@@ -90,19 +90,45 @@ public class PlayScene implements SceneMethods {
         if (farmerManager.getNormalFarmer().getXCoordinate() == 2001
             || (farmerManager.getFasterFarmer().getXCoordinate() == 2000)
             || (farmerManager.getFastestFarmer().getXCoordinate() == 2000)) {
-            player.setMonumentHealth(player.getMonumentHealth() - 40);
+            player.setMonumentHealth(player.getMonumentHealth() - 10);
             if (player.getMonumentHealth() <= 0) {
                 GameState.SetGameState(GameState.GAMEOVER);
             }
-        } else if (farmerManager.getNormalFarmer().getXCoordinate() == 2001
-                && (farmerManager.getFasterFarmer().getXCoordinate() == 2000)
-                && (farmerManager.getFastestFarmer().getXCoordinate() == 2000)) {
+        }
+        if (farmerManager.getNormalFarmer().getXCoordinate() >= 2001
+                && (farmerManager.getFasterFarmer().getXCoordinate() >= 2000)
+                && (farmerManager.getFastestFarmer().getXCoordinate() >= 2000)) {
             startCombat.setPressed(false);
             farmerManager.resetFarmers();
             start = false;
         }
+        for (int i = 0; i < cowManager.getCows().size(); i++) {
+            if (isInRange(cowManager.getCows().get(i), farmerManager.getNormalFarmer())) {
+                player.setMoney(player.getMoney() + 1);
+                farmerManager.getNormalFarmer().setHealth(farmerManager.getNormalFarmer().getHealth()
+                    - cowManager.getCows().get(i).getTowerDamage());
+            }
+            if (isInRange(cowManager.getCows().get(i), farmerManager.getFasterFarmer())) {
+                player.setMoney(player.getMoney() + 1);
+                farmerManager.getFasterFarmer().setHealth(farmerManager.getFasterFarmer().getHealth()
+                    - cowManager.getCows().get(i).getTowerDamage());
+            }
+            if (isInRange(cowManager.getCows().get(i), farmerManager.getFastestFarmer())) {
+                player.setMoney(player.getMoney() + 1);
+                farmerManager.getFastestFarmer().setHealth(farmerManager.getFastestFarmer().getHealth()
+                    - cowManager.getCows().get(i).getTowerDamage());
+            }
+        }
+        if (farmerManager.getNormalFarmer().getHealth() <= 0) {
+            farmerManager.getNormalFarmer().move(2500, 0);
+        }
+        if (farmerManager.getFasterFarmer().getHealth() <= 0) {
+            farmerManager.getFasterFarmer().move(2500, 0);
+        }
+        if (farmerManager.getFastestFarmer().getHealth() <= 0) {
+            farmerManager.getFastestFarmer().move(2500, 0);
+        }
     }
-
     @Override
     public void touched(int x, int y, MotionEvent event) {
         if (y >= display.height() / 1.1) {
@@ -119,10 +145,12 @@ public class PlayScene implements SceneMethods {
                     selectedCow = null;
                 }
             }
-            xPos = x;
-            yPos = y;
-
         }
+    }
+
+    private boolean isInRange(Cow cow, Farmer farmer) {
+        double range = getHypoDistance(cow.getX(), cow.getY(), farmer.getXCoordinate(), farmer.getYCoordinate());
+        return range < (cow.getCowRange() + 50);
     }
 
     private boolean isTileGrass(int x, int y) {
@@ -161,5 +189,10 @@ public class PlayScene implements SceneMethods {
 
     public Bitmap getCannonCow() { return cannonCow; }
 
+    public static double getHypoDistance(int x1, int y1, float x2, float y2) {
+        double xDiff = (double) Math.abs((x1 - (int)x2));
+        double yDiff = (double) Math.abs((y1 - (int)y2));
 
+        return (double) Math.hypot(xDiff, yDiff);
+    }
 }

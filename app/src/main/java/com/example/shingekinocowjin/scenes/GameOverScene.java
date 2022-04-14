@@ -6,10 +6,49 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
-
+import android.graphics.Canvas;
+import android.view.SurfaceHolder;
+import static com.example.shingekinocowjin.GameState.*;
 import com.example.shingekinocowjin.Game;
 import com.example.shingekinocowjin.GameState;
 import com.example.shingekinocowjin.ui.MyButton;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+
+import com.example.shingekinocowjin.GameState;
+import com.example.shingekinocowjin.Player;
+import com.example.shingekinocowjin.cows.Cow;
+import com.example.shingekinocowjin.farmers.Farmer;
+import com.example.shingekinocowjin.managers.CowManager;
+import com.example.shingekinocowjin.managers.FarmerManager;
+import com.example.shingekinocowjin.ui.MyButton;
+import com.example.shingekinocowjin.ui.Shop;
+import static com.example.shingekinocowjin.GameState.PLAYING;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+
+import com.example.shingekinocowjin.GameState;
+import com.example.shingekinocowjin.Player;
+import com.example.shingekinocowjin.cows.Cow;
+import com.example.shingekinocowjin.farmers.Farmer;
+import com.example.shingekinocowjin.managers.CowManager;
+import com.example.shingekinocowjin.managers.FarmerManager;
+import com.example.shingekinocowjin.ui.MyButton;
+import com.example.shingekinocowjin.ui.Shop;
+
 
 public class GameOverScene implements SceneMethods {
     private Bitmap image;
@@ -34,7 +73,7 @@ public class GameOverScene implements SceneMethods {
     private void initButtons() {
 
         menu = new MyButton("MENU", 900, 750, 1300, 1000);
-        //gameOver = new MyButton("GAME OVER: ", 900, 150, 1300, 400);
+        gameOver = new MyButton("GAME OVER: ", 900, 150, 1300, 400);
     }
 
     private void drawButtons(Canvas canvas) {
@@ -48,6 +87,7 @@ public class GameOverScene implements SceneMethods {
     public void touched(int x, int y, MotionEvent event) {
         if (menu.getBounds().contains(x, y)) {
             menu.setPressed(true);
+
             GameState.SetGameState(GameState.WELCOME);
         }
 

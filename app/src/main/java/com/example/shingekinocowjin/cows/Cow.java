@@ -8,13 +8,16 @@ import android.graphics.Paint;
 public class Cow {
     private int x, y, left, top, bottom, right;
     private int cowBodyColor = Color.BLACK;
+    private int towerDamage;
+    private int towerRange;
     private int ID;
+
     private Bitmap image;
     private Bitmap mageCow;
     private Bitmap cCCow;
     private Bitmap basicCow;
     private Bitmap cannonCow;
-    private int towerType = 0;// 0 = nothing, 1 = basic, 2 = mage, 3 = cannon, 4 = CC
+    private int towerType = 0;// 0 = basic, 1 = mage, 2 = cannon, 3 = cc
 
     public Cow(int x, int y, int ID, int towerType, Bitmap basicCow,
                Bitmap cannonCow, Bitmap mageCow, Bitmap cCCow) {
@@ -24,6 +27,8 @@ public class Cow {
         this.cannonCow = cannonCow;
         this.mageCow = mageCow;
         this.cCCow = cCCow;
+        this.x = x;
+        this.y = y;
         left = x - 50;
         top = y - 50;
         bottom = y + 50;
@@ -31,9 +36,9 @@ public class Cow {
     }
 
     public void drawCow(Canvas canvas) {
-
         drawCowBody(canvas);
-        //drawCowOutline(canvas);
+        drawCowOutline(canvas);
+        drawCowRange(canvas);
     }
 
     public void drawCowBody(Canvas canvas) {
@@ -42,17 +47,25 @@ public class Cow {
             case 0:
                 //cowBodyColor = Color.BLUE;
                 image = basicCow;
+                towerDamage = 1;
+                towerRange = 200;
                 break;
             case 1:
                 //cowBodyColor = Color.GREEN;
                 image = mageCow;
+                towerDamage = 5;
+                towerRange = 200;
                 break;
             case 2:
                 //cowBodyColor = Color.RED;
+                towerDamage = 5;
+                towerRange = 200;
                 image = cannonCow;
                 break;
             case 3:
                 //cowBodyColor = Color.WHITE;
+                towerDamage = 1;
+                towerRange = 200;
                 image = cCCow;
                 break;
             default:
@@ -71,8 +84,33 @@ public class Cow {
         canvas.drawRect(left, top, right, bottom, cowOutline);
     }
 
+    public void drawCowRange(Canvas canvas) {
+        Paint cowOutline = new Paint();
+        cowOutline.setStrokeWidth(1);
+        cowOutline.setColor(Color.WHITE);
+        cowOutline.setStyle(Paint.Style.STROKE);
+        canvas.drawOval(left - (towerRange), top - (towerRange),
+                right + (towerRange), bottom + (towerRange), cowOutline);
+    }
+
     public int getTowerType() {
         return towerType;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getCowRange() {
+        return towerRange;
+    }
+
+    public int getTowerDamage() {
+        return towerDamage;
     }
 
 }

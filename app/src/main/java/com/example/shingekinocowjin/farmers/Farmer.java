@@ -18,13 +18,22 @@ public class Farmer {
         this.y = y;
         this.ID = ID;
         this.enemyType = enemyType;
+        switch (enemyType) {
+            case 0:
+                health = 100;
+                break;
+            case 1:
+                health = 80;
+                break;
+            case 2:
+                health = 50;
+                break;
+        }
     }
 
     public void drawFarmer(Canvas canvas) {
-
         drawFarmerBody(canvas);
         drawFarmerOutline(canvas);
-
     }
 
     public void move(float x, float y) {
@@ -52,6 +61,14 @@ public class Farmer {
 
     public float getYCoordinate() {
         return y;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int newHealth) {
+        health = newHealth;
     }
 
     public void setFarmerBody(int newColor) {
