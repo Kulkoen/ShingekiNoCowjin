@@ -1,8 +1,23 @@
 package com.example.shingekinocowjin;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
+import static org.junit.Assert.*;
+
+import android.graphics.Bitmap;
+
+import com.example.shingekinocowjin.scenes.ConfigScene;
+import com.example.shingekinocowjin.ui.MyButton;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+
+import androidx.constraintlayout.widget.ConstraintSet;
+
+import com.example.shingekinocowjin.GameState;
+import com.example.shingekinocowjin.ui.MyButton;
+import com.example.shingekinocowjin.GameScreen;
 /**
  * Example local unit test, which will execute on the development machine (host).
  *

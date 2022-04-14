@@ -14,12 +14,8 @@ public class ConfigScene implements SceneMethods {
     private Bitmap image;
     private Rect display;
     private Player player;
-    private MyButton easy;
-    private MyButton medium;
-    private MyButton hard;
-    private MyButton start;
-    private MyButton changeName;
-    private int difficulty = 0; // 1 = easy, 2 = medium, 3 = hard
+    private MyButton easy, medium, hard, start, changeName;
+    private int difficulty = 0;// 1 = easy, 2 = medium, 3 = hard
     private static int cowPrice = 0;
     private boolean nameChosen = false;
     private String userInput = "";
@@ -85,14 +81,13 @@ public class ConfigScene implements SceneMethods {
             difficulty = 3;
         }
         if (start.getBounds().contains(x, y) && difficulty != 0) {
-            if (!userInput.isEmpty() && !userInput.trim().isEmpty()) {
-                GameState.setGameState(GameState.PLAYING);
-
+            if (!userInput.isEmpty() && !userInput.trim().isEmpty() && userInput != "Change Name") {
+                GameState.SetGameState(GameState.PLAYING);
             }
         }
         if (changeName.getBounds().contains(x, y)) {
             changeName.setPressed(true);
-            GameState.setGameState(GameState.KEYBOARD);
+            GameState.SetGameState(GameState.KEYBOARD);
         }
     }
 
@@ -113,12 +108,9 @@ public class ConfigScene implements SceneMethods {
         display = rectangle;
     }
 
-    public void setUserInput(String userInput) {
-        this.userInput = userInput;
-    }
+    public void setUserInput(String userInput) { this.userInput = userInput;}
 
-    public void setChangeName(String userInput) {
-        changeName.setText(userInput);
-    }
+    public void setChangeName(String userInput) { changeName.setText(userInput); }
+
 
 }
