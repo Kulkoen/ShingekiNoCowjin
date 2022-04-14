@@ -87,3 +87,36 @@ checkMediumMoney()
 checkHardMoney()
 	- checkHardMoney() tests that the amount of money given to the player when the difficulty is equal to Hard is equivalent to
 	  9. This is essential in setting the correct of amount of money based on the difficulty.
+
+checkFarmerHealth()
+
+	- checkFarmerHealth() tests that the farmer health after being hit with a pellet from a basic cow is -1. This is important to test
+	  our basic cow deals one damage.
+
+checkNumberEnemies()
+
+	- checkNumberEnemies() checks that the number of enemies at the start of round 1 is equal to 3.
+
+checkTowerDamage()
+
+	- checkTowerDamage() checks that the tower damage of the basic cow is equal to 1.
+
+checkMonumentHealth()
+
+	- checkMonumentHealth() checks that the monument health is equal to 5 after all 3 enemies pass through 
+
+checkBasicFarmerGold()
+	
+	- checkBasicFarmerGold() checks that the basic farmer gold after you kill them is equal to 1.
+
+checkMediumFarmerGold()
+
+	- checkMediumFarmerGold() checks that the medium farmer gold after you kill them is equal to 3.
+
+checkFastFarmerGold()
+
+	- checkFastFarmerGold() checks that the fast farmer gold after you kill them is equal to 5.
+
+checkRoundEndGold()
+
+	- checkRoundEndGold() checks that the gold you gain at the end of round 1 is equal to 9.

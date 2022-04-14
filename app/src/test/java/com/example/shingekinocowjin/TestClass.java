@@ -151,4 +151,77 @@ public class TestClass {
     public void setName(String name) {
         this.name = name;
     }
+
+    public int getFarmerHealth() {
+        return farmerHealth;
+    }
+
+    public void setFarmerHealth(int farmerHealth) {
+        this.farmerHealth = farmerHealth;
+    }
+
+    public int getNumEnemies() {
+        return numEnemies;
+    }
+
+    public void setNumEnemies(int numEnemies) {
+        this.numEnemies = numEnemies;
+    }
+
+    public int getTowerDamage() {
+        return towerDamage;
+    }
+
+    public void setTowerDamage(int towerDamage) {
+        this.towerDamage = towerDamage;
+    }
+
+    public int getMonumentHealth() {
+        return monumentHealth;
+    }
+
+    public void setMonumentHealth(int monumentHealth) {
+        this.monumentHealth = monumentHealth;
+    }
+
+    public int getBasicFarmerGold() {
+        return basicFarmerGold;
+    }
+
+    public void setBasicFarmerGold(int basicFarmerGold) {
+        this.basicFarmerGold = basicFarmerGold;
+    }
+
+    public int getMediumFarmerGold() {
+        return mediumFarmerGold;
+    }
+
+    public void setMediumFarmerGold(int mediumFarmerGold) {
+        this.mediumFarmerGold = mediumFarmerGold;
+    }
+
+    public int getFastFarmerGold() {
+        return fastFarmerGold;
+    }
+
+    public void setFastFarmerGold(int fastFarmerGold) {
+        this.fastFarmerGold = fastFarmerGold;
+    }
+
+    public int getRoundEndGold() {
+        return roundEndGold;
+    }
+
+    public void setRoundEndGold(int roundEndGold) {
+        this.roundEndGold = roundEndGold;
+    }
+
+    int farmerHealth = 1;
+    int numEnemies = 3;
+    int towerDamage = 5;
+    int monumentHealth = 5;
+    int basicFarmerGold = 1;
+    int mediumFarmerGold = 3;
+    int fastFarmerGold = 5;
+    int roundEndGold = 9;
 }

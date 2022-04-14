@@ -164,7 +164,63 @@ public class ExampleUnitTest {
         assertEquals("COWMANDER", testClass.getName());
     }
 
+// Milestone 5 JUnits
 
+    @Test
+    public void checkFarmerHealth() {
+        testClass = new TestClass();
+
+        assertEquals(1, testClass.getFarmerHealth());
+    }
+
+    @Test
+    public void checkNumberEnemies() {
+        testClass = new TestClass();
+
+        assertEquals(3, testClass.getNumEnemies());
+    }
+
+    @Test
+    public void checkTowerDamage() {
+        testClass = new TestClass();
+
+        assertEquals(5, testClass.getTowerDamage());
+    }
+
+    @Test
+    public void checkMonumentHealth() {
+        testClass = new TestClass();
+
+        assertEquals(5, testClass.getMonumentHealth());
+    }
+
+    @Test
+    public void checkBasicFarmerGold() {
+        testClass = new TestClass();
+
+        assertEquals(1, testClass.getBasicFarmerGold());
+    }
+
+    @Test
+    public void checkMediumFarmerGold() {
+        testClass = new TestClass();
+
+        assertEquals(3, testClass.getMediumFarmerGold());
+    }
+
+    @Test
+    public void checkFastFarmerGold() {
+        testClass = new TestClass();
+
+        assertEquals(5, testClass.getFastFarmerGold());
+    }
+
+    @Test
+    public void checkRoundEndGold() {
+        testClass = new TestClass();
+
+        assertEquals(9, testClass.getRoundEndGold());
+    }
 }
 /**
  * Test to see if full screen is properly done on the android phone.
