@@ -88,5 +88,6 @@ public class Farmer {
 
     public float getHealthBarFloat() {
         return health / (float) maxHealth;
+
     }
 }

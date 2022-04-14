@@ -17,6 +17,7 @@ public class Cow {
     private int id;
     private int towerType = 0; // 0 = basic, 1 = mage, 2 = cannon, 3 = cc
 
+
     public Cow(int x, int y, int id, int towerType) {
         this.id = id;
         this.towerType = towerType;
@@ -72,6 +73,7 @@ public class Cow {
         canvas.drawRect(left, top, right, bottom, cowOutline);
     }
 
+
     public void drawCowRange(Canvas canvas) {
         Paint cowOutline = new Paint();
         cowOutline.setStrokeWidth(1);
@@ -80,6 +82,7 @@ public class Cow {
         canvas.drawOval(left - (towerRange), top - (towerRange),
                 right + (towerRange), bottom + (towerRange), cowOutline);
     }
+
 
     public int getTowerType() {
         return towerType;
@@ -100,5 +103,6 @@ public class Cow {
     public int getTowerDamage() {
         return towerDamage;
     }
+
 
 }

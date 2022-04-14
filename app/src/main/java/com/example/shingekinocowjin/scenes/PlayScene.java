@@ -52,6 +52,7 @@ public class PlayScene implements SceneMethods {
         canvas.drawBitmap(image, null, display, null);
         // drawTiles(canvas);
 
+
         shop.setShopDisplay(display);
         shop.drawShop(canvas);
         drawButtons(canvas);
@@ -81,6 +82,7 @@ public class PlayScene implements SceneMethods {
                 || (farmerManager.getFasterFarmer().getX() == 2000)
                 || (farmerManager.getFastestFarmer().getX() == 2000)) {
             player.setMonumentHealth(player.getMonumentHealth() - 10);
+
             if (player.getMonumentHealth() <= 0) {
                 GameState.setGameState(GameState.GAMEOVER);
             }
@@ -88,6 +90,7 @@ public class PlayScene implements SceneMethods {
         if (farmerManager.getNormalFarmer().getX() >= 2001
                 && (farmerManager.getFasterFarmer().getX() >= 2000)
                 && (farmerManager.getFastestFarmer().getX() >= 2000)) {
+
             startCombat.setPressed(false);
             farmerManager.resetFarmers();
             start = false;
@@ -149,6 +152,7 @@ public class PlayScene implements SceneMethods {
         double range = getHypoDistance(cow.getX(), cow.getY(), farmer.getX(), farmer.getY());
         return range < (cow.getCowRange() + 50);
     }
+
 
     private boolean isTileGrass(int x, int y) {
         boolean one = (((y > 275 - 50) && (y < 400 + 50)) && ((x > 0) && (x < 315 + 50)));
