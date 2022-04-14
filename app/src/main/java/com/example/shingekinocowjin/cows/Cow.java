@@ -1,5 +1,6 @@
 package com.example.shingekinocowjin.cows;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -10,11 +11,22 @@ public class Cow {
     private int towerDamage;
     private int towerRange;
     private int ID;
+
+    private Bitmap image;
+    private Bitmap mageCow;
+    private Bitmap cCCow;
+    private Bitmap basicCow;
+    private Bitmap cannonCow;
     private int towerType = 0;// 0 = basic, 1 = mage, 2 = cannon, 3 = cc
 
-    public Cow(int x, int y, int ID, int towerType) {
+    public Cow(int x, int y, int ID, int towerType, Bitmap basicCow,
+               Bitmap cannonCow, Bitmap mageCow, Bitmap cCCow) {
         this.ID = ID;
         this.towerType = towerType;
+        this.basicCow = basicCow;
+        this.cannonCow = cannonCow;
+        this.mageCow = mageCow;
+        this.cCCow = cCCow;
         this.x = x;
         this.y = y;
         left = x - 50;
@@ -33,30 +45,35 @@ public class Cow {
         Paint cowBody = new Paint();
         switch (towerType) {
             case 0:
-                cowBodyColor = Color.BLUE;
+                //cowBodyColor = Color.BLUE;
+                image = basicCow;
                 towerDamage = 1;
                 towerRange = 200;
                 break;
             case 1:
-                cowBodyColor = Color.GREEN;
+                //cowBodyColor = Color.GREEN;
+                image = mageCow;
                 towerDamage = 5;
                 towerRange = 200;
                 break;
             case 2:
-                cowBodyColor = Color.RED;
+                //cowBodyColor = Color.RED;
                 towerDamage = 5;
                 towerRange = 200;
+                image = cannonCow;
                 break;
             case 3:
-                cowBodyColor = Color.WHITE;
+                //cowBodyColor = Color.WHITE;
                 towerDamage = 1;
                 towerRange = 200;
+                image = cCCow;
                 break;
             default:
                 break;
         }
-        cowBody.setColor(cowBodyColor);
-        canvas.drawRect(left, top, right, bottom, cowBody);
+        //cowBody.setColor(cowBodyColor);
+        //canvas.drawRect(left, top, right, bottom, cowBody);
+        canvas.drawBitmap(image, left - 50, top - 50, null);
     }
 
     public void drawCowOutline(Canvas canvas) {

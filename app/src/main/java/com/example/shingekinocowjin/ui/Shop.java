@@ -1,5 +1,6 @@
 package com.example.shingekinocowjin.ui;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -17,9 +18,18 @@ public class Shop implements SceneMethods {
     private MyButton[] cowTower;
     private String[] buttonNames = { "Basic Cow", "Mage Cow", "Cannon Cow", "CC Cow" };
     private Cow selectedCow;
+    private Bitmap basicCow;
+    private Bitmap cannonCow;
+    private Bitmap mageCow;
+    private Bitmap cCCow;
 
-    public Shop(PlayScene playScene) {
+    public Shop(PlayScene playScene, Bitmap basicCow,
+                Bitmap cannonCow, Bitmap mageCow, Bitmap cCCow) {
         this.playScene = playScene;
+        this.basicCow = basicCow;
+        this.cannonCow = cannonCow;
+        this.mageCow = mageCow;
+        this.cCCow = cCCow;
         initButtons();
     }
 
@@ -70,7 +80,7 @@ public class Shop implements SceneMethods {
             if (b.getBounds().contains(x, y)) {
                 b.setBodyColor(Color.GREEN);
                 b.setPressed(true);
-                selectedCow = new Cow(x, y, -1, b.getCowID());
+                selectedCow = new Cow(x, y, -1, b.getCowID(), basicCow, cannonCow, mageCow, cCCow);
                 playScene.setSelectedTower(selectedCow);
             } else {
                 b.setPressed(false);

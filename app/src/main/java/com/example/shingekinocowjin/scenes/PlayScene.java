@@ -1,15 +1,12 @@
 package com.example.shingekinocowjin.scenes;
 
-import static com.example.shingekinocowjin.GameState.PLAYING;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
-import android.view.View;
 
 import com.example.shingekinocowjin.GameState;
 import com.example.shingekinocowjin.Player;
@@ -23,6 +20,10 @@ import com.example.shingekinocowjin.ui.Shop;
 public class PlayScene implements SceneMethods {
     private MyButton startCombat;
     private Bitmap image;
+    private Bitmap mageCow;
+    private Bitmap cCCow;
+    private Bitmap basicCow;
+    private Bitmap cannonCow;
     private Rect display;
     private ConfigScene configScene;
     private Player player;
@@ -33,13 +34,18 @@ public class PlayScene implements SceneMethods {
 
     private Cow selectedCow;
 
-    public PlayScene(Bitmap bmp) {
+    public PlayScene(Bitmap bmp, Bitmap basicCow, Bitmap cannonCow, Bitmap mageCow, Bitmap cCCow) {
         image = bmp;
+        this.basicCow = basicCow;
+        this.cannonCow = cannonCow;
+        this.mageCow = mageCow;
+        this.cCCow = cCCow;
         configScene = new ConfigScene(bmp);
         player = new Player(100, 5, "");
         farmerManager = new FarmerManager(this);
-        cowManager = new CowManager(this);
-        shop = new Shop(this);
+        cowManager = new CowManager(this, basicCow, cannonCow, mageCow, cCCow);
+        shop = new Shop(this, basicCow,
+                cannonCow, mageCow, cCCow);
         initButtons();
     }
 
@@ -174,6 +180,14 @@ public class PlayScene implements SceneMethods {
     public void setSelectedTower(Cow selectedCow) {
         this.selectedCow = selectedCow;
     }
+
+    public Bitmap getBasicCow() { return basicCow; }
+
+    public Bitmap getMageCow() { return mageCow; }
+
+    public Bitmap getCCCow() { return cCCow; }
+
+    public Bitmap getCannonCow() { return cannonCow; }
 
     public static double getHypoDistance(int x1, int y1, float x2, float y2) {
         double xDiff = (double) Math.abs((x1 - (int)x2));

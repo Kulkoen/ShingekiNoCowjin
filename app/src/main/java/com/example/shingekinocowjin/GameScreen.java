@@ -5,17 +5,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 import android.view.WindowMetrics;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
@@ -24,9 +19,6 @@ import com.example.shingekinocowjin.scenes.GameOverScene;
 import com.example.shingekinocowjin.scenes.KeyboardScene;
 import com.example.shingekinocowjin.scenes.PlayScene;
 import com.example.shingekinocowjin.scenes.WelcomeScene;
-import com.example.shingekinocowjin.ui.MyButton;
-
-import java.security.Key;
 
 /*
 * Game manages all objects in the game and is responsible for updating all states and render
@@ -47,7 +39,8 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         contextm = context;
 
         // Window Metrics
-        WindowMetrics windowMetrics = ((Activity) getContext()).getWindowManager().getCurrentWindowMetrics();
+        WindowMetrics windowMetrics = ((Activity) getContext()).getWindowManager()
+                .getCurrentWindowMetrics();
         display = windowMetrics.getBounds();
 
         // Get surface holder and add callback
@@ -69,24 +62,24 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     public boolean onTouchEvent(MotionEvent event) {
         // Handle touch events based on game state
         switch (GameState.gamestate) {
-            case WELCOME:
-                welcomeScene.touched((int) event.getX(), (int) event.getY(), event);
-                break;
-            case CONFIG:
-                configScene.touched((int) event.getX(), (int) event.getY(), event);
-                break;
-            case KEYBOARD:
-                keyboardScene.touched((int) event.getX(), (int) event.getY(), event);
-                configScene.setUserInput(keyboardScene.getUserInputText());
-                break;
-            case PLAYING:
-                playScene.touched((int) event.getX(), (int) event.getY(), event);
-                break;
-            case GAMEOVER:
-                gameOverScene.touched((int)event.getX(),(int)event.getY(), event);
-                break;
-            default:
-                break;
+        case WELCOME:
+            welcomeScene.touched((int) event.getX(), (int) event.getY(), event);
+            break;
+        case CONFIG:
+            configScene.touched((int) event.getX(), (int) event.getY(), event);
+            break;
+        case KEYBOARD:
+            keyboardScene.touched((int) event.getX(), (int) event.getY(), event);
+            configScene.setUserInput(keyboardScene.getUserInputText());
+            break;
+        case PLAYING:
+            playScene.touched((int) event.getX(), (int) event.getY(), event);
+            break;
+        case GAMEOVER:
+            gameOverScene.touched((int) event.getX(), (int) event.getY(), event);
+            break;
+        default:
+            break;
         }
         return super.onTouchEvent(event);
     }
@@ -98,8 +91,11 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         configScene = new ConfigScene(BitmapFactory.decodeResource(getResources(),
                 R.drawable.cow_background));
         keyboardScene = new KeyboardScene();
-        playScene = new PlayScene(BitmapFactory.decodeResource(getResources(),
-                R.drawable.map));
+        playScene = new PlayScene(BitmapFactory.decodeResource(getResources(), R.drawable.map),
+                BitmapFactory.decodeResource(getResources(), R.drawable.basic_cow),
+                BitmapFactory.decodeResource(getResources(), R.drawable.cannon_cow),
+                BitmapFactory.decodeResource(getResources(), R.drawable.cow_mage),
+                BitmapFactory.decodeResource(getResources(), R.drawable.cc_cow));
         gameOverScene = new GameOverScene(BitmapFactory.decodeResource(getResources(),
                 R.drawable.game_over));
         game.startLoop();
@@ -120,36 +116,37 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         super.draw(canvas);
         if (canvas != null) {
             switch (GameState.gamestate) {
-                case WELCOME:
-                    welcomeScene.setWelcomeDisplay(display);
-                    welcomeScene.drawWelcome(canvas);
-                    break;
-                case CONFIG:
-                    configScene.setUserInput(keyboardScene.getUserInputText());
-                    configScene.setChangeName(keyboardScene.getUserInputText());
-                    configScene.setConfigDisplay(display);
-                    configScene.drawConfig(canvas);
-                    break;
-                case KEYBOARD:
-                    keyboardScene.drawConfig(canvas);
-                    configScene.setUserInput(keyboardScene.getUserInputText());
-                    break;
-                case PLAYING:
-                    playScene.setPlayingDisplay(display);
-                    playScene.drawPlay(canvas);
-                    drawUPS(canvas);
-                    drawFPS(canvas);
-                    drawBarn(canvas);
-                    drawMonumentHealth(canvas);
-                    drawMoney(canvas);
-                    drawCowPrice(canvas);
-                    break;
-                case GAMEOVER:
-                    gameOverScene.setGameOverDisplay(display);
-                    gameOverScene.drawGameOver(canvas);
-                    break;
-                default:
-                    break;
+            case WELCOME:
+
+                welcomeScene.setWelcomeDisplay(display);
+                welcomeScene.drawWelcome(canvas);
+                break;
+            case CONFIG:
+                configScene.setUserInput(keyboardScene.getUserInputText());
+                configScene.setChangeName(keyboardScene.getUserInputText());
+                configScene.setConfigDisplay(display);
+                configScene.drawConfig(canvas);
+                break;
+            case KEYBOARD:
+                keyboardScene.drawConfig(canvas);
+                configScene.setUserInput(keyboardScene.getUserInputText());
+                break;
+            case PLAYING:
+                playScene.setPlayingDisplay(display);
+                playScene.drawPlay(canvas);
+                drawUPS(canvas);
+                drawFPS(canvas);
+                drawBarn(canvas);
+                drawMonumentHealth(canvas);
+                drawMoney(canvas);
+                drawCowPrice(canvas);
+                break;
+            case GAMEOVER:
+                gameOverScene.setGameOverDisplay(display);
+                gameOverScene.drawGameOver(canvas);
+                break;
+            default:
+                break;
             }
         }
     }
@@ -209,15 +206,15 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update() {
         switch (GameState.gamestate) {
-            case WELCOME:
-                break;
-            case CONFIG:
-                break;
-            case PLAYING:
-                playScene.update();
-                break;
-            default:
-                break;
+        case WELCOME:
+            break;
+        case CONFIG:
+            break;
+        case PLAYING:
+            playScene.update();
+            break;
+        default:
+            break;
         }
     }
 

@@ -5,9 +5,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class MyButton {
     private int left, top, right, bottom;
     private String text;
@@ -56,18 +53,13 @@ public class MyButton {
 
     private void drawBorder(Canvas canvas) {
         Paint borderPaint = new Paint();
-        borderPaint.setStrokeWidth(10.5f);
+        borderPaint.setStrokeWidth(9.0f);
         borderPaint.setColor(Color.BLACK);
         borderPaint.setStyle(Paint.Style.STROKE);
         canvas.drawRect(left, top, right, bottom, borderPaint);
     }
 
     private void drawBody(Canvas canvas) {
-        /*char letter = 'A';
-        for (int i = 0; i < 26; i++) {
-           keys[i] =  letter++ + "";
-        }
-        List list = Arrays.asList(keys);*/
         Paint bodyPaint = new Paint();
         if (pressed) {
             bodyPaint.setColor(bodyColor);
