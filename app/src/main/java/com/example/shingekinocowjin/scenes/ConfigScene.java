@@ -87,6 +87,7 @@ public class ConfigScene implements SceneMethods {
         if (start.getBounds().contains(x, y) && difficulty != 0) {
             if (!userInput.isEmpty() && !userInput.trim().isEmpty()) {
                 GameState.setGameState(GameState.PLAYING);
+
             }
         }
         if (changeName.getBounds().contains(x, y)) {

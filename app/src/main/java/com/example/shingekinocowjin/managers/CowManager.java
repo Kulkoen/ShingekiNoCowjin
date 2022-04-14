@@ -1,5 +1,6 @@
 package com.example.shingekinocowjin.managers;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
@@ -13,9 +14,17 @@ public class CowManager implements SceneMethods {
     private PlayScene playScene;
     private ArrayList<Cow> cows = new ArrayList<>();
     private int cowAmount = 0;
+    private Bitmap basicCow;
+    private Bitmap cannonCow;
+    private Bitmap mageCow;
+    private Bitmap cCCow;
 
-    public CowManager(PlayScene playScene) {
-        this.playScene = playScene;
+    public CowManager(PlayScene playScene, Bitmap basicCow,
+                      Bitmap cannonCow, Bitmap mageCow, Bitmap cCCow) {
+        this.basicCow = basicCow;
+        this.cannonCow = cannonCow;
+        this.mageCow = mageCow;
+        this.cCCow = cCCow;
     }
 
     public void drawTowers(Canvas canvas) {
@@ -25,7 +34,8 @@ public class CowManager implements SceneMethods {
     }
 
     public void addCow(Cow selectedCow, int x, int y) {
-        cows.add(new Cow(x, y, cowAmount++, selectedCow.getTowerType()));
+        cows.add(new Cow(x, y, cowAmount++, selectedCow.getTowerType(),
+                basicCow, cannonCow, mageCow, cCCow));
     }
 
     public void update() {

@@ -57,13 +57,14 @@ public class MyButton {
 
     private void drawBorder(Canvas canvas) {
         Paint borderPaint = new Paint();
-        borderPaint.setStrokeWidth(10.5f);
+        borderPaint.setStrokeWidth(9.0f);
         borderPaint.setColor(Color.BLACK);
         borderPaint.setStyle(Paint.Style.STROKE);
         canvas.drawRect(left, top, right, bottom, borderPaint);
     }
 
     private void drawBody(Canvas canvas) {
+
         /*
          * char letter = 'A';
          * for (int i = 0; i < 26; i++) {

@@ -1,5 +1,6 @@
 package com.example.shingekinocowjin.cows;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -15,12 +16,22 @@ public class Cow {
     private int towerDamage;
     private int towerRange;
     private int id;
-    private int towerType = 0; // 0 = basic, 1 = mage, 2 = cannon, 3 = cc
 
+    private Bitmap image;
+    private Bitmap mageCow;
+    private Bitmap cCCow;
+    private Bitmap basicCow;
+    private Bitmap cannonCow;
+    private int towerType = 0;// 0 = basic, 1 = mage, 2 = cannon, 3 = cc
 
-    public Cow(int x, int y, int id, int towerType) {
+    public Cow(int x, int y, int id, int towerType, Bitmap basicCow,
+               Bitmap cannonCow, Bitmap mageCow, Bitmap cCCow) {
         this.id = id;
         this.towerType = towerType;
+        this.basicCow = basicCow;
+        this.cannonCow = cannonCow;
+        this.mageCow = mageCow;
+        this.cCCow = cCCow;
         this.x = x;
         this.y = y;
         left = x - 50;
@@ -60,9 +71,11 @@ public class Cow {
             break;
         default:
             break;
+
         }
-        cowBody.setColor(cowBodyColor);
-        canvas.drawRect(left, top, right, bottom, cowBody);
+        //cowBody.setColor(cowBodyColor);
+        //canvas.drawRect(left, top, right, bottom, cowBody);
+        canvas.drawBitmap(image, left - 50, top - 50, null);
     }
 
     public void drawCowOutline(Canvas canvas) {
