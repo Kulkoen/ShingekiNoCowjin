@@ -24,14 +24,13 @@ public class Cow {
     private Bitmap cannonCow;
     private int towerType = 0; // 0 = basic, 1 = mage, 2 = cannon, 3 = cc
 
-    public Cow(int x, int y, int id, int towerType, Bitmap basicCow,
-               Bitmap cannonCow, Bitmap mageCow, Bitmap cCCow) {
+    public Cow(int x, int y, int id, int towerType, Bitmap[] bit) {
         this.id = id;
         this.towerType = towerType;
-        this.basicCow = basicCow;
-        this.cannonCow = cannonCow;
-        this.mageCow = mageCow;
-        this.cCCow = cCCow;
+        this.basicCow = bit[0];
+        this.cannonCow = bit[1];
+        this.mageCow = bit[2];
+        this.cCCow = bit[3];
         this.x = x;
         this.y = y;
         left = x - 50;
