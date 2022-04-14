@@ -13,7 +13,6 @@ public class WelcomeScene implements SceneMethods {
     private MyButton quit;
     private Rect display;
 
-
     public WelcomeScene(Bitmap bmp) {
         image = bmp;
         initButtons();
@@ -40,7 +39,7 @@ public class WelcomeScene implements SceneMethods {
         }
 
         if (event.getAction() == MotionEvent.ACTION_DOWN && !(quit.getBounds().contains(x, y))) {
-            GameState.SetGameState(GameState.CONFIG);
+            GameState.setGameState(GameState.CONFIG);
         }
     }
 
