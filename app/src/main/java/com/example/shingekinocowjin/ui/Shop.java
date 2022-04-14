@@ -8,7 +8,6 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import com.example.shingekinocowjin.cows.Cow;
-import com.example.shingekinocowjin.scenes.ConfigScene;
 import com.example.shingekinocowjin.scenes.PlayScene;
 import com.example.shingekinocowjin.scenes.SceneMethods;
 

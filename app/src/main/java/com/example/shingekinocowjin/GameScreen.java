@@ -34,13 +34,16 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     private GameOverScene gameOverScene;
     private Rect display;
     private Context contextm;
+
     public GameScreen(Context context) {
         super(context);
         contextm = context;
 
         // Window Metrics
-        WindowMetrics windowMetrics = ((Activity) getContext()).getWindowManager()
-                .getCurrentWindowMetrics();
+
+        WindowMetrics windowMetrics =
+                ((Activity) getContext()).getWindowManager().getCurrentWindowMetrics();
+
         display = windowMetrics.getBounds();
 
         // Get surface holder and add callback
@@ -48,7 +51,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         getHolder().addCallback(this);
 
         // Initialize Game State
-        GameState.gamestate = GameState.WELCOME;
+        GameState.setGameState(GameState.WELCOME);
         game = new Game(this, surfaceHolder);
 
         // Initialize player
@@ -61,7 +64,8 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         // Handle touch events based on game state
-        switch (GameState.gamestate) {
+        switch (GameState.getGamestate()) {
+
         case WELCOME:
             welcomeScene.touched((int) event.getX(), (int) event.getY(), event);
             break;
@@ -115,9 +119,8 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         if (canvas != null) {
-            switch (GameState.gamestate) {
+            switch (GameState.getGamestate()) {
             case WELCOME:
-
                 welcomeScene.setWelcomeDisplay(display);
                 welcomeScene.drawWelcome(canvas);
                 break;
@@ -205,7 +208,8 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void update() {
-        switch (GameState.gamestate) {
+        switch (GameState.getGamestate()) {
+
         case WELCOME:
             break;
         case CONFIG:
