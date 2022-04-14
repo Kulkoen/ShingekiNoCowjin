@@ -6,22 +6,27 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 public class Cow {
-    private int x, y, left, top, bottom, right;
+    private int x;
+    private int y;
+    private int left;
+    private int top;
+    private int bottom;
+    private int right;
     private int cowBodyColor = Color.BLACK;
     private int towerDamage;
     private int towerRange;
-    private int ID;
+    private int id;
 
     private Bitmap image;
     private Bitmap mageCow;
     private Bitmap cCCow;
     private Bitmap basicCow;
     private Bitmap cannonCow;
-    private int towerType = 0;// 0 = basic, 1 = mage, 2 = cannon, 3 = cc
+    private int towerType = 0; // 0 = basic, 1 = mage, 2 = cannon, 3 = cc
 
-    public Cow(int x, int y, int ID, int towerType, Bitmap basicCow,
+    public Cow(int x, int y, int id, int towerType, Bitmap basicCow,
                Bitmap cannonCow, Bitmap mageCow, Bitmap cCCow) {
-        this.ID = ID;
+        this.id = id;
         this.towerType = towerType;
         this.basicCow = basicCow;
         this.cannonCow = cannonCow;
@@ -44,35 +49,35 @@ public class Cow {
     public void drawCowBody(Canvas canvas) {
         Paint cowBody = new Paint();
         switch (towerType) {
-            case 0:
-                //cowBodyColor = Color.BLUE;
-                image = basicCow;
-                towerDamage = 1;
-                towerRange = 200;
-                break;
-            case 1:
-                //cowBodyColor = Color.GREEN;
-                image = mageCow;
-                towerDamage = 5;
-                towerRange = 200;
-                break;
-            case 2:
-                //cowBodyColor = Color.RED;
-                towerDamage = 5;
-                towerRange = 200;
-                image = cannonCow;
-                break;
-            case 3:
-                //cowBodyColor = Color.WHITE;
-                towerDamage = 1;
-                towerRange = 200;
-                image = cCCow;
-                break;
-            default:
-                break;
+        case 0:
+            // cowBodyColor = Color.BLUE;
+            image = basicCow;
+            towerDamage = 1;
+            towerRange = 200;
+            break;
+        case 1:
+            // cowBodyColor = Color.GREEN;
+            image = mageCow;
+            towerDamage = 5;
+            towerRange = 200;
+            break;
+        case 2:
+            // cowBodyColor = Color.RED;
+            towerDamage = 5;
+            towerRange = 200;
+            image = cannonCow;
+            break;
+        case 3:
+            // cowBodyColor = Color.WHITE;
+            towerDamage = 1;
+            towerRange = 200;
+            image = cCCow;
+            break;
+        default:
+            break;
         }
-        //cowBody.setColor(cowBodyColor);
-        //canvas.drawRect(left, top, right, bottom, cowBody);
+        // cowBody.setColor(cowBodyColor);
+        // canvas.drawRect(left, top, right, bottom, cowBody);
         canvas.drawBitmap(image, left - 50, top - 50, null);
     }
 

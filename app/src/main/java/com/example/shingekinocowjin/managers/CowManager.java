@@ -20,7 +20,7 @@ public class CowManager implements SceneMethods {
     private Bitmap cCCow;
 
     public CowManager(PlayScene playScene, Bitmap basicCow,
-                      Bitmap cannonCow, Bitmap mageCow, Bitmap cCCow) {
+            Bitmap cannonCow, Bitmap mageCow, Bitmap cCCow) {
         this.basicCow = basicCow;
         this.cannonCow = cannonCow;
         this.mageCow = mageCow;
@@ -45,6 +45,7 @@ public class CowManager implements SceneMethods {
     public void touched(int x, int y, MotionEvent event) {
 
     }
+
     public ArrayList<Cow> getCows() {
         return cows;
     }
