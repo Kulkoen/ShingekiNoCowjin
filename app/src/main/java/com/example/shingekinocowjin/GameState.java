@@ -7,10 +7,13 @@ public enum GameState {
     KEYBOARD,
     GAMEOVER;
 
-    public static GameState gamestate = WELCOME;
+    private static GameState gamestate = WELCOME;
 
-    public static void SetGameState(GameState state) {
+    public static void setGameState(GameState state) {
         gamestate = state;
     }
-    public static GameState getGamestate() {return gamestate;}
+
+    public static GameState getGamestate() {
+        return gamestate;
+    }
 }
