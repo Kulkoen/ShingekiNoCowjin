@@ -97,7 +97,8 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         bit[1] = BitmapFactory.decodeResource(getResources(), R.drawable.cannon_cow);
         bit[2] = BitmapFactory.decodeResource(getResources(), R.drawable.cow_mage);
         bit[3] = BitmapFactory.decodeResource(getResources(), R.drawable.cc_cow);
-        playScene = new PlayScene(BitmapFactory.decodeResource(getResources(), R.drawable.map), bit);
+        playScene = new PlayScene(BitmapFactory.decodeResource(getResources(), R.drawable.map),
+                bit);
         gameOverScene = new GameOverScene(BitmapFactory.decodeResource(getResources(),
                 R.drawable.game_over));
         game.startLoop();

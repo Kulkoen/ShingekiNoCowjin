@@ -50,7 +50,8 @@ public class PlayScene implements SceneMethods {
     }
 
     private void initButtons() {
-        startCombat = new MyButton("START", 50, 800, 300, 900);
+        startCombat = new MyButton("START", 50, 800,
+                300, 900);
     }
 
     private void drawButtons(Canvas canvas) {
@@ -106,8 +107,8 @@ public class PlayScene implements SceneMethods {
         for (int i = 0; i < cowManager.getCows().size(); i++) {
             if (isInRange(cowManager.getCows().get(i), farmerManager.getNormalFarmer())) {
                 if (currentTimeMillis() % 5 == 0) {
-                    farmerManager.getNormalFarmer().setHealth(farmerManager.getNormalFarmer().getHealth()
-                            - cowManager.getCows().get(i).getTowerDamage());
+                    farmerManager.getNormalFarmer().setHealth(farmerManager.getNormalFarmer()
+                            .getHealth() - cowManager.getCows().get(i).getTowerDamage());
                 }
                 if (currentTimeMillis() % 60 == 0) {
                     player.setMoney(player.getMoney() + 1);
@@ -115,20 +116,22 @@ public class PlayScene implements SceneMethods {
             }
             if (isInRange(cowManager.getCows().get(i), farmerManager.getFasterFarmer())) {
                 if (currentTimeMillis() % 60 == 0) {
-                player.setMoney(player.getMoney() + 1);
+                    player.setMoney(player.getMoney() + 1);
                 }
                 if (currentTimeMillis() % 5 == 0) {
-                farmerManager.getFasterFarmer().setHealth(farmerManager.getFasterFarmer().getHealth()
-                    - cowManager.getCows().get(i).getTowerDamage());
+                    farmerManager.getFasterFarmer().setHealth(farmerManager.getFasterFarmer()
+                        .getHealth() - cowManager.getCows().get(i).getTowerDamage());
                 }
             }
-            if (isInRange(cowManager.getCows().get(i), farmerManager.getFastestFarmer()) && currentTimeMillis() % 5 == 0) {
+            if (isInRange(cowManager.getCows().get(i), farmerManager.getFastestFarmer())
+                    && currentTimeMillis() % 5 == 0) {
                 if (currentTimeMillis() % 60 == 0) {
-                player.setMoney(player.getMoney() + 1);
+                    player.setMoney(player.getMoney() + 1);
                 }
                 if (currentTimeMillis() % 5 == 0) {
-                farmerManager.getFastestFarmer().setHealth(farmerManager.getFastestFarmer().getHealth()
-                    - cowManager.getCows().get(i).getTowerDamage());
+                    farmerManager.getFastestFarmer().setHealth(farmerManager
+                        .getFastestFarmer().getHealth() - cowManager.getCows()
+                        .get(i).getTowerDamage());
                 }
             }
         }
