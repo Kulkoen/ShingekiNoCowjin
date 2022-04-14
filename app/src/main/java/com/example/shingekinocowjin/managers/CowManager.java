@@ -1,11 +1,9 @@
 package com.example.shingekinocowjin.managers;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
-import com.example.shingekinocowjin.R;
 import com.example.shingekinocowjin.cows.Cow;
 import com.example.shingekinocowjin.scenes.PlayScene;
 import com.example.shingekinocowjin.scenes.SceneMethods;

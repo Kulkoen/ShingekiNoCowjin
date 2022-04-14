@@ -48,34 +48,32 @@ public class Cow {
     public void drawCowBody(Canvas canvas) {
         Paint cowBody = new Paint();
         switch (towerType) {
-
-            case 0:
-                //cowBodyColor = Color.BLUE;
-                image = basicCow;
-                towerDamage = 1;
-                towerRange = 100;
-                break;
-            case 1:
-                //cowBodyColor = Color.GREEN;
-                image = mageCow;
-                towerDamage = 5;
-                towerRange = 150;
-                break;
-            case 2:
-                //cowBodyColor = Color.RED;
-                towerDamage = 5;
-                towerRange = 175;
-                image = cannonCow;
-                break;
-            case 3:
-                //cowBodyColor = Color.WHITE;
-                towerDamage = 1;
-                towerRange = 200;
-                image = cCCow;
-                break;
-            default:
-                break;
-
+        case 0:
+            //cowBodyColor = Color.BLUE;
+            image = basicCow;
+            towerDamage = 1;
+            towerRange = 100;
+            break;
+        case 1:
+            //cowBodyColor = Color.GREEN;
+            image = mageCow;
+            towerDamage = 5;
+            towerRange = 150;
+            break;
+        case 2:
+            //cowBodyColor = Color.RED;
+            towerDamage = 5;
+            towerRange = 175;
+            image = cannonCow;
+            break;
+        case 3:
+            //cowBodyColor = Color.WHITE;
+            towerDamage = 1;
+            towerRange = 200;
+            image = cCCow;
+            break;
+        default:
+            break;
         }
         // cowBody.setColor(cowBodyColor);
         // canvas.drawRect(left, top, right, bottom, cowBody);

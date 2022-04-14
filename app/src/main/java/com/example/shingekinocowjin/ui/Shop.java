@@ -1,6 +1,5 @@
 package com.example.shingekinocowjin.ui;
 
-import static java.lang.System.currentTimeMillis;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -94,5 +93,8 @@ public class Shop implements SceneMethods {
         return;
     }
 
-    public MyButton getClickedButton() { return clickedButton; }
+    public MyButton getClickedButton() {
+        return clickedButton;
+    }
+
 }
