@@ -20,13 +20,13 @@ public class Farmer {
         this.enemyType = enemyType;
         switch (enemyType) {
             case 0:
-                health = 100;
+                health = 500;
                 break;
             case 1:
-                health = 80;
+                health = 200;
                 break;
             case 2:
-                health = 50;
+                health = 100;
                 break;
         }
     }

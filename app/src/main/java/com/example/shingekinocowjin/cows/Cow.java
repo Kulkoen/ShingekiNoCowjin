@@ -37,7 +37,7 @@ public class Cow {
 
     public void drawCow(Canvas canvas) {
         drawCowBody(canvas);
-        drawCowOutline(canvas);
+        //drawCowOutline(canvas);
         drawCowRange(canvas);
     }
 
@@ -48,18 +48,18 @@ public class Cow {
                 //cowBodyColor = Color.BLUE;
                 image = basicCow;
                 towerDamage = 1;
-                towerRange = 200;
+                towerRange = 100;
                 break;
             case 1:
                 //cowBodyColor = Color.GREEN;
                 image = mageCow;
                 towerDamage = 5;
-                towerRange = 200;
+                towerRange = 150;
                 break;
             case 2:
                 //cowBodyColor = Color.RED;
                 towerDamage = 5;
-                towerRange = 200;
+                towerRange = 175;
                 image = cannonCow;
                 break;
             case 3:
