@@ -1,9 +1,11 @@
 package com.example.shingekinocowjin.managers;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
+import com.example.shingekinocowjin.R;
 import com.example.shingekinocowjin.cows.Cow;
 import com.example.shingekinocowjin.scenes.PlayScene;
 import com.example.shingekinocowjin.scenes.SceneMethods;
@@ -18,6 +20,7 @@ public class CowManager implements SceneMethods {
     private Bitmap cannonCow;
     private Bitmap mageCow;
     private Bitmap cCCow;
+    private Bitmap[] bit = new Bitmap[4];
 
     public CowManager(PlayScene playScene, Bitmap basicCow,
             Bitmap cannonCow, Bitmap mageCow, Bitmap cCCow) {
@@ -34,8 +37,11 @@ public class CowManager implements SceneMethods {
     }
 
     public void addCow(Cow selectedCow, int x, int y) {
-        cows.add(new Cow(x, y, cowAmount++, selectedCow.getTowerType(),
-                basicCow, cannonCow, mageCow, cCCow));
+        bit[0] = basicCow;
+        bit[1] = cannonCow;
+        bit[2] = mageCow;
+        bit[3] = cCCow;
+        cows.add(new Cow(x, y, cowAmount++, selectedCow.getTowerType(), bit));
     }
 
     public void update() {

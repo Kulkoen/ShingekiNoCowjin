@@ -35,18 +35,17 @@ public class PlayScene implements SceneMethods {
 
     private Cow selectedCow;
 
-    public PlayScene(Bitmap bmp, Bitmap basicCow, Bitmap cannonCow, Bitmap mageCow, Bitmap cCCow) {
+    public PlayScene(Bitmap bmp, Bitmap[] bit) {
         image = bmp;
-        this.basicCow = basicCow;
-        this.cannonCow = cannonCow;
-        this.mageCow = mageCow;
-        this.cCCow = cCCow;
+        this.basicCow = bit[0];
+        this.cannonCow = bit[1];
+        this.mageCow = bit[2];
+        this.cCCow = bit[3];
         configScene = new ConfigScene(bmp);
         player = new Player(100, 5, "");
         farmerManager = new FarmerManager(this);
         cowManager = new CowManager(this, basicCow, cannonCow, mageCow, cCCow);
-        shop = new Shop(this, basicCow,
-                cannonCow, mageCow, cCCow);
+        shop = new Shop(this, bit);
         initButtons();
     }
 

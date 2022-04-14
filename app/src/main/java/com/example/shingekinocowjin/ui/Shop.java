@@ -24,14 +24,14 @@ public class Shop implements SceneMethods {
     private Bitmap mageCow;
     private Bitmap cCCow;
     private MyButton clickedButton;
+    private Bitmap[] bit = new Bitmap[4];
 
-    public Shop(PlayScene playScene, Bitmap basicCow,
-            Bitmap cannonCow, Bitmap mageCow, Bitmap cCCow) {
+    public Shop(PlayScene playScene, Bitmap[] bit) {
         this.playScene = playScene;
-        this.basicCow = basicCow;
-        this.cannonCow = cannonCow;
-        this.mageCow = mageCow;
-        this.cCCow = cCCow;
+        this.basicCow = bit[0];
+        this.cannonCow = bit[1];
+        this.mageCow = bit[2];
+        this.cCCow = bit[3];
         initButtons();
     }
 
@@ -85,7 +85,7 @@ public class Shop implements SceneMethods {
                 b.setBodyColor(Color.GREEN);
                 b.setPressed(true);
                 clickedButton = b;
-                selectedCow = new Cow(x, y, -1, b.getCowID(), basicCow, cannonCow, mageCow, cCCow);
+                selectedCow = new Cow(x, y, -1, b.getCowID(), bit);
                 playScene.setSelectedTower(selectedCow);
             } else {
                 b.setPressed(false);
