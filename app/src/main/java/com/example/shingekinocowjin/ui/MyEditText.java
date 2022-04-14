@@ -10,13 +10,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatEditText;
 
+
 public class MyEditText extends androidx.appcompat.widget.AppCompatEditText {
     private Context contextm;
-    private int left;
-    private int top;
-    private int right;
-    private int bottom;
-
+    private int left, top, right, bottom;
     public MyEditText(Context context, Canvas canvas, int left, int top, int right, int bottom) {
         super(context);
         this.left = left;
@@ -25,7 +22,6 @@ public class MyEditText extends androidx.appcompat.widget.AppCompatEditText {
         this.bottom = bottom;
         contextm = context;
     }
-
     public void drawText(Canvas canvas) {
         AppCompatEditText text1 = new AppCompatEditText(contextm);
         text1.setText("CHANGE NAME");
@@ -34,8 +30,7 @@ public class MyEditText extends androidx.appcompat.widget.AppCompatEditText {
         LinearLayout layout = new LinearLayout(contextm);
         TextView name = new TextView(contextm);
         name.setText("CHANGE NAME");
-        name.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
+        name.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         name.setTextColor(Color.BLACK);
         name.setVisibility(View.VISIBLE);
         name.setTextSize(3000);
@@ -49,10 +44,10 @@ public class MyEditText extends androidx.appcompat.widget.AppCompatEditText {
         text.setClickable(true);
         layout.setX(500);
         layout.setY(500);
-        layout.setLeftTopRightBottom(200, 50, 200, 200);
+        layout.setLeftTopRightBottom(200,50, 200, 200);
         layout.setVisibility(View.VISIBLE);
         layout.addView(text);
-        text.setLeftTopRightBottom(100, 100, 100, 100);
+        text.setLeftTopRightBottom(100,100,100,100);
         layout.addView(name);
         layout.addView(text1);
         layout.draw(canvas);

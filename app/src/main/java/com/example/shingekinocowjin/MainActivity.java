@@ -2,6 +2,7 @@ package com.example.shingekinocowjin;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.Window;
 import android.view.WindowInsets;
 
@@ -19,8 +20,8 @@ public class MainActivity extends Activity {
 
         // Set window size to fullscreen (hides status bar)
         Window window = getWindow();
-        window.getInsetsController().hide(WindowInsets.Type.statusBars()
-                | WindowInsets.Type.navigationBars());
+        window.getInsetsController().hide(WindowInsets.Type.statusBars() |
+                WindowInsets.Type.navigationBars());
 
     }
 }

@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import com.example.shingekinocowjin.GameState;
 import com.example.shingekinocowjin.ui.MyButton;
 
+
 public class KeyboardScene implements SceneMethods {
     private MyButton[] buttons = new MyButton[26];
     private MyButton space;
@@ -40,14 +41,11 @@ public class KeyboardScene implements SceneMethods {
         drawText(canvas);
     }
 
-    private void createKeyboardButtons() {
+    private void createKeyboardButtons(){
         char letter = 'A';
-        int top = 500;
-        int left = 150;
-        int right = 230;
-        int bottom = 620;
-        for (int i = 0; i < 26; i++) {
-            buttons[i] = new MyButton(toString((char) (letter++)), left, top, right, bottom);
+        int top = 500, left = 150, right = 230, bottom = 620;
+        for(int i = 0; i < 26; i++) {
+            buttons[i] = new MyButton(toString((char)(letter++)), left, top, right, bottom);
 
             if (i == 12) {
                 top += 150;
@@ -60,7 +58,7 @@ public class KeyboardScene implements SceneMethods {
             }
         }
     }
-
+    
     private void drawKeyboardButtons(Canvas canvas) {
         for (int i = 0; i < buttons.length; i++) {
             buttons[i].drawButton(canvas);
@@ -87,7 +85,7 @@ public class KeyboardScene implements SceneMethods {
 
     private void drawKeyboard(Canvas canvas) {
         Rect r = new Rect();
-        r.set(0, 0, 3000, 1400);
+        r.set(0,0, 3000,1400);
         Paint paint = new Paint();
         paint.setColor(Color.parseColor("#FCF2F3"));
         canvas.drawRect(r, paint);
@@ -96,7 +94,7 @@ public class KeyboardScene implements SceneMethods {
     @Override
     public void touched(int x, int y, MotionEvent event) {
         if (done.getBounds().contains(x, y)) {
-            GameState.setGameState(GameState.CONFIG);
+            GameState.gamestate = GameState.CONFIG;
         }
         if (back.getBounds().contains(x, y) && !userInput.equals("")) {
             setUserInputText(getUserInputText().substring(0, getUserInputText().length() - 1));
@@ -116,11 +114,6 @@ public class KeyboardScene implements SceneMethods {
         return str;
     }
 
-    public String getUserInputText() {
-        return userInput;
-    }
-
-    public void setUserInputText(String userInput) {
-        this.userInput = userInput;
-    }
+    public String getUserInputText() { return userInput; }
+    public void setUserInputText(String userInput) { this.userInput = userInput; }
 }

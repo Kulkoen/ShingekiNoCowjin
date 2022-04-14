@@ -6,14 +6,11 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 
 public class MyButton {
-    private int left;
-    private int top;
-    private int right;
-    private int bottom;
+    private int left, top, right, bottom;
     private String text;
     private Rect bounds;
-    private int bodyColor = Color.parseColor("#FDA4BA");
-    private int textSize = 70;
+    int bodyColor = Color.parseColor("#FDA4BA");
+    int textSize = 70;
     private boolean pressed;
     private int cowID;
     private String[] keys = new String[26];
@@ -51,8 +48,7 @@ public class MyButton {
         textPaint.getTextBounds(text, 0, text.length(), textBounds);
         int height = textBounds.height();
         int width = textBounds.width();
-        canvas.drawText(text, ((right + left) - width) / 2,
-                ((bottom + top) + height) / 2, textPaint);
+        canvas.drawText(text, ((right + left) - width) / 2, ((bottom + top) + height) / 2, textPaint);
     }
 
     private void drawBorder(Canvas canvas) {
@@ -64,14 +60,6 @@ public class MyButton {
     }
 
     private void drawBody(Canvas canvas) {
-
-        /*
-         * char letter = 'A';
-         * for (int i = 0; i < 26; i++) {
-         * keys[i] = letter++ + "";
-         * }
-         * List list = Arrays.asList(keys);
-         */
         Paint bodyPaint = new Paint();
         if (pressed) {
             bodyPaint.setColor(bodyColor);
@@ -115,8 +103,6 @@ public class MyButton {
         return cowID;
     }
 
-    public String getText() {
-        return text;
-    }
+    public String getText() { return text; }
 
 }

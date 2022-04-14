@@ -6,35 +6,28 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 
 public class Farmer {
-    private float x;
-    private float y;
+    private float x, y;
     private int health;
-    private int maxHealth;
-    private int id;
+    private int ID;
     private int enemyType;
     private Rect bounds; // for hitbox
-    private int farmerBodyColor = Color.RED;
+    int farmerBodyColor = Color.RED;
 
-    public Farmer(float x, float y, int id, int enemyType) {
+    public Farmer(float x, float y, int ID, int enemyType) {
         this.x = x;
         this.y = y;
-        this.id = id;
+        this.ID = ID;
         this.enemyType = enemyType;
         switch (enemyType) {
-        case 0:
-            health = 100;
-            maxHealth = 100;
-            break;
-        case 1:
-            health = 80;
-            maxHealth = 80;
-            break;
-        case 2:
-            health = 50;
-            maxHealth = 50;
-            break;
-        default:
-            break;
+            case 0:
+                health = 100;
+                break;
+            case 1:
+                health = 80;
+                break;
+            case 2:
+                health = 50;
+                break;
         }
     }
 
@@ -62,11 +55,11 @@ public class Farmer {
         canvas.drawCircle(x, y, 35, farmerOutline);
     }
 
-    public float getX() {
+    public float getXCoordinate() {
         return x;
     }
 
-    public float getY() {
+    public float getYCoordinate() {
         return y;
     }
 
@@ -78,16 +71,7 @@ public class Farmer {
         health = newHealth;
     }
 
-    public void setMaxHealth(int newMaxHealth) {
-        maxHealth = newMaxHealth;
-    }
-
     public void setFarmerBody(int newColor) {
         farmerBodyColor = newColor;
-    }
-
-    public float getHealthBarFloat() {
-        return health / (float) maxHealth;
-
     }
 }

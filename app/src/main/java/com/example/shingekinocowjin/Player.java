@@ -3,7 +3,7 @@ package com.example.shingekinocowjin;
 public class Player {
     private static int monumentHealth = 0;
     private static int money;
-    private String name;
+    String name;
 
     public Player(int health, int money, String name) {
         monumentHealth = health;
