@@ -7,8 +7,11 @@ import android.graphics.Paint;
 import com.example.shingekinocowjin.farmers.Farmer;
 import com.example.shingekinocowjin.scenes.PlayScene;
 
+import java.util.ArrayList;
+
 public class FarmerManager {
     private PlayScene playScene;
+    private ArrayList<Farmer> farmers;
     private Farmer normalFarmer;
     private Farmer fasterFarmer;
     private Farmer fastestFarmer;
@@ -16,8 +19,11 @@ public class FarmerManager {
     public FarmerManager(PlayScene playScene) {
         this.playScene = playScene;
         normalFarmer = new Farmer(0, 310, 0, 0);
+        //farmers.add(normalFarmer);
         fasterFarmer = new Farmer(0, 310, 1, 1);
+        //farmers.add(fasterFarmer);
         fastestFarmer = new Farmer(0, 310, 2, 2);
+        //farmers.add(fastestFarmer);
     }
 
     public void drawEnemies(Canvas canvas) {
@@ -55,9 +61,13 @@ public class FarmerManager {
         }
     }
     public void resetFarmers() {
+        farmers = new ArrayList<Farmer>();
         normalFarmer = new Farmer(0, 310, 0, 0);
+        normalFarmer.setHealth(100);
         fasterFarmer = new Farmer(0, 310, 1, 1);
+        fasterFarmer.setHealth(80);
         fastestFarmer = new Farmer(0, 310, 2, 2);
+        fastestFarmer.setHealth(50);
     }
 
     public void update() {
@@ -73,5 +83,8 @@ public class FarmerManager {
     }
     public Farmer getFastestFarmer() {
         return fastestFarmer;
+    }
+    public ArrayList<Farmer> getFarmers() {
+        return farmers;
     }
 }

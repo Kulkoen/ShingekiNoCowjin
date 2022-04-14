@@ -34,7 +34,7 @@ public class GameOverScene implements SceneMethods {
     private void initButtons() {
 
         menu = new MyButton("MENU", 900, 750, 1300, 1000);
-        //gameOver = new MyButton("GAME OVER: ", 900, 150, 1300, 400);
+        gameOver = new MyButton("GAME OVER: ", 900, 150, 1300, 400);
     }
 
     private void drawButtons(Canvas canvas) {
