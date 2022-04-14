@@ -1,5 +1,7 @@
 package com.example.shingekinocowjin.ui;
 
+import static java.lang.System.currentTimeMillis;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -21,6 +23,7 @@ public class Shop implements SceneMethods {
     private Bitmap cannonCow;
     private Bitmap mageCow;
     private Bitmap cCCow;
+    private MyButton clickedButton;
 
     public Shop(PlayScene playScene, Bitmap basicCow,
             Bitmap cannonCow, Bitmap mageCow, Bitmap cCCow) {
@@ -81,6 +84,7 @@ public class Shop implements SceneMethods {
             if (b.getBounds().contains(x, y)) {
                 b.setBodyColor(Color.GREEN);
                 b.setPressed(true);
+                clickedButton = b;
                 selectedCow = new Cow(x, y, -1, b.getCowID(), basicCow, cannonCow, mageCow, cCCow);
                 playScene.setSelectedTower(selectedCow);
             } else {
@@ -89,4 +93,6 @@ public class Shop implements SceneMethods {
         }
         return;
     }
+
+    public MyButton getClickedButton() { return clickedButton; }
 }

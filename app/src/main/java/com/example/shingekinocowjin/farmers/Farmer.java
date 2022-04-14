@@ -21,20 +21,17 @@ public class Farmer {
         this.id = id;
         this.enemyType = enemyType;
         switch (enemyType) {
-        case 0:
-            health = 100;
-            maxHealth = 100;
-            break;
-        case 1:
-            health = 80;
-            maxHealth = 80;
-            break;
-        case 2:
-            health = 50;
-            maxHealth = 50;
-            break;
-        default:
-            break;
+
+            case 0:
+                health = 500;
+                break;
+            case 1:
+                health = 200;
+                break;
+            case 2:
+                health = 100;
+                break;
+
         }
     }
 

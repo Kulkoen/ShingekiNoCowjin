@@ -188,7 +188,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         int color = ContextCompat.getColor(getContext(), R.color.green);
         paint.setColor(color);
         paint.setTextSize(50);
-        canvas.drawText("Money: " + theMoney, 1350, 100, paint);
+        canvas.drawText("Money: " + theMoney, 1250, 100, paint);
     }
 
     public void drawCowPrice(Canvas canvas) {
