@@ -116,7 +116,7 @@ public class PlayScene implements SceneMethods {
             }
             if (isInRange(cowManager.getCows().get(i), farmerManager.getFasterFarmer())) {
                 if (currentTimeMillis() % 60 == 0) {
-                    player.setMoney(player.getMoney() + 1);
+                    player.setMoney(player.getMoney() + 3);
                 }
                 if (currentTimeMillis() % 5 == 0) {
                     farmerManager.getFasterFarmer().setHealth(farmerManager.getFasterFarmer()
@@ -126,7 +126,7 @@ public class PlayScene implements SceneMethods {
             if (isInRange(cowManager.getCows().get(i), farmerManager.getFastestFarmer())
                     && currentTimeMillis() % 5 == 0) {
                 if (currentTimeMillis() % 60 == 0) {
-                    player.setMoney(player.getMoney() + 1);
+                    player.setMoney(player.getMoney() + 5);
                 }
                 if (currentTimeMillis() % 5 == 0) {
                     farmerManager.getFastestFarmer().setHealth(farmerManager
