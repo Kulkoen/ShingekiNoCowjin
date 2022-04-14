@@ -40,7 +40,7 @@ public class Game extends Thread {
         return gameScreen;
     }
 
-//    public GameState getGameState() {return gamestate;}
+    //public GameState getGameState() {return gamestate;}
 
     //public GameState getGameState() {return GameState.PLAYING;}
 

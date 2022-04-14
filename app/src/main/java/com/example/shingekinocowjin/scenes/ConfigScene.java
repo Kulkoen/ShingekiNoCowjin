@@ -1,28 +1,14 @@
 package com.example.shingekinocowjin.scenes;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.content.Context;
 
-import com.example.shingekinocowjin.Game;
-import com.example.shingekinocowjin.GameScreen;
 import com.example.shingekinocowjin.GameState;
-import com.example.shingekinocowjin.MainActivity;
 import com.example.shingekinocowjin.Player;
-import com.example.shingekinocowjin.R;
 import com.example.shingekinocowjin.ui.MyButton;
-import com.example.shingekinocowjin.ui.Shop;
-import com.example.shingekinocowjin.scenes.KeyboardScene;
 
 public class ConfigScene implements SceneMethods {
     private Bitmap image;

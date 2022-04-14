@@ -5,12 +5,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
-import android.widget.TextView;
 
 import com.example.shingekinocowjin.GameState;
 import com.example.shingekinocowjin.ui.MyButton;
 
-import org.w3c.dom.Text;
 
 public class KeyboardScene implements SceneMethods {
     private MyButton[] buttons = new MyButton[26];

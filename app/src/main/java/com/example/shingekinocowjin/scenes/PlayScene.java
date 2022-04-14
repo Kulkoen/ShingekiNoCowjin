@@ -1,15 +1,12 @@
 package com.example.shingekinocowjin.scenes;
 
-import static com.example.shingekinocowjin.GameState.PLAYING;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
-import android.view.View;
 
 import com.example.shingekinocowjin.GameState;
 import com.example.shingekinocowjin.Player;
@@ -46,8 +43,9 @@ public class PlayScene implements SceneMethods {
         configScene = new ConfigScene(bmp);
         player = new Player(100, 5, "");
         farmerManager = new FarmerManager(this);
-        cowManager = new CowManager(this);
-        shop = new Shop(this);
+        cowManager = new CowManager(this, basicCow, cannonCow, mageCow, cCCow);
+        shop = new Shop(this, basicCow,
+                cannonCow, mageCow, cCCow);
         initButtons();
     }
 
