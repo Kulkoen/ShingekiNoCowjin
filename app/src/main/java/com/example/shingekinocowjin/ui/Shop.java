@@ -7,7 +7,6 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import com.example.shingekinocowjin.cows.Cow;
-import com.example.shingekinocowjin.scenes.ConfigScene;
 import com.example.shingekinocowjin.scenes.PlayScene;
 import com.example.shingekinocowjin.scenes.SceneMethods;
 
@@ -15,7 +14,7 @@ public class Shop implements SceneMethods {
     private final PlayScene playScene;
     private Rect display;
     private MyButton[] cowTower;
-    private String[] buttonNames = { "Basic Cow", "Mage Cow", "Cannon Cow", "CC Cow" };
+    private String[] buttonNames = {"Basic Cow", "Mage Cow", "Cannon Cow", "CC Cow"};
     private Cow selectedCow;
 
     public Shop(PlayScene playScene) {
@@ -30,8 +29,10 @@ public class Shop implements SceneMethods {
         borderPaint.setStrokeWidth(20.5f);
         borderPaint.setColor(Color.BLACK);
         borderPaint.setStyle(Paint.Style.STROKE);
-        canvas.drawRect(0, display.height() / (float) 1.15, display.width(), display.height(), borderPaint);
-        canvas.drawRect(0, display.height() / (float) 1.15, display.width(), display.height(), barBody);
+        canvas.drawRect(0, display.height() / (float) 1.15,
+                display.width(), display.height(), borderPaint);
+        canvas.drawRect(0, display.height() / (float) 1.15,
+                display.width(), display.height(), barBody);
         drawTowersInShop(canvas);
     }
 

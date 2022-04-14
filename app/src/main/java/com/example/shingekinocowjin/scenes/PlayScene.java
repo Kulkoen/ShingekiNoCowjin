@@ -1,15 +1,11 @@
 package com.example.shingekinocowjin.scenes;
 
-import static com.example.shingekinocowjin.GameState.PLAYING;
-
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
-import android.view.View;
 
 import com.example.shingekinocowjin.GameState;
 import com.example.shingekinocowjin.Player;
@@ -54,7 +50,7 @@ public class PlayScene implements SceneMethods {
     // Draw methods
     public void drawPlay(Canvas canvas) {
         canvas.drawBitmap(image, null, display, null);
-        drawTiles(canvas);
+        // drawTiles(canvas);
 
         shop.setShopDisplay(display);
         shop.drawShop(canvas);
@@ -81,36 +77,42 @@ public class PlayScene implements SceneMethods {
     }
 
     public void update() {
-        if (farmerManager.getNormalFarmer().getXCoordinate() == 2001
-            || (farmerManager.getFasterFarmer().getXCoordinate() == 2000)
-            || (farmerManager.getFastestFarmer().getXCoordinate() == 2000)) {
+        if (farmerManager.getNormalFarmer().getX() == 2001
+                || (farmerManager.getFasterFarmer().getX() == 2000)
+                || (farmerManager.getFastestFarmer().getX() == 2000)) {
             player.setMonumentHealth(player.getMonumentHealth() - 10);
             if (player.getMonumentHealth() <= 0) {
-                GameState.SetGameState(GameState.GAMEOVER);
+                GameState.setGameState(GameState.GAMEOVER);
             }
         }
-        if (farmerManager.getNormalFarmer().getXCoordinate() >= 2001
-                && (farmerManager.getFasterFarmer().getXCoordinate() >= 2000)
-                && (farmerManager.getFastestFarmer().getXCoordinate() >= 2000)) {
+        if (farmerManager.getNormalFarmer().getX() >= 2001
+                && (farmerManager.getFasterFarmer().getX() >= 2000)
+                && (farmerManager.getFastestFarmer().getX() >= 2000)) {
             startCombat.setPressed(false);
             farmerManager.resetFarmers();
             start = false;
         }
         for (int i = 0; i < cowManager.getCows().size(); i++) {
-            if (isInRange(cowManager.getCows().get(i), farmerManager.getNormalFarmer())) {
+            if (isInRange(cowManager.getCows().get(i),
+                    farmerManager.getNormalFarmer())) {
                 player.setMoney(player.getMoney() + 1);
-                farmerManager.getNormalFarmer().setHealth(farmerManager.getNormalFarmer().getHealth()
-                    - cowManager.getCows().get(i).getTowerDamage());
+                farmerManager.getNormalFarmer().setHealth(farmerManager.
+                        getNormalFarmer().getHealth()
+                        - cowManager.getCows().get(i).getTowerDamage());
             }
-            if (isInRange(cowManager.getCows().get(i), farmerManager.getFasterFarmer())) {
+            if (isInRange(cowManager.getCows().get(i), farmerManager.
+                    getFasterFarmer())) {
                 player.setMoney(player.getMoney() + 1);
-                farmerManager.getFasterFarmer().setHealth(farmerManager.getFasterFarmer().getHealth()
-                    - cowManager.getCows().get(i).getTowerDamage());
+                farmerManager.getFasterFarmer().setHealth(farmerManager.
+                        getFasterFarmer().getHealth()
+                        - cowManager.getCows().get(i).getTowerDamage());
             }
-            if (isInRange(cowManager.getCows().get(i), farmerManager.getFastestFarmer())) {
+            if (isInRange(cowManager.getCows().get(i), farmerManager.
+                    getFastestFarmer())) {
                 player.setMoney(player.getMoney() + 1);
-                farmerManager.getFastestFarmer().setHealth(farmerManager.getFastestFarmer().getHealth()
-                    - cowManager.getCows().get(i).getTowerDamage());
+                farmerManager.getFastestFarmer().setHealth(farmerManager.
+                        getFastestFarmer().getHealth()
+                        - cowManager.getCows().get(i).getTowerDamage());
             }
         }
         if (farmerManager.getNormalFarmer().getHealth() <= 0) {
@@ -123,6 +125,7 @@ public class PlayScene implements SceneMethods {
             farmerManager.getFastestFarmer().move(2500, 0);
         }
     }
+
     @Override
     public void touched(int x, int y, MotionEvent event) {
         if (y >= display.height() / 1.1) {
@@ -143,7 +146,7 @@ public class PlayScene implements SceneMethods {
     }
 
     private boolean isInRange(Cow cow, Farmer farmer) {
-        double range = getHypoDistance(cow.getX(), cow.getY(), farmer.getXCoordinate(), farmer.getYCoordinate());
+        double range = getHypoDistance(cow.getX(), cow.getY(), farmer.getX(), farmer.getY());
         return range < (cow.getCowRange() + 50);
     }
 
@@ -154,11 +157,16 @@ public class PlayScene implements SceneMethods {
         boolean four = (((y > 0) && (y < 710 + 50)) && ((x > 500 - 50) && (x < 650 + 50)));
         boolean five = (((y > 0) && (y < 170 + 50)) && ((x > 500 - 50) && (x < 975 + 50)));
         boolean six = (((y > 0) && (y < 930 + 50)) && ((x > 825 - 50) && (x < 975 + 50)));
-        boolean seven = (((y > 790 - 50) && (y < 930 + 50)) && ((x > 825 - 50) && (x < 1350 + 50)));
-        boolean eight = (((y > 375 - 50) && (y < 930 + 50)) && ((x > 1200 - 50) && (x < 1350 + 50)));
-        boolean nine = (((y > 375 - 50) && (y < 485 + 50)) && ((x > 1200 - 50) && (x < 1860 + 50)));
-        boolean ten = (((y > 375 - 50) && (y < 710 + 50)) && ((x > 1720 - 50) && (x < 1860 + 50)));
-        boolean eleven = (((y > 590 - 50) && (y < 710 + 50)) && ((x > 1720 - 50) && (x < 2200 + 50)));
+        boolean seven = (((y > 790 - 50) && (y < 930 + 50)) && ((x > 825 - 50)
+                && (x < 1350 + 50)));
+        boolean eight = (((y > 375 - 50) && (y < 930 + 50)) && ((x > 1200 - 50)
+                && (x < 1350 + 50)));
+        boolean nine = (((y > 375 - 50) && (y < 485 + 50)) && ((x > 1200 - 50)
+                && (x < 1860 + 50)));
+        boolean ten = (((y > 375 - 50) && (y < 710 + 50)) && ((x > 1720 - 50)
+                && (x < 1860 + 50)));
+        boolean eleven = (((y > 590 - 50) && (y < 710 + 50)) && ((x > 1720 - 50)
+                && (x < 2200 + 50)));
 
         if (one || two || three || four || five || six || seven || eight || nine || ten || eleven) {
             return false;
@@ -176,8 +184,8 @@ public class PlayScene implements SceneMethods {
     }
 
     public static double getHypoDistance(int x1, int y1, float x2, float y2) {
-        double xDiff = (double) Math.abs((x1 - (int)x2));
-        double yDiff = (double) Math.abs((y1 - (int)y2));
+        double xDiff = (double) Math.abs((x1 - (int) x2));
+        double yDiff = (double) Math.abs((y1 - (int) y2));
 
         return (double) Math.hypot(xDiff, yDiff);
     }

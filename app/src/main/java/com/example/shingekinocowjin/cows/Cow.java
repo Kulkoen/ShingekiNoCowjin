@@ -5,15 +5,20 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 public class Cow {
-    private int x, y, left, top, bottom, right;
+    private int x;
+    private int y;
+    private int left;
+    private int top;
+    private int bottom;
+    private int right;
     private int cowBodyColor = Color.BLACK;
     private int towerDamage;
     private int towerRange;
-    private int ID;
-    private int towerType = 0;// 0 = basic, 1 = mage, 2 = cannon, 3 = cc
+    private int id;
+    private int towerType = 0; // 0 = basic, 1 = mage, 2 = cannon, 3 = cc
 
-    public Cow(int x, int y, int ID, int towerType) {
-        this.ID = ID;
+    public Cow(int x, int y, int id, int towerType) {
+        this.id = id;
         this.towerType = towerType;
         this.x = x;
         this.y = y;
@@ -32,28 +37,28 @@ public class Cow {
     public void drawCowBody(Canvas canvas) {
         Paint cowBody = new Paint();
         switch (towerType) {
-            case 0:
-                cowBodyColor = Color.BLUE;
-                towerDamage = 1;
-                towerRange = 200;
-                break;
-            case 1:
-                cowBodyColor = Color.GREEN;
-                towerDamage = 5;
-                towerRange = 200;
-                break;
-            case 2:
-                cowBodyColor = Color.RED;
-                towerDamage = 5;
-                towerRange = 200;
-                break;
-            case 3:
-                cowBodyColor = Color.WHITE;
-                towerDamage = 1;
-                towerRange = 200;
-                break;
-            default:
-                break;
+        case 0:
+            cowBodyColor = Color.BLUE;
+            towerDamage = 1;
+            towerRange = 200;
+            break;
+        case 1:
+            cowBodyColor = Color.GREEN;
+            towerDamage = 5;
+            towerRange = 200;
+            break;
+        case 2:
+            cowBodyColor = Color.RED;
+            towerDamage = 5;
+            towerRange = 200;
+            break;
+        case 3:
+            cowBodyColor = Color.WHITE;
+            towerDamage = 1;
+            towerRange = 200;
+            break;
+        default:
+            break;
         }
         cowBody.setColor(cowBodyColor);
         canvas.drawRect(left, top, right, bottom, cowBody);

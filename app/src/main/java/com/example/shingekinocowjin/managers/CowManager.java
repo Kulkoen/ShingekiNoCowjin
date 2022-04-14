@@ -35,6 +35,7 @@ public class CowManager implements SceneMethods {
     public void touched(int x, int y, MotionEvent event) {
 
     }
+
     public ArrayList<Cow> getCows() {
         return cows;
     }

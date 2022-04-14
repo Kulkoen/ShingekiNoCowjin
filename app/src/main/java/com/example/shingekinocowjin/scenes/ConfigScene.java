@@ -1,35 +1,25 @@
 package com.example.shingekinocowjin.scenes;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.content.Context;
 
-import com.example.shingekinocowjin.Game;
-import com.example.shingekinocowjin.GameScreen;
 import com.example.shingekinocowjin.GameState;
-import com.example.shingekinocowjin.MainActivity;
 import com.example.shingekinocowjin.Player;
-import com.example.shingekinocowjin.R;
 import com.example.shingekinocowjin.ui.MyButton;
-import com.example.shingekinocowjin.ui.Shop;
-import com.example.shingekinocowjin.scenes.KeyboardScene;
 
 public class ConfigScene implements SceneMethods {
     private Bitmap image;
     private Rect display;
     private Player player;
-    private MyButton easy, medium, hard, start, changeName;
-    private int difficulty = 0;// 1 = easy, 2 = medium, 3 = hard
+    private MyButton easy;
+    private MyButton medium;
+    private MyButton hard;
+    private MyButton start;
+    private MyButton changeName;
+    private int difficulty = 0; // 1 = easy, 2 = medium, 3 = hard
     private static int cowPrice = 0;
     private boolean nameChosen = false;
     private String userInput = "";
@@ -96,12 +86,12 @@ public class ConfigScene implements SceneMethods {
         }
         if (start.getBounds().contains(x, y) && difficulty != 0) {
             if (!userInput.isEmpty() && !userInput.trim().isEmpty()) {
-                GameState.SetGameState(GameState.PLAYING);
+                GameState.setGameState(GameState.PLAYING);
             }
         }
         if (changeName.getBounds().contains(x, y)) {
             changeName.setPressed(true);
-            GameState.SetGameState(GameState.KEYBOARD);
+            GameState.setGameState(GameState.KEYBOARD);
         }
     }
 
@@ -122,9 +112,12 @@ public class ConfigScene implements SceneMethods {
         display = rectangle;
     }
 
-    public void setUserInput(String userInput) { this.userInput = userInput;}
+    public void setUserInput(String userInput) {
+        this.userInput = userInput;
+    }
 
-    public void setChangeName(String userInput) { changeName.setText(userInput); }
-
+    public void setChangeName(String userInput) {
+        changeName.setText(userInput);
+    }
 
 }
