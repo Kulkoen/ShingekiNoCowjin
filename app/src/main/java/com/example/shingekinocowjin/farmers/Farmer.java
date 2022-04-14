@@ -23,15 +23,17 @@ public class Farmer {
         switch (enemyType) {
 
             case 0:
-                health = 500;
+                health = 300;
+                maxHealth = 500;
                 break;
             case 1:
                 health = 200;
+                maxHealth = 200;
                 break;
             case 2:
                 health = 100;
+                maxHealth = 100;
                 break;
-
         }
     }
 
