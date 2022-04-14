@@ -1,12 +1,12 @@
 package com.example.shingekinocowjin;
 
 public class Player {
-    int monumentHealth = 25;
-    int money;
-    String name;
+    private static int monumentHealth = 0;
+    private static int money;
+    private String name;
 
-    public Player(int monumentHealth, int money, String name) {
-        this.monumentHealth = monumentHealth;
+    public Player(int health, int money, String name) {
+        monumentHealth = health;
         this.money = money;
         this.name = name;
     }
@@ -23,18 +23,26 @@ public class Player {
         return money;
     }
 
+    public void setMonumentHealth(int health) {
+        monumentHealth = health;
+    }
+
+    public void setMoney(int newMoney) {
+        money = newMoney;
+    }
+
     public String getName() {
         return name;
     }
 
-    public void setName(String newName){
+    public void setName(String newName) {
         name = newName;
     }
 
     public void removeOneMonumentHealth() {
         monumentHealth--;
         if (monumentHealth <= 0) {
-            System.out.println("Game Over"); //replace this with the game over screen soon TM.
+            System.out.println("Game Over"); // replace this with the game over screen soon TM.
         }
     }
 }

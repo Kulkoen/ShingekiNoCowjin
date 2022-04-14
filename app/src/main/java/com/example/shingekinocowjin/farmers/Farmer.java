@@ -6,52 +6,88 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 
 public class Farmer {
-    private float x, y;
+    private float x;
+    private float y;
     private int health;
-    private int ID;
+    private int maxHealth;
+    private int id;
     private int enemyType;
     private Rect bounds; // for hitbox
-    int farmerBodyColor = Color.RED;
+    private int farmerBodyColor = Color.RED;
 
-    public Farmer(float x, float y, int ID, int enemyType){
+    public Farmer(float x, float y, int id, int enemyType) {
         this.x = x;
         this.y = y;
-        this.ID = ID;
-        this .enemyType = enemyType;
+        this.id = id;
+        this.enemyType = enemyType;
+        switch (enemyType) {
+        case 0:
+            health = 300;
+            maxHealth = 500;
+            break;
+        case 1:
+            health = 200;
+            maxHealth = 200;
+            break;
+        case 2:
+            health = 100;
+            maxHealth = 100;
+            break;
+        default:
+            break;
+        }
     }
 
-    public void drawFarmer(Canvas canvas){
-
-    drawFarmerBody(canvas);
-    drawFarmerOutline(canvas);
-
+    public void drawFarmer(Canvas canvas) {
+        drawFarmerBody(canvas);
+        drawFarmerOutline(canvas);
     }
 
-    public void move(float x, float y){
-        this.x+=x;
-        this.y+=y;
+    public void move(float x, float y) {
+        this.x += x;
+        this.y += y;
     }
 
-    public void drawFarmerBody(Canvas canvas){
+    public void drawFarmerBody(Canvas canvas) {
         Paint farmerBody = new Paint();
         farmerBody.setColor(farmerBodyColor);
-        canvas.drawCircle(x, y, 35,farmerBody);
+        canvas.drawCircle(x, y, 35, farmerBody);
     }
-    public void drawFarmerOutline(Canvas canvas){
+
+    public void drawFarmerOutline(Canvas canvas) {
         Paint farmerOutline = new Paint();
         farmerOutline.setStrokeWidth(1);
         farmerOutline.setColor(Color.BLACK);
         farmerOutline.setStyle(Paint.Style.STROKE);
-        canvas.drawCircle(x, y, 35,farmerOutline);
+        canvas.drawCircle(x, y, 35, farmerOutline);
     }
-    public float getXCoordinate() {
+
+    public float getX() {
         return x;
     }
-    public float getYCoordinate() {
+
+    public float getY() {
         return y;
     }
 
-    public void setFarmerBody(int newColor){
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int newHealth) {
+        health = newHealth;
+    }
+
+    public void setFarmerBody(int newColor) {
         farmerBodyColor = newColor;
+    }
+
+    public void setMaxHealth(int newMaxHealth) {
+        maxHealth = newMaxHealth;
+    }
+
+    public float getHealthBarFloat() {
+        return health / (float) maxHealth;
+
     }
 }
