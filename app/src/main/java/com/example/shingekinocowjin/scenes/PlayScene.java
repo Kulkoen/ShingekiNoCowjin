@@ -180,8 +180,9 @@ public class PlayScene implements SceneMethods {
             player.setMoney(player.getMoney() - 200);
             upgradeCows.setBodyColor(Color.parseColor("#FDA4BA"));
         }
-        if (player.getMoney() >= 200) {
+        if (player.getMoney() >= 40) {
             upgradeCows.setBodyColor(Color.parseColor("#ebdff2"));
+            upgradeCows.drawButton(can);
         }
     }
 
