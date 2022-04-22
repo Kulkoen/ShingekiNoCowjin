@@ -120,7 +120,6 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         if (canvas != null) {
             switch (GameState.getGamestate()) {
             case WELCOME:
-
                 welcomeScene.setWelcomeDisplay(display);
                 welcomeScene.drawWelcome(canvas);
                 break;
@@ -148,6 +147,8 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                 gameOverScene.setGameOverDisplay(display);
                 gameOverScene.drawGameOver(canvas);
                 break;
+            case WIN:
+
             default:
                 break;
             }

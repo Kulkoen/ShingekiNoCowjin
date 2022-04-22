@@ -37,6 +37,34 @@ public class Cow {
         top = y - 50;
         bottom = y + 50;
         right = x + 50;
+        switch (towerType) {
+            case 0:
+                //cowBodyColor = Color.BLUE;
+                image = basicCow;
+                towerDamage = 3;
+                towerRange = 120;
+                break;
+            case 1:
+                //cowBodyColor = Color.GREEN;
+                image = mageCow;
+                towerDamage = 3;
+                towerRange = 150;
+                break;
+            case 2:
+                //cowBodyColor = Color.RED;
+                towerDamage = 1;
+                towerRange = 175;
+                image = cannonCow;
+                break;
+            case 3:
+                //cowBodyColor = Color.WHITE;
+                towerDamage = 2;
+                towerRange = 200;
+                image = cCCow;
+                break;
+            default:
+                break;
+        }
     }
 
     public void drawCow(Canvas canvas) {
@@ -47,7 +75,7 @@ public class Cow {
 
     public void drawCowBody(Canvas canvas) {
         Paint cowBody = new Paint();
-        switch (towerType) {
+        /*switch (towerType) {
         case 0:
             //cowBodyColor = Color.BLUE;
             image = basicCow;
@@ -74,7 +102,7 @@ public class Cow {
             break;
         default:
             break;
-        }
+        }*/
         // cowBody.setColor(cowBodyColor);
         // canvas.drawRect(left, top, right, bottom, cowBody);
         canvas.drawBitmap(image, left - 50, top - 50, null);

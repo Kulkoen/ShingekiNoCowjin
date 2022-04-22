@@ -68,7 +68,7 @@ public class PlayScene implements SceneMethods {
     // Draw methods
     public void drawPlay(Canvas canvas) {
         canvas.drawBitmap(image, null, display, null);
-        drawTiles(canvas);
+        //drawTiles(canvas);
 
         shop.setShopDisplay(display);
         shop.drawShop(canvas);
@@ -81,7 +81,7 @@ public class PlayScene implements SceneMethods {
         can = canvas;
     }
 
-    public void drawTiles(Canvas canvas) {
+    /*public void drawTiles(Canvas canvas) {
 
         Paint gridLines = new Paint();
         gridLines.setStrokeWidth(1);
@@ -94,7 +94,7 @@ public class PlayScene implements SceneMethods {
                         (150 * y) + 150, gridLines);
             }
         }
-    }
+    }*/
 
     public void update() {
         if (farmerManager.getNormalFarmer().getX() == 2001
@@ -171,13 +171,13 @@ public class PlayScene implements SceneMethods {
                 }
             }
         }
-        if (upgradeCows.getBounds().contains(x, y) && player.getMoney() >= 200) {
-            ArrayList<Cow> arr = cowManager.getCows();
-            for (Cow c : arr) {
-                c.setCowRange(c.getCowRange() + 30);
-                c.setTowerDamage(c.getTowerDamage() + 1);
+        if (upgradeCows.getBounds().contains(x, y) && player.getMoney() >= 100) {
+            for (Cow c : cowManager.getCows()) {
+                c.setCowRange(c.getCowRange() + 100);
+                c.setTowerDamage(c.getTowerDamage() + 200);
+                c.drawCowRange(can);
             }
-            player.setMoney(player.getMoney() - 200);
+            player.setMoney(player.getMoney() - 100);
             upgradeCows.setBodyColor(Color.parseColor("#FDA4BA"));
         }
         if (player.getMoney() >= 40) {
