@@ -18,8 +18,11 @@ import com.example.shingekinocowjin.managers.FarmerManager;
 import com.example.shingekinocowjin.ui.MyButton;
 import com.example.shingekinocowjin.ui.Shop;
 
+import java.util.ArrayList;
+
 public class PlayScene implements SceneMethods {
     private MyButton startCombat;
+    private MyButton upgradeCows;
     private Bitmap image;
     private Bitmap mageCow;
     private Bitmap cCCow;
@@ -32,6 +35,7 @@ public class PlayScene implements SceneMethods {
     private CowManager cowManager;
     private Shop shop;
     private boolean start = false;
+    Canvas can;
 
     private Cow selectedCow;
 
@@ -52,10 +56,13 @@ public class PlayScene implements SceneMethods {
     private void initButtons() {
         startCombat = new MyButton("START", 50, 800,
                 300, 900);
+        upgradeCows = new MyButton("UPGRADE", 350, 800,
+                700, 900);
     }
 
     private void drawButtons(Canvas canvas) {
         startCombat.drawButton(canvas);
+        upgradeCows.drawButton(canvas);
     }
 
     // Draw methods
@@ -71,6 +78,7 @@ public class PlayScene implements SceneMethods {
             farmerManager.update();
         }
         cowManager.drawTowers(canvas);
+        can = canvas;
     }
 
     public void drawTiles(Canvas canvas) {
@@ -110,23 +118,22 @@ public class PlayScene implements SceneMethods {
                     farmerManager.getNormalFarmer().setHealth(farmerManager.getNormalFarmer()
                             .getHealth() - cowManager.getCows().get(i).getTowerDamage());
                 }
-                if (currentTimeMillis() % 60 == 0) {
-                    player.setMoney(player.getMoney() + 1);
+                if (currentTimeMillis() % 80 == 0) {
+                    player.setMoney(player.getMoney() + 3);
                 }
             }
             if (isInRange(cowManager.getCows().get(i), farmerManager.getFasterFarmer())) {
-                if (currentTimeMillis() % 60 == 0) {
-                    player.setMoney(player.getMoney() + 3);
+                if (currentTimeMillis() % 80 == 0) {
+                    player.setMoney(player.getMoney() + 2);
                 }
                 if (currentTimeMillis() % 5 == 0) {
                     farmerManager.getFasterFarmer().setHealth(farmerManager.getFasterFarmer()
                         .getHealth() - cowManager.getCows().get(i).getTowerDamage());
                 }
             }
-            if (isInRange(cowManager.getCows().get(i), farmerManager.getFastestFarmer())
-                    && currentTimeMillis() % 5 == 0) {
-                if (currentTimeMillis() % 60 == 0) {
-                    player.setMoney(player.getMoney() + 5);
+            if (isInRange(cowManager.getCows().get(i), farmerManager.getFastestFarmer())) {
+                if (currentTimeMillis() % 80 == 0) {
+                    player.setMoney(player.getMoney() + 1);
                 }
                 if (currentTimeMillis() % 5 == 0) {
                     farmerManager.getFastestFarmer().setHealth(farmerManager
@@ -163,6 +170,18 @@ public class PlayScene implements SceneMethods {
                     shop.getClickedButton().setBodyColor(Color.parseColor("#FDA4BA"));
                 }
             }
+        }
+        if (upgradeCows.getBounds().contains(x, y) && player.getMoney() >= 200) {
+            ArrayList<Cow> arr = cowManager.getCows();
+            for (Cow c : arr) {
+                c.setCowRange(c.getCowRange() + 30);
+                c.setTowerDamage(c.getTowerDamage() + 1);
+            }
+            player.setMoney(player.getMoney() - 200);
+            upgradeCows.setBodyColor(Color.parseColor("#FDA4BA"));
+        }
+        if (player.getMoney() >= 200) {
+            upgradeCows.setBodyColor(Color.parseColor("#ebdff2"));
         }
     }
 

@@ -51,24 +51,24 @@ public class Cow {
         case 0:
             //cowBodyColor = Color.BLUE;
             image = basicCow;
-            towerDamage = 1;
-            towerRange = 100;
+            towerDamage = 3;
+            towerRange = 120;
             break;
         case 1:
             //cowBodyColor = Color.GREEN;
             image = mageCow;
-            towerDamage = 5;
+            towerDamage = 3;
             towerRange = 150;
             break;
         case 2:
             //cowBodyColor = Color.RED;
-            towerDamage = 5;
+            towerDamage = 1;
             towerRange = 175;
             image = cannonCow;
             break;
         case 3:
             //cowBodyColor = Color.WHITE;
-            towerDamage = 1;
+            towerDamage = 2;
             towerRange = 200;
             image = cCCow;
             break;
@@ -113,8 +113,12 @@ public class Cow {
         return towerRange;
     }
 
+    public void setCowRange(int range) { towerRange = range; }
+
     public int getTowerDamage() {
         return towerDamage;
     }
+
+    public void setTowerDamage(int damage) { towerDamage = damage; }
 
 }

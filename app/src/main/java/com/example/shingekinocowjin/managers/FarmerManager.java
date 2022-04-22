@@ -79,11 +79,14 @@ public class FarmerManager {
     public void resetFarmers() {
         farmers = new ArrayList<Farmer>();
         normalFarmer = new Farmer(0, 310, 0, 0);
-        normalFarmer.setHealth(100);
+        normalFarmer.setHealth(normalFarmer.getMaxHealth() + 75);
+        normalFarmer.setMaxHealth(normalFarmer.getMaxHealth() + 75);
         fasterFarmer = new Farmer(0, 310, 1, 1);
-        fasterFarmer.setHealth(80);
+        fastestFarmer.setMaxHealth(fasterFarmer.getMaxHealth() + 75);
+        fasterFarmer.setHealth(fasterFarmer.getMaxHealth() + 75);
         fastestFarmer = new Farmer(0, 310, 2, 2);
-        fastestFarmer.setHealth(50);
+        fastestFarmer.setMaxHealth(fastestFarmer.getMaxHealth() + 75);
+        fastestFarmer.setHealth(fastestFarmer.getMaxHealth() + 75);
     }
 
     public void update() {
