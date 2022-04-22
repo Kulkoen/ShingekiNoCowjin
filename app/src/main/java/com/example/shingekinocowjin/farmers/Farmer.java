@@ -22,16 +22,16 @@ public class Farmer {
         this.enemyType = enemyType;
         switch (enemyType) {
         case 0:
-            health = 600;
-            maxHealth = 600;
-            break;
-        case 1:
             health = 400;
             maxHealth = 400;
             break;
-        case 2:
+        case 1:
             health = 200;
             maxHealth = 200;
+            break;
+        case 2:
+            health = 100;
+            maxHealth = 100;
             break;
         default:
             break;

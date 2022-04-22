@@ -5,6 +5,7 @@ public enum GameState {
     WELCOME,
     CONFIG,
     KEYBOARD,
+    WIN,
     GAMEOVER;
 
     private static GameState gamestate = WELCOME;
