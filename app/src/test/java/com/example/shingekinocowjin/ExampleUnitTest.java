@@ -206,6 +206,64 @@ public class ExampleUnitTest {
 
         assertEquals(9, testClass.getRoundEndGold());
     }
+
+    //Milestone 6 unit tests
+
+    @Test
+    public void checkIsFinalBossDead() {
+        testClass = new TestClass();
+
+        assertEquals(true, testClass.isFinalBossDead());
+    }
+
+    @Test
+    public void checkNumFarmersKilled() {
+        testClass = new TestClass();
+
+        assertEquals(13, testClass.getNumKilledFarmers());
+    }
+
+    @Test
+    public void checkNumRounds() {
+        testClass = new TestClass();
+
+        assertEquals(3, testClass.getNumRounds());
+    }
+
+    @Test
+    public void checkRoundOneEnemies() {
+        testClass = new TestClass();
+
+        assertEquals(3, testClass.getRoundOneEnemies());
+    }
+
+    @Test
+    public void checkRoundTwoEnemies() {
+        testClass = new TestClass();
+
+        assertEquals(4, testClass.getRoundTwoEnemies());
+    }
+
+    @Test
+    public void checkRoundThreeEnemies() {
+        testClass = new TestClass();
+
+        assertEquals(5, testClass.getRoundThreeEnemies());
+    }
+
+    @Test
+    public void checkIsGameWon() {
+        testClass = new TestClass();
+
+        assertEquals(1, testClass.getIsGameWon());
+    }
+
+    @Test
+    public void checkIsGameLost() {
+        testClass = new TestClass();
+
+        assertEquals(1, testClass.getIsGameLost());
+    }
 }
 /**
  * Test to see if full screen is properly done on the android phone.

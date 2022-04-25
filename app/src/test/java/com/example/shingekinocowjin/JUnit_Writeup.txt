@@ -120,3 +120,51 @@ checkFastFarmerGold()
 checkRoundEndGold()
 
 	- checkRoundEndGold() checks that the gold you gain at the end of round 1 is equal to 9.
+
+isFinalBossDead()
+
+    - isFinalBossDead() checks whether or not the final boss is killed at the end of the round. We
+      need this JUnit to check if the boss is killed because the final boss is a special unit type
+      that determines if we proceed to the game win or game over screen.
+
+checkNumFarmersKilled()
+
+    - checkNumFarmersKilled() checks the number of farmers that were killed (total). We use this
+      number to check whether or not the number of farmers killed is equal to the number of farmers
+      to summon the final boss. If the numbers are the same, then we summon the final boss.
+
+checkNumRounds()
+
+    - checkNumRounds() checks the number of rounds before we summon the final boss. After three
+      rounds and the number of farmers slain is greater than or equal to 13, we summon the final
+      boss.
+
+checkRoundOneEnemies()
+
+    - checkRoundOneEnemies() this method checks that the number of enemies summoned in round one
+      is equal to 3. This is the amount of enemies we want to summon round one so we use this JUnit
+      to test that the number of enemies summoned round one is equal to what we want.
+
+checkRoundTwoEnemies()
+
+    - checkRoundTwoEnemies() this method checks that the number of enemies summoned in round two
+      is equal to 4. This is the amount of enemies we want to summon round two so we use this JUnit
+      to test that the number of enemies summoned round two is equal to what we want.
+
+checkRoundThreeEnemies()
+
+    - checkRoundThreeEnemies() this method checks that the number of enemies summoned in round three
+      is equal to 5. This is the amount of enemies we want to summon round three so we use this JUnit
+      to test that the number of enemies summoned round three is equal to what we want.
+
+checkIsGameWon()
+
+    - checkIsGameWon() checks whether or not the final boss is killed. If the type farmer FinalBoss
+      is killed then we open up the Game Won screen and display the player stats. In this screen we
+      also give the option to return to the main menu.
+
+checkIsGameLost()
+
+    - checkIsGameLost() checks whether or not the final boss is killed. If the type farmer FinalBoss
+      is not killed and makes it to the farmhouse then we open up the Game Over screen and display
+      the player stats. In this screen we also give the option to return to the main menu.

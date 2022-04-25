@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.shingekinocowjin.scenes.ConfigScene;
 import com.example.shingekinocowjin.scenes.GameOverScene;
+import com.example.shingekinocowjin.scenes.GameWonScene;
 import com.example.shingekinocowjin.scenes.KeyboardScene;
 import com.example.shingekinocowjin.scenes.PlayScene;
 import com.example.shingekinocowjin.scenes.WelcomeScene;
@@ -32,6 +33,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     private KeyboardScene keyboardScene;
     private PlayScene playScene;
     private GameOverScene gameOverScene;
+    private GameWonScene gameWonScene;
     private Rect display;
     private Context contextm;
     private Bitmap[] bit = new Bitmap[4];
@@ -50,7 +52,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         getHolder().addCallback(this);
 
         // Initialize Game State
-        GameState.setGameState(GameState.WELCOME);
+        GameState.setGameState(GameState.GAMEWON);
         game = new Game(this, surfaceHolder);
 
         // Initialize player
@@ -80,6 +82,9 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         case GAMEOVER:
             gameOverScene.touched((int) event.getX(), (int) event.getY(), event);
             break;
+            case GAMEWON:
+                gameWonScene.touched((int) event.getX(), (int) event.getY(), event);
+                break;
         default:
             break;
         }
@@ -100,6 +105,8 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         playScene = new PlayScene(BitmapFactory.decodeResource(getResources(), R.drawable.map),
                 bit);
         gameOverScene = new GameOverScene(BitmapFactory.decodeResource(getResources(),
+                R.drawable.game_over));
+        gameWonScene = new GameWonScene(BitmapFactory.decodeResource(getResources(),
                 R.drawable.game_over));
         game.startLoop();
     }
@@ -147,8 +154,9 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                 gameOverScene.setGameOverDisplay(display);
                 gameOverScene.drawGameOver(canvas);
                 break;
-            case WIN:
-
+            case GAMEWON:
+                gameWonScene.setGameWonDisplay(display);
+                gameWonScene.drawGameWon(canvas);
             default:
                 break;
             }
