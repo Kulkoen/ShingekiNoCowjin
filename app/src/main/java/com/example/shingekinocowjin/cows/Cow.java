@@ -39,25 +39,21 @@ public class Cow {
         right = x + 50;
         switch (towerType) {
             case 0:
-                //cowBodyColor = Color.BLUE;
                 image = basicCow;
-                towerDamage = 3;
-                towerRange = 120;
+                towerDamage = 2;
+                towerRange = 160;
                 break;
             case 1:
-                //cowBodyColor = Color.GREEN;
                 image = mageCow;
-                towerDamage = 3;
-                towerRange = 150;
+                towerDamage = 4;
+                towerRange = 140;
                 break;
             case 2:
-                //cowBodyColor = Color.RED;
-                towerDamage = 1;
-                towerRange = 175;
+                towerDamage = 5;
+                towerRange = 180;
                 image = cannonCow;
                 break;
             case 3:
-                //cowBodyColor = Color.WHITE;
                 towerDamage = 2;
                 towerRange = 200;
                 image = cCCow;

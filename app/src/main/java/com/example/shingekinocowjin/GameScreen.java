@@ -19,6 +19,7 @@ import com.example.shingekinocowjin.scenes.GameOverScene;
 import com.example.shingekinocowjin.scenes.KeyboardScene;
 import com.example.shingekinocowjin.scenes.PlayScene;
 import com.example.shingekinocowjin.scenes.WelcomeScene;
+import com.example.shingekinocowjin.scenes.WinScene;
 
 /*
 * Game manages all objects in the game and is responsible for updating all states and render
@@ -32,6 +33,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     private KeyboardScene keyboardScene;
     private PlayScene playScene;
     private GameOverScene gameOverScene;
+    private WinScene winScene;
     private Rect display;
     private Context contextm;
     private Bitmap[] bit = new Bitmap[4];
@@ -80,6 +82,8 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         case GAMEOVER:
             gameOverScene.touched((int) event.getX(), (int) event.getY(), event);
             break;
+        case WIN:
+            winScene.touched((int) event.getX(), (int) event.getY(), event);
         default:
             break;
         }
@@ -100,6 +104,8 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         playScene = new PlayScene(BitmapFactory.decodeResource(getResources(), R.drawable.map),
                 bit);
         gameOverScene = new GameOverScene(BitmapFactory.decodeResource(getResources(),
+                R.drawable.game_over));
+        winScene = new WinScene(BitmapFactory.decodeResource(getResources(),
                 R.drawable.game_over));
         game.startLoop();
     }
@@ -136,8 +142,8 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
             case PLAYING:
                 playScene.setPlayingDisplay(display);
                 playScene.drawPlay(canvas);
-                drawUPS(canvas);
-                drawFPS(canvas);
+//                drawUPS(canvas);
+//                drawFPS(canvas);
                 drawBarn(canvas);
                 drawMonumentHealth(canvas);
                 drawMoney(canvas);
@@ -148,7 +154,8 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
                 gameOverScene.drawGameOver(canvas);
                 break;
             case WIN:
-
+                winScene.setWinDisplay(display);
+                winScene.drawWin(canvas);
             default:
                 break;
             }
