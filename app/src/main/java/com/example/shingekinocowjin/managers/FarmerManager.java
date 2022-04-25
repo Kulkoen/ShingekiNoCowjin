@@ -15,6 +15,7 @@ public class FarmerManager {
     private Farmer normalFarmer;
     private Farmer fasterFarmer;
     private Farmer fastestFarmer;
+    private Farmer bossFarmer;
     private int hpBarWidth = 45;
 
     public FarmerManager(PlayScene playScene) {
@@ -25,6 +26,7 @@ public class FarmerManager {
         // farmers.add(fasterFarmer);
         fastestFarmer = new Farmer(0, 310, 2, 2);
         // farmers.add(fastestFarmer);
+        bossFarmer = new Farmer(0, 310, 3, 3);
     }
 
     public void drawEnemies(Canvas canvas) {
@@ -54,6 +56,12 @@ public class FarmerManager {
 
     public void drawFarmerType(Farmer f, Canvas canvas) {
         f.drawFarmer(canvas);
+    }
+
+    public void drawBoss(Canvas canvas){
+        bossFarmer.setFarmerBody(Color.BLACK);
+        drawFarmerType(bossFarmer, canvas);
+        drawHealthBar(bossFarmer, canvas);
     }
 
     public void moveFarmer(Farmer farmer, float speed) {
@@ -87,12 +95,21 @@ public class FarmerManager {
         fastestFarmer = new Farmer(0, 310, 2, 2);
         fastestFarmer.setMaxHealth(fastestFarmer.getMaxHealth() + 75);
         fastestFarmer.setHealth(fastestFarmer.getMaxHealth() + 75);
+        playScene.setWave(playScene.getWave()+1);
+    }
+
+    public void resetBoss(){
+        bossFarmer = new Farmer(0, 310, 3, 3);
     }
 
     public void update() {
         moveFarmer(normalFarmer, (float) 3);
         moveFarmer(fasterFarmer, (float) 4);
         moveFarmer(fastestFarmer, (float) 5);
+    }
+
+    public void bossUpdate(){
+        moveFarmer(bossFarmer, (float) 2);
     }
 
     public Farmer getNormalFarmer() {
@@ -105,6 +122,10 @@ public class FarmerManager {
 
     public Farmer getFastestFarmer() {
         return fastestFarmer;
+    }
+
+    public Farmer getBossFarmer() {
+        return bossFarmer;
     }
 
     public ArrayList<Farmer> getFarmers() {

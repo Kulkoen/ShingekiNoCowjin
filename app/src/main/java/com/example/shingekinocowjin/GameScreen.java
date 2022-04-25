@@ -20,6 +20,7 @@ import com.example.shingekinocowjin.scenes.GameWonScene;
 import com.example.shingekinocowjin.scenes.KeyboardScene;
 import com.example.shingekinocowjin.scenes.PlayScene;
 import com.example.shingekinocowjin.scenes.WelcomeScene;
+import com.example.shingekinocowjin.scenes.WinScene;
 
 /*
 * Game manages all objects in the game and is responsible for updating all states and render
@@ -52,7 +53,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         getHolder().addCallback(this);
 
         // Initialize Game State
-        GameState.setGameState(GameState.GAMEWON);
+        GameState.setGameState(GameState.WELCOME);
         game = new Game(this, surfaceHolder);
 
         // Initialize player
@@ -107,6 +108,7 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         gameOverScene = new GameOverScene(BitmapFactory.decodeResource(getResources(),
                 R.drawable.game_over));
         gameWonScene = new GameWonScene(BitmapFactory.decodeResource(getResources(),
+
                 R.drawable.game_over));
         game.startLoop();
     }
@@ -143,8 +145,8 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
             case PLAYING:
                 playScene.setPlayingDisplay(display);
                 playScene.drawPlay(canvas);
-                drawUPS(canvas);
-                drawFPS(canvas);
+//                drawUPS(canvas);
+//                drawFPS(canvas);
                 drawBarn(canvas);
                 drawMonumentHealth(canvas);
                 drawMoney(canvas);

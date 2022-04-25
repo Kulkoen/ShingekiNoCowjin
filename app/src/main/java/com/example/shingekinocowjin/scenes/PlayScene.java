@@ -18,8 +18,6 @@ import com.example.shingekinocowjin.managers.FarmerManager;
 import com.example.shingekinocowjin.ui.MyButton;
 import com.example.shingekinocowjin.ui.Shop;
 
-import java.util.ArrayList;
-
 public class PlayScene implements SceneMethods {
     private MyButton startCombat;
     private MyButton upgradeCows;
@@ -34,6 +32,7 @@ public class PlayScene implements SceneMethods {
     private FarmerManager farmerManager;
     private CowManager cowManager;
     private Shop shop;
+    private int wave;
     private boolean start = false;
     Canvas can;
 
@@ -72,10 +71,16 @@ public class PlayScene implements SceneMethods {
 
         shop.setShopDisplay(display);
         shop.drawShop(canvas);
+        drawWaves(canvas);
         drawButtons(canvas);
         if (start) {
-            farmerManager.drawEnemies(canvas);
-            farmerManager.update();
+            if(wave >= 5){
+                farmerManager.drawBoss(canvas);
+                farmerManager.bossUpdate();
+            }else {
+                farmerManager.drawEnemies(canvas);
+                farmerManager.update();
+            }
         }
         cowManager.drawTowers(canvas);
         can = canvas;
@@ -105,6 +110,15 @@ public class PlayScene implements SceneMethods {
                 GameState.setGameState(GameState.GAMEOVER);
             }
         }
+        if(farmerManager.getBossFarmer().getX() >= 2000){
+            farmerManager.resetBoss();
+            player.setMonumentHealth(player.getMonumentHealth() - 90);
+            startCombat.setPressed(false);
+            start = false;
+            if (player.getMonumentHealth() <= 0) {
+                GameState.setGameState(GameState.GAMEOVER);
+            }
+        }
         if (farmerManager.getNormalFarmer().getX() >= 2001
                 && (farmerManager.getFasterFarmer().getX() >= 2000)
                 && (farmerManager.getFastestFarmer().getX() >= 2000)) {
@@ -118,38 +132,46 @@ public class PlayScene implements SceneMethods {
                     farmerManager.getNormalFarmer().setHealth(farmerManager.getNormalFarmer()
                             .getHealth() - cowManager.getCows().get(i).getTowerDamage());
                 }
-                if (currentTimeMillis() % 80 == 0) {
-                    player.setMoney(player.getMoney() + 3);
-                }
             }
             if (isInRange(cowManager.getCows().get(i), farmerManager.getFasterFarmer())) {
-                if (currentTimeMillis() % 80 == 0) {
-                    player.setMoney(player.getMoney() + 2);
-                }
                 if (currentTimeMillis() % 5 == 0) {
                     farmerManager.getFasterFarmer().setHealth(farmerManager.getFasterFarmer()
                         .getHealth() - cowManager.getCows().get(i).getTowerDamage());
                 }
             }
             if (isInRange(cowManager.getCows().get(i), farmerManager.getFastestFarmer())) {
-                if (currentTimeMillis() % 80 == 0) {
-                    player.setMoney(player.getMoney() + 1);
-                }
                 if (currentTimeMillis() % 5 == 0) {
                     farmerManager.getFastestFarmer().setHealth(farmerManager
                         .getFastestFarmer().getHealth() - cowManager.getCows()
                         .get(i).getTowerDamage());
                 }
             }
+            if (isInRange(cowManager.getCows().get(i), farmerManager.getBossFarmer())) {
+                if (currentTimeMillis() % 5 == 0) {
+                    farmerManager.getBossFarmer().setHealth(farmerManager
+                            .getBossFarmer().getHealth() - cowManager.getCows()
+                            .get(i).getTowerDamage());
+                }
+            }
         }
         if (farmerManager.getNormalFarmer().getHealth() <= 0) {
             farmerManager.getNormalFarmer().move(2500, 0);
+            farmerManager.getNormalFarmer().setHealth(1);
+            player.setMoney(player.getMoney() + 10);
+
         }
         if (farmerManager.getFasterFarmer().getHealth() <= 0) {
             farmerManager.getFasterFarmer().move(2500, 0);
+            farmerManager.getFasterFarmer().setHealth(1);
+            player.setMoney(player.getMoney() + 15);
         }
         if (farmerManager.getFastestFarmer().getHealth() <= 0) {
             farmerManager.getFastestFarmer().move(2500, 0);
+            farmerManager.getFastestFarmer().setHealth(1);
+            player.setMoney(player.getMoney() + 20);
+        }
+        if(farmerManager.getBossFarmer().getHealth() <= 0){
+            GameState.setGameState(GameState.GAMEWON);
         }
     }
 
@@ -160,6 +182,7 @@ public class PlayScene implements SceneMethods {
         } else if (startCombat.getBounds().contains(x, y)) {
             startCombat.setBodyColor(Color.parseColor("#66FF00"));
             startCombat.setPressed(true);
+            farmerManager.resetBoss();
             start = true;
         } else {
             if (selectedCow != null) {
@@ -173,8 +196,8 @@ public class PlayScene implements SceneMethods {
         }
         if (upgradeCows.getBounds().contains(x, y) && player.getMoney() >= 100) {
             for (Cow c : cowManager.getCows()) {
-                c.setCowRange(c.getCowRange() + 100);
-                c.setTowerDamage(c.getTowerDamage() + 200);
+                c.setCowRange(c.getCowRange() + 50);
+                c.setTowerDamage(c.getTowerDamage() + 50);
                 c.drawCowRange(can);
             }
             player.setMoney(player.getMoney() - 100);
@@ -186,6 +209,12 @@ public class PlayScene implements SceneMethods {
         }
     }
 
+    public void drawWaves(Canvas canvas){
+        Paint textPaint = new Paint();
+        textPaint.setColor(Color.BLACK);
+        textPaint.setTextSize(50);
+        canvas.drawText(wave+"",100,100,textPaint);
+    }
     private boolean isInRange(Cow cow, Farmer farmer) {
         double range = getHypoDistance(cow.getX(), cow.getY(), farmer.getX(), farmer.getY());
         return range < (cow.getCowRange() + 50);
@@ -242,5 +271,12 @@ public class PlayScene implements SceneMethods {
         double yDiff = (double) Math.abs((y1 - (int) y2));
 
         return (double) Math.hypot(xDiff, yDiff);
+    }
+
+    public void setWave(int wave) {
+        this.wave = wave;
+    }
+    public int getWave() {
+        return wave;
     }
 }

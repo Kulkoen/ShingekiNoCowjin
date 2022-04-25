@@ -33,6 +33,10 @@ public class Farmer {
             health = 100;
             maxHealth = 100;
             break;
+        case 3:
+            health = 2000;
+            maxHealth = 2000;
+            break;
         default:
             break;
         }
@@ -60,6 +64,14 @@ public class Farmer {
         farmerOutline.setColor(Color.BLACK);
         farmerOutline.setStyle(Paint.Style.STROKE);
         canvas.drawCircle(x, y, 35, farmerOutline);
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
     }
 
     public float getX() {
