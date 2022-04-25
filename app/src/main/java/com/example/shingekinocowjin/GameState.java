@@ -5,10 +5,10 @@ public enum GameState {
     WELCOME,
     CONFIG,
     KEYBOARD,
-    WIN,
+    GAMEWON,
     GAMEOVER;
 
-    private static GameState gamestate = WELCOME;
+    private static GameState gamestate = GAMEWON;
 
     public static void setGameState(GameState state) {
         gamestate = state;

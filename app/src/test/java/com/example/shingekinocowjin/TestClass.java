@@ -224,4 +224,78 @@ public class TestClass {
     int mediumFarmerGold = 3;
     int fastFarmerGold = 5;
     int roundEndGold = 9;
+
+    boolean isFinalBossDead = true;
+    int numKilledFarmers = 13;
+    int numRounds = 3;
+
+    public boolean isFinalBossDead() {
+        return isFinalBossDead;
+    }
+
+    public void setFinalBossDead(boolean finalBossDead) {
+        isFinalBossDead = finalBossDead;
+    }
+
+    public int getNumKilledFarmers() {
+        return numKilledFarmers;
+    }
+
+    public void setNumKilledFarmers(int numKilledFarmers) {
+        this.numKilledFarmers = numKilledFarmers;
+    }
+
+    public int getNumRounds() {
+        return numRounds;
+    }
+
+    public void setNumRounds(int numRounds) {
+        this.numRounds = numRounds;
+    }
+
+    public int getRoundOneEnemies() {
+        return roundOneEnemies;
+    }
+
+    public void setRoundOneEnemies(int roundOneEnemies) {
+        this.roundOneEnemies = roundOneEnemies;
+    }
+
+    public int getRoundTwoEnemies() {
+        return roundTwoEnemies;
+    }
+
+    public void setRoundTwoEnemies(int roundTwoEnemies) {
+        this.roundTwoEnemies = roundTwoEnemies;
+    }
+
+    public int getRoundThreeEnemies() {
+        return roundThreeEnemies;
+    }
+
+    public void setRoundThreeEnemies(int roundThreeEnemies) {
+        this.roundThreeEnemies = roundThreeEnemies;
+    }
+
+    public int getIsGameWon() {
+        return isGameWon;
+    }
+
+    public void setIsGameWon(int isGameWon) {
+        this.isGameWon = isGameWon;
+    }
+
+    public int getIsGameLost() {
+        return isGameLost;
+    }
+
+    public void setIsGameLost(int isGameLost) {
+        this.isGameLost = isGameLost;
+    }
+
+    int roundOneEnemies = 3;
+    int roundTwoEnemies = 4;
+    int roundThreeEnemies = 5;
+    int isGameWon = 1;
+    int isGameLost = 1;
 }
