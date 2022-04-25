@@ -26,6 +26,10 @@ public class PlayScene implements SceneMethods {
     private Bitmap cCCow;
     private Bitmap basicCow;
     private Bitmap cannonCow;
+    private Bitmap pickaxe;
+    private Bitmap basic;
+    private Bitmap tractor;
+    private Bitmap hat;
     private Rect display;
     private ConfigScene configScene;
     private Player player;
@@ -38,7 +42,7 @@ public class PlayScene implements SceneMethods {
 
     private Cow selectedCow;
 
-    public PlayScene(Bitmap bmp, Bitmap[] bit) {
+    public PlayScene(Bitmap bmp, Bitmap[] bit, Bitmap pickaxe, Bitmap basic, Bitmap tractor, Bitmap hat) {
         image = bmp;
         this.basicCow = bit[0];
         this.cannonCow = bit[1];
@@ -46,7 +50,7 @@ public class PlayScene implements SceneMethods {
         this.cCCow = bit[3];
         configScene = new ConfigScene(bmp);
         player = new Player(100, 5, "");
-        farmerManager = new FarmerManager(this);
+        farmerManager = new FarmerManager(this, pickaxe, basic, tractor, hat);
         cowManager = new CowManager(this, basicCow, cannonCow, mageCow, cCCow);
         shop = new Shop(this, bit);
         initButtons();
@@ -213,7 +217,7 @@ public class PlayScene implements SceneMethods {
         Paint textPaint = new Paint();
         textPaint.setColor(Color.BLACK);
         textPaint.setTextSize(50);
-        canvas.drawText(wave+"",100,100,textPaint);
+        canvas.drawText("Round: " + wave,100,100,textPaint);
     }
     private boolean isInRange(Cow cow, Farmer farmer) {
         double range = getHypoDistance(cow.getX(), cow.getY(), farmer.getX(), farmer.getY());
