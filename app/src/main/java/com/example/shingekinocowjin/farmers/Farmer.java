@@ -1,5 +1,6 @@
 package com.example.shingekinocowjin.farmers;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -13,29 +14,31 @@ public class Farmer {
     private int id;
     private int enemyType;
     private Rect bounds; // for hitbox
+    private Bitmap sprite;
     private int farmerBodyColor = Color.RED;
 
-    public Farmer(float x, float y, int id, int enemyType) {
+    public Farmer(float x, float y, int id, int enemyType, Bitmap sprite) {
+        this.sprite = sprite;
         this.x = x;
         this.y = y;
         this.id = id;
         this.enemyType = enemyType;
         switch (enemyType) {
         case 0:
-            health = 400;
-            maxHealth = 400;
+            health = 500;
+            maxHealth = 500;
             break;
         case 1:
+            health = 300;
+            maxHealth = 300;
+            break;
+        case 2:
             health = 200;
             maxHealth = 200;
             break;
-        case 2:
-            health = 100;
-            maxHealth = 100;
-            break;
         case 3:
-            health = 2000;
-            maxHealth = 2000;
+            health = 20000;
+            maxHealth = 20000;
             break;
         default:
             break;
@@ -55,7 +58,8 @@ public class Farmer {
     public void drawFarmerBody(Canvas canvas) {
         Paint farmerBody = new Paint();
         farmerBody.setColor(farmerBodyColor);
-        canvas.drawCircle(x, y, 35, farmerBody);
+        //canvas.drawCircle(x, y, 35, farmerBody);
+        canvas.drawBitmap(sprite, x - 105, y - 120, null);
     }
 
     public void drawFarmerOutline(Canvas canvas) {
@@ -63,7 +67,7 @@ public class Farmer {
         farmerOutline.setStrokeWidth(1);
         farmerOutline.setColor(Color.BLACK);
         farmerOutline.setStyle(Paint.Style.STROKE);
-        canvas.drawCircle(x, y, 35, farmerOutline);
+        //canvas.drawCircle(x, y, 35, farmerOutline);
     }
 
     public void setX(float x) {

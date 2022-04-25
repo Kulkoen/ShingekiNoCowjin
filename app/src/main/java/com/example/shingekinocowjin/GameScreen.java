@@ -38,6 +38,10 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
     private Rect display;
     private Context contextm;
     private Bitmap[] bit = new Bitmap[4];
+    private Bitmap pickaxe;
+    private Bitmap basic;
+    private Bitmap tractor;
+    private Bitmap hat;
 
     public GameScreen(Context context) {
         super(context);
@@ -99,12 +103,16 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
         configScene = new ConfigScene(BitmapFactory.decodeResource(getResources(),
                 R.drawable.cow_background));
         keyboardScene = new KeyboardScene();
+        pickaxe = BitmapFactory.decodeResource(getResources(), R.drawable.pickaxe_farmer);
+        basic = BitmapFactory.decodeResource(getResources(), R.drawable.basic_farmer);
+        tractor = BitmapFactory.decodeResource(getResources(), R.drawable.tractor);
+        hat = BitmapFactory.decodeResource(getResources(), R.drawable.hat_farmer);
         bit[0] = BitmapFactory.decodeResource(getResources(), R.drawable.basic_cow);
         bit[1] = BitmapFactory.decodeResource(getResources(), R.drawable.cannon_cow);
         bit[2] = BitmapFactory.decodeResource(getResources(), R.drawable.cow_mage);
         bit[3] = BitmapFactory.decodeResource(getResources(), R.drawable.cc_cow);
         playScene = new PlayScene(BitmapFactory.decodeResource(getResources(), R.drawable.map),
-                bit);
+                bit, pickaxe, basic, tractor, hat);
         gameOverScene = new GameOverScene(BitmapFactory.decodeResource(getResources(),
                 R.drawable.game_over));
         gameWonScene = new GameWonScene(BitmapFactory.decodeResource(getResources(),

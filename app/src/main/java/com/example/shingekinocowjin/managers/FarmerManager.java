@@ -1,5 +1,6 @@
 package com.example.shingekinocowjin.managers;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -16,17 +17,26 @@ public class FarmerManager {
     private Farmer fasterFarmer;
     private Farmer fastestFarmer;
     private Farmer bossFarmer;
+    private Bitmap pickaxe;
+    private Bitmap basic;
+    private Bitmap tractor;
+    private Bitmap hat;
+    private Bitmap[] bit = new Bitmap[4];
     private int hpBarWidth = 45;
 
-    public FarmerManager(PlayScene playScene) {
+    public FarmerManager(PlayScene playScene, Bitmap pickaxe, Bitmap basic, Bitmap tractor, Bitmap hat) {
         this.playScene = playScene;
-        normalFarmer = new Farmer(0, 310, 0, 0);
+        bit[0] = pickaxe;
+        bit[1] = basic;
+        bit[2] = tractor;
+        bit[3] = hat;
+        normalFarmer = new Farmer(0, 310, 0, 0, bit[0]);
         // farmers.add(normalFarmer);
-        fasterFarmer = new Farmer(0, 310, 1, 1);
+        fasterFarmer = new Farmer(0, 310, 1, 1, bit[1]);
         // farmers.add(fasterFarmer);
-        fastestFarmer = new Farmer(0, 310, 2, 2);
+        fastestFarmer = new Farmer(0, 310, 2, 2, bit[3]);
         // farmers.add(fastestFarmer);
-        bossFarmer = new Farmer(0, 310, 3, 3);
+        bossFarmer = new Farmer(0, 310, 3, 3, bit[2]);
     }
 
     public void drawEnemies(Canvas canvas) {
@@ -46,8 +56,8 @@ public class FarmerManager {
     private void drawHealthBar(Farmer farmer, Canvas canvas) {
         Paint healthBar = new Paint();
         healthBar.setColor(Color.RED);
-        canvas.drawRect(farmer.getX() - getNewBarWidth(farmer), farmer.getY() - 50,
-                farmer.getX() + getNewBarWidth(farmer), farmer.getY() - 40, healthBar);
+        canvas.drawRect(farmer.getX() - getNewBarWidth(farmer) + 10, farmer.getY() - 120,
+                farmer.getX() + getNewBarWidth(farmer) + 10, farmer.getY() - 110, healthBar);
     }
 
     private int getNewBarWidth(Farmer farmer) {
@@ -86,20 +96,20 @@ public class FarmerManager {
 
     public void resetFarmers() {
         farmers = new ArrayList<Farmer>();
-        normalFarmer = new Farmer(0, 310, 0, 0);
+        normalFarmer = new Farmer(0, 310, 0, 0, bit[0]);
         normalFarmer.setHealth(normalFarmer.getMaxHealth() + 75);
         normalFarmer.setMaxHealth(normalFarmer.getMaxHealth() + 75);
-        fasterFarmer = new Farmer(0, 310, 1, 1);
+        fasterFarmer = new Farmer(0, 310, 1, 1, bit[1]);
         fastestFarmer.setMaxHealth(fasterFarmer.getMaxHealth() + 75);
         fasterFarmer.setHealth(fasterFarmer.getMaxHealth() + 75);
-        fastestFarmer = new Farmer(0, 310, 2, 2);
+        fastestFarmer = new Farmer(0, 310, 2, 2, bit[3]);
         fastestFarmer.setMaxHealth(fastestFarmer.getMaxHealth() + 75);
         fastestFarmer.setHealth(fastestFarmer.getMaxHealth() + 75);
         playScene.setWave(playScene.getWave()+1);
     }
 
     public void resetBoss(){
-        bossFarmer = new Farmer(0, 310, 3, 3);
+        bossFarmer = new Farmer(0, 310, 3, 3, bit[2]);
     }
 
     public void update() {
@@ -109,7 +119,7 @@ public class FarmerManager {
     }
 
     public void bossUpdate(){
-        moveFarmer(bossFarmer, (float) 2);
+        moveFarmer(bossFarmer, (float) 4);
     }
 
     public Farmer getNormalFarmer() {
