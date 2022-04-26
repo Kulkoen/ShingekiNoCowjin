@@ -8,12 +8,14 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import com.example.shingekinocowjin.GameState;
+import com.example.shingekinocowjin.Player;
 import com.example.shingekinocowjin.ui.MyButton;
 
 public class GameOverScene implements SceneMethods {
     private Bitmap image;
     private MyButton menu;
     private MyButton gameOver;
+    private Player player = new Player(100, 0, "");
     private Rect display;
 
     public GameOverScene(Bitmap bmp) {
@@ -33,16 +35,15 @@ public class GameOverScene implements SceneMethods {
         n.setTextSize(100);
 
         canvas.drawText("GAME OVER", 500, 200, p);
-        canvas.drawText("Farmers Killed", 500, 400, n);
-        canvas.drawText("Number of Units", 500, 500, n);
-        canvas.drawText("Upgrades Purchases", 500, 600, n);
+        canvas.drawText("Farmers Killed: " + player.getFarmersKilled(), 500, 400, n);
+        canvas.drawText("Number of Units: " + player.getUnitsBought(), 500, 500, n);
+        canvas.drawText("Upgrades Purchases: " + player.getUpgradesBought(), 500, 600, n);
         drawButtons(canvas);
     }
 
     private void initButtons() {
 
         menu = new MyButton("MENU", 900, 750, 1300, 1000);
-        gameOver = new MyButton("GAME OVER: ", 900, 150, 1300, 400);
     }
 
     private void drawButtons(Canvas canvas) {
@@ -53,9 +54,13 @@ public class GameOverScene implements SceneMethods {
 
     @Override
     public void touched(int x, int y, MotionEvent event) {
+        ConfigScene configScene = new ConfigScene(image);
         if (menu.getBounds().contains(x, y)) {
             menu.setPressed(true);
-
+            player.setFarmersKilled(0);
+            player.setUpgradesBought(0);
+            player.setUnitsBought(0);
+            configScene.setChangeName("Change Name");
             GameState.setGameState(GameState.WELCOME);
         }
 

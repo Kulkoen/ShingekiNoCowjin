@@ -18,7 +18,7 @@ public class ConfigScene implements SceneMethods {
     private MyButton medium;
     private MyButton hard;
     private MyButton start;
-    private MyButton changeName;
+    private static MyButton changeName;
     private int difficulty = 0; // 1 = easy, 2 = medium, 3 = hard
     private static int cowPrice = 0;
     private boolean nameChosen = false;
