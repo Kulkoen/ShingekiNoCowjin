@@ -32,7 +32,7 @@ public class GameOverScene implements SceneMethods {
         n.setColor(Color.BLACK);
         n.setTextSize(100);
 
-        canvas.drawText("GAME WON", 500, 200, p);
+        canvas.drawText("GAME OVER", 500, 200, p);
         canvas.drawText("Farmers Killed", 500, 400, n);
         canvas.drawText("Number of Units", 500, 500, n);
         canvas.drawText("Upgrades Purchases", 500, 600, n);

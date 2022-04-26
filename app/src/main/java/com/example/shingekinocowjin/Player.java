@@ -1,7 +1,7 @@
 package com.example.shingekinocowjin;
 
 public class Player {
-    private static int monumentHealth = 0;
+    private static int monumentHealth = 1;
     private static int money;
     private String name;
 

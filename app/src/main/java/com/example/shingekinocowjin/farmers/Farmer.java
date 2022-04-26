@@ -37,8 +37,8 @@ public class Farmer {
             maxHealth = 200;
             break;
         case 3:
-            health = 20000;
-            maxHealth = 20000;
+            health = 30000;
+            maxHealth = 30000;
             break;
         default:
             break;
