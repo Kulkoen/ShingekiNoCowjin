@@ -86,6 +86,9 @@ public class ConfigScene implements SceneMethods {
         }
         if (start.getBounds().contains(x, y) && difficulty != 0) {
             if (!userInput.isEmpty() && !userInput.trim().isEmpty() && userInput != "Change Name") {
+                easy.setPressed(false);
+                medium.setPressed(false);
+                hard.setPressed(false);
                 GameState.setGameState(GameState.PLAYING);
             }
         }

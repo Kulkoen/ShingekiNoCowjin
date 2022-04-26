@@ -110,6 +110,9 @@ public class FarmerManager {
 
     public void resetBoss(){
         bossFarmer = new Farmer(0, 310, 3, 3, bit[2]);
+        bossFarmer.setMaxHealth(20000);
+        bossFarmer.setHealth(20000);
+
     }
 
     public void update() {

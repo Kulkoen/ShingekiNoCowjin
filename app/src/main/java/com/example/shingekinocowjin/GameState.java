@@ -8,7 +8,7 @@ public enum GameState {
     GAMEWON,
     GAMEOVER;
 
-    private static GameState gamestate = GAMEWON;
+    private static GameState gamestate = WELCOME;
 
     public static void setGameState(GameState state) {
         gamestate = state;

@@ -139,6 +139,9 @@ public class GameScreen extends SurfaceView implements SurfaceHolder.Callback {
             case WELCOME:
                 welcomeScene.setWelcomeDisplay(display);
                 welcomeScene.drawWelcome(canvas);
+                player.setMonumentHealth(100);
+                player.setMoney(1);
+                //configScene.setChangeName("Change Name");
                 break;
             case CONFIG:
                 configScene.setUserInput(keyboardScene.getUserInputText());

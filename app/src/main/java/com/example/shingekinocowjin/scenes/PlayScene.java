@@ -111,15 +111,27 @@ public class PlayScene implements SceneMethods {
                 || (farmerManager.getFastestFarmer().getX() == 2000)) {
             player.setMonumentHealth(player.getMonumentHealth() - 10);
             if (player.getMonumentHealth() <= 0) {
+                farmerManager.resetBoss();
+                farmerManager.resetFarmers();
+                startCombat.setPressed(false);
+                start = false;
+                wave = 0;
+                cowManager.getCows().removeAll(cowManager.getCows());
                 GameState.setGameState(GameState.GAMEOVER);
             }
         }
         if(farmerManager.getBossFarmer().getX() >= 2000){
             farmerManager.resetBoss();
-            player.setMonumentHealth(player.getMonumentHealth() - 90);
+            player.setMonumentHealth(player.getMonumentHealth() - 100);
             startCombat.setPressed(false);
             start = false;
             if (player.getMonumentHealth() <= 0) {
+                farmerManager.resetBoss();
+                farmerManager.resetFarmers();
+                startCombat.setPressed(false);
+                start = false;
+                wave = 0;
+                cowManager.getCows().removeAll(cowManager.getCows());
                 GameState.setGameState(GameState.GAMEOVER);
             }
         }
@@ -175,6 +187,12 @@ public class PlayScene implements SceneMethods {
             player.setMoney(player.getMoney() + 20);
         }
         if(farmerManager.getBossFarmer().getHealth() <= 0){
+            farmerManager.resetBoss();
+            farmerManager.resetFarmers();
+            startCombat.setPressed(false);
+            start = false;
+            wave = 0;
+            cowManager.getCows().removeAll(cowManager.getCows());
             GameState.setGameState(GameState.GAMEWON);
         }
     }
