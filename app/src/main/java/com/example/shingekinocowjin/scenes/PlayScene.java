@@ -36,7 +36,7 @@ public class PlayScene implements SceneMethods {
     private FarmerManager farmerManager;
     private CowManager cowManager;
     private Shop shop;
-    private int wave;
+    private int wave = 1;
     private boolean start = false;
     Canvas can;
 
@@ -57,10 +57,14 @@ public class PlayScene implements SceneMethods {
     }
 
     private void initButtons() {
-        startCombat = new MyButton("START", 50, 800,
-                300, 900);
-        upgradeCows = new MyButton("UPGRADE", 350, 800,
+        //startCombat = new MyButton("START", 50, 800, 250, 900);
+        startCombat = new MyButton("START", 25, 825,
+                250, 900);
+        startCombat.setTextSize(50);
+        //upgradeCows = new MyButton("UPGRADE($100)", 300, 800, 700, 900);
+        upgradeCows = new MyButton("UPGRADE($100)", 275, 825,
                 700, 900);
+        upgradeCows.setTextSize(50);
     }
 
     private void drawButtons(Canvas canvas) {
@@ -174,17 +178,19 @@ public class PlayScene implements SceneMethods {
             farmerManager.getNormalFarmer().move(2500, 0);
             farmerManager.getNormalFarmer().setHealth(1);
             player.setMoney(player.getMoney() + 10);
-
+            player.setFarmersKilled(player.getFarmersKilled() + 1);
         }
         if (farmerManager.getFasterFarmer().getHealth() <= 0) {
             farmerManager.getFasterFarmer().move(2500, 0);
             farmerManager.getFasterFarmer().setHealth(1);
             player.setMoney(player.getMoney() + 15);
+            player.setFarmersKilled(player.getFarmersKilled() + 1);
         }
         if (farmerManager.getFastestFarmer().getHealth() <= 0) {
             farmerManager.getFastestFarmer().move(2500, 0);
             farmerManager.getFastestFarmer().setHealth(1);
             player.setMoney(player.getMoney() + 20);
+            player.setFarmersKilled(player.getFarmersKilled() + 1);
         }
         if(farmerManager.getBossFarmer().getHealth() <= 0){
             farmerManager.resetBoss();
@@ -211,6 +217,7 @@ public class PlayScene implements SceneMethods {
                 if (isTileGrass(x, y) && (player.getMoney() >= configScene.getCowPrice())) {
                     cowManager.addCow(selectedCow, x, y);
                     player.setMoney(player.getMoney() - configScene.getCowPrice());
+                    player.setUnitsBought(player.getUnitsBought() + 1);
                     selectedCow = null;
                     shop.getClickedButton().setBodyColor(Color.parseColor("#FDA4BA"));
                 }
@@ -223,6 +230,7 @@ public class PlayScene implements SceneMethods {
                 c.drawCowRange(can);
             }
             player.setMoney(player.getMoney() - 100);
+            player.setUpgradesBought(player.getUpgradesBought() + 1);
             upgradeCows.setBodyColor(Color.parseColor("#FDA4BA"));
         }
         if (player.getMoney() >= 40) {
@@ -300,5 +308,8 @@ public class PlayScene implements SceneMethods {
     }
     public int getWave() {
         return wave;
+    }
+    public Player getPlayer() {
+        return player;
     }
 }

@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import com.example.shingekinocowjin.GameState;
+import com.example.shingekinocowjin.Player;
 import com.example.shingekinocowjin.scenes.SceneMethods;
 import com.example.shingekinocowjin.ui.MyButton;
 
@@ -15,6 +16,7 @@ public class GameWonScene implements SceneMethods {
     private Bitmap image;
     private MyButton menu;
     private MyButton gameOver;
+    private Player player = new Player(100, 0, "");
     private Rect display;
     private MyButton stat1;
     private MyButton stat2;
@@ -38,21 +40,15 @@ public class GameWonScene implements SceneMethods {
         n.setTextSize(100);
 
         canvas.drawText("GAME WON", 500, 200, p);
-        canvas.drawText("Farmers Killed", 500, 400, n);
-        canvas.drawText("Number of Units", 500, 500, n);
-        canvas.drawText("Upgrades Purchases", 500, 600, n);
+        canvas.drawText("Farmers Killed: " + player.getFarmersKilled(), 500, 400, n);
+        canvas.drawText("Number of Units: " + player.getUnitsBought(), 500, 500, n);
+        canvas.drawText("Upgrades Purchases: " + player.getUpgradesBought(), 500, 600, n);
         drawButtons(canvas);
     }
 
     private void initButtons() {
 
         menu = new MyButton("MENU", 900, 750, 1300, 1000);
-        gameOver = new MyButton("GAME WON ", 900, 150, 1300, 400);
-        stat1 = new MyButton("Farmers Killed: ", 1100, 150, 1300, 700 );
-        stat2 = new MyButton("Number of Units: ", 900, 150, 1300, 200 );
-        stat3 = new MyButton("Upgrades Purchased: ", 900, 150, 1300, 100 );
-
-
     }
 
     private void drawButtons(Canvas canvas) {
@@ -62,9 +58,13 @@ public class GameWonScene implements SceneMethods {
 
     @Override
     public void touched(int x, int y, MotionEvent event) {
+        ConfigScene configScene = new ConfigScene(image);
         if (menu.getBounds().contains(x, y)) {
             menu.setPressed(true);
-
+            player.setFarmersKilled(0);
+            player.setUpgradesBought(0);
+            player.setUnitsBought(0);
+            configScene.setChangeName("Change Name");
             GameState.setGameState(GameState.WELCOME);
         }
 

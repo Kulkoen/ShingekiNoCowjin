@@ -2,6 +2,9 @@ package com.example.shingekinocowjin;
 
 public class Player {
     private static int monumentHealth = 1;
+    private static int farmersKilled;
+    private static int upgradesBought;
+    private static int unitsBought;
     private static int money;
     private String name;
 
@@ -13,6 +16,30 @@ public class Player {
 
     public void update() {
 
+    }
+
+    public int getFarmersKilled() {
+        return farmersKilled;
+    }
+
+    public int getUnitsBought() {
+        return unitsBought;
+    }
+
+    public int getUpgradesBought() {
+        return upgradesBought;
+    }
+
+    public void setFarmersKilled(int newFarmersKilled) {
+        farmersKilled = newFarmersKilled;
+    }
+
+    public void setUnitsBought(int newUnitsBought) {
+        unitsBought = newUnitsBought;
+    }
+
+    public void setUpgradesBought(int newUpgradesBought) {
+        upgradesBought = newUpgradesBought;
     }
 
     public int getMonumentHealth() {
@@ -37,12 +64,5 @@ public class Player {
 
     public void setName(String newName) {
         name = newName;
-    }
-
-    public void removeOneMonumentHealth() {
-        monumentHealth--;
-        if (monumentHealth <= 0) {
-            System.out.println("Game Over"); // replace this with the game over screen soon TM.
-        }
     }
 }

@@ -15,6 +15,7 @@ public class KeyboardScene implements SceneMethods {
     private MyButton done;
     private MyButton back;
     protected String userInput = "Change Name";
+    private ConfigScene configScene;
 
     public KeyboardScene() {
         initButtons();
